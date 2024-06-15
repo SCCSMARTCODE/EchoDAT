@@ -1,0 +1,299 @@
+/* Reset default browser margin and set a default font family */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Flexbox container for header elements, aligning items in a row */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Styling for the logo container */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for the logo image */
+.logo img {
+    max-width: 100px; /* Adjust size as needed */
+    max-height: 40px;
+    height: auto;
+}
+
+/* Hide the fallback text by default */
+.logo .logo-text {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Ensure the text is visible if the image doesn't load */
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Styling for the search bar container */
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 50px; /* Adjust border-radius to make edges more rounded */
+    padding: 8px; /* Adjust padding as needed */
+}
+
+/* Styling for the search icon inside the search bar */
+.search-bar .fa-search {
+    margin-right: 10px; /* Adjust spacing between icon and input field */
+    color: #999;
+}
+
+/* Styling for the search input field */
+.search-bar input {
+    width: 250px; /* Adjust width as needed */
+    height: 10px; /* Adjust height as needed */
+    padding: 8px; /* Adjust padding as needed */
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+
+/* Remove default list styles and display navigation links inline */
+.nav-links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Spacing between navigation links */
+.nav-links ul li {
+    margin-right: 20px;
+}
+
+/* Remove default blue underline from links and change text color to black */
+.nav-links ul li a {
+    text-decoration: none; /* Remove underline */
+    color: #000; /* Set text color to black */
+}
+
+/* Hover effect for links */
+.nav-links ul li a:hover {
+    color: #007BFF; /* Change text color on hover if desired */
+}
+
+
+/* Spacing between user action links (Login and Sign Up) */
+.user-actions a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s;
+}
+
+/* Hover effect for user actions */
+.user-actions a:hover {
+    color: #007BFF;
+}
+
+/* Hide menu toggle and mobile search icon by default */
+.menu-toggle, .mobile-search-icon {
+    display: none;
+}
+
+/* sticky header at the top of the page */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Responsive Design: Adjust styles for screens 768px wide or smaller */
+@media (max-width: 768px) {
+    /* Stack header elements vertically */
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    /* Hide the search bar on small screens */
+    .search-bar {
+        display: none;
+    }
+
+    /* Show menu toggle and mobile search icon on small screens */
+    .menu-toggle, .mobile-search-icon {
+        display: block;
+        cursor: pointer;
+    }
+
+    /* Hide navigation links by default on small screens */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Stack navigation links vertically on small screens */
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Center navigation links and add vertical margin */
+    .nav-links ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    /* Stack user action links vertically and center align them */
+    .user-actions {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Add vertical margin between user action links */
+    .user-actions a {
+        margin: 5px 0;
+    }
+
+    /* Display navigation links and search bar when toggled */
+    .nav-links.active, .search-bar.active {
+        display: flex;
+    }
+}
+
+/* Styling for the hero section */
+/* Ensure the hero container has no extra padding or margin on the left */
+.hero {
+    position: relative;
+    height: 50vh; /* Set height to half of the viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the left */
+    padding: 20px 0; /* Adjust padding as needed */
+}
+
+
+/* Styling for the background */
+.background {
+    position: absolute;
+    top: 0;
+    left: 50%; /* Center the background horizontally */
+    transform: translateX(-50%); /* Center the background horizontally */
+    width: 95vw; /* Set the width to 90% of the viewport width, adjust as needed */
+    height: 100%; /* Fill the height of the hero section */
+    background-image: url('img/background.png'); /* Add your image path here */
+    background-size: cover; /* Cover the background */
+    background-position: center;
+    border-radius: 20px; /* Add border-radius for slightly curved edges */
+    z-index: -1; /* Place the background behind the content */
+}
+
+/* Move the hero content all the way to the left */
+.hero-content {
+    max-width: 500px; /* Limit the width of the content */
+    padding: 120px; /* Adjust padding as needed */
+    margin-left: 0; /* Ensure no left margin */
+    text-align: left; /* Align text to the left */
+    z-index: 1; /* Ensure content is above the background */
+}
+
+.hero-content h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Add keyframes for growing and fading in */
+@keyframes growFadeIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Apply the animation to the hero content */
+.hero-content {
+    padding-left: 120px; /* Adjust this value to push the content to the right */
+    animation: growFadeIn 1s ease-out forwards;
+}
+
+/* Keyframe animation for growing and fading effect */
+@keyframes growIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Styling for the decorative image inside the background */
+.decorative-image {
+    position: absolute;
+    top: 58px; /* Adjust the positioning to move the image down */
+    right: 0%; /* Adjust the positioning as needed */
+    max-width: 16%; /* Adjust the size as needed */
+    height: auto;
+    border-radius: 10px; /* Add border-radius if needed */
+    animation: growIn 1s ease-out forwards; /* Apply animation */
+    animation-delay: 0.5s; /* Delay for the first image */
+}
+
+/* Styling for the second decorative image */
+.second-image {
+    position: absolute;
+    top: 58px; /* Adjust the positioning to move the image down */
+    right: 3%; /* Adjust the positioning as needed */
+    max-width: 35%; /* Adjust the size as needed */
+    height: auto;
+    /* Add any additional styling as needed */
+    animation: growIn 1s ease-out forwards; /* Apply animation */
+    animation-delay: 1.5s; /* Delay for the second image */
+}
+
+/* Styling for the third decorative image */
+.third-image {
+    position: absolute;
+    top: 75px; /* Adjust the positioning to move the image down */
+    right: 18%; /* Adjust the positioning as needed */
+    max-width: 33%; /* Adjust the size as needed */
+    height: auto;
+    /* Add any additional styling as needed */
+    animation: growIn 1s ease-out forwards; /* Apply animation */
+    animation-delay: 2.5s; /* Delay for the third image */
+}
+
+
