@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login-style-sheet.css">
+</head>
+<body>
+    <div class="login-container">
+        <a href="index.html">
+            <img src="img/logo.png" alt="ECHODAT Logo" class="logo">
+        </a>
+        <h2>LOG IN TO ECHODAT</h2>
+        <form action="#" method="POST">
+            <div class="form-group google-button-container">
+                <button type="button" class="google-button">
+                    <img src="img/google-icon.png" alt="Google Icon" class="google-icon">
+                    Continue with Google
+                </button>
+            </div>
+
+            <div class="or-container">
+                <hr class="or-line" style="width: 50%; margin-bottom: 10px;">
+                <span class="or-text">or</span>
+                <hr class="or-line" style="width: 50%; margin-bottom: 10px;">
+            </div>
+            
+            <div class="form-group">
+                <label for="emailOrUsername">Email or Username</label>
+                <input type="text" id="emailOrUsername" name="emailOrUsername" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group form-group-checkbox">
+                <input type="checkbox" id="rememberMe" name="rememberMe">
+                <label for="rememberMe">Remember Me</label>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+
+            <a href="#" class="forget-password-link">Forget Password</a>
+
+            <div class="space-between-line-and-link"></div>
+
+            <hr class="horizontal-line">
+
+            <p class="dont-have-account-yet">
+                Don't have an account yet? <a href="signup.html" class="signup-link">Sign up today!</a>
+            </p>
+        </form>
+    </div>
+</body>
+</html>
