@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Music - Echodat</title>
+    <link rel="stylesheet" href="upload-styles.css">
+    <link rel="stylesheet" href="login-style-sheet.css">
+    <link rel="stylesheet" href="signup-style-sheet.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginModal = document.getElementById('loginModal');
+            const signupModal = document.getElementById('signupModal');
+            const uploadLink = document.getElementById('uploadLink');
+            const loginLink = document.getElementById('loginLink');
+            const signupLink = document.getElementById('signupLink');
+            const closeLoginModal = document.getElementById('closeLoginModal');
+            const closeSignupModal = document.getElementById('closeSignupModal');
+            const userProfile = document.getElementById('userProfile');
+            const userName = document.getElementById('userName');
+            const logoutLink = document.getElementById('logoutLink');
+
+            function showModal(modal) {
+                return (event) => {
+                    event.preventDefault();
+                    modal.style.display = 'block';
+                };
+            }
+
+            uploadLink.addEventListener('click', (event) => {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    showModal(loginModal)(event);
+                } else {
+                    // Proceed to upload
+                    window.location.href = 'upload.html';
+                }
+            });
+
+            loginLink.addEventListener('click', showModal(loginModal));
+            signupLink.addEventListener('click', showModal(signupModal));
+
+            closeLoginModal.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+            });
+
+            closeSignupModal.addEventListener('click', () => {
+                signupModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === loginModal) {
+                    loginModal.style.display = 'none';
+                } else if (event.target === signupModal) {
+                    signupModal.style.display = 'none';
+                }
+            });
+
+            function handleLoginSuccess(token, username) {
+                localStorage.setItem('token', token);
+                userName.textContent = username;
+                userProfile.style.display = 'block';
+                loginModal.style.display = 'none';
+                signupModal.style.display = 'none';
+            }
+
+            const loginForm = document.querySelector('#loginModal .login-container form');
+            
+            loginForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                
+                const emailOrUsername = document.getElementById('emailOrUsername').value;
+                const password = document.getElementById('password').value;
+                
+                if (emailOrUsername === '' || password === '') {
+                    alert('Please fill in all fields.');
+                } else {
+                    const data = {
+                        emailOrUsername: emailOrUsername,
+                        password: password
+                    };
+                    
+                    try {
+                        const response = await fetch('https://your-backend-api/login', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (response.ok) {
+                            handleLoginSuccess(result.token, result.username);
+                        } else {
+                            alert(result.message);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('An error occurred while logging in. Please try again later.');
+                    }
+                }
+            });
+
+            const signupForm = document.querySelector('#signupModal .signup-container form');
+            
+            signupForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (username === '' || email === '' || password === '' || confirmPassword === '') {
+                    alert('Please fill in all fields.');
+                } else if (password !== confirmPassword) {
+                    alert('Passwords do not match.');
+                } else {
+                    const data = {
+                        username: username,
+                        email: email,
+                        password: password
+                    };
+                    
+                    try {
+                        const response = await fetch('https://your-backend-api/signup', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (response.ok) {
+                            handleLoginSuccess(result.token, result.username);
+                        } else {
+                            alert(result.message);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('An error occurred while signing up. Please try again later.');
+                    }
+                }
+            });
+
+            logoutLink.addEventListener('click', () => {
+                localStorage.removeItem('token');
+                userProfile.style.display = 'none';
+                window.location.href = 'index.html';
+            });
+
+            const tokenFromStorage = localStorage.getItem('token');
+            if (tokenFromStorage) {
+                const userData = getUserDataFromToken(tokenFromStorage);
+                if (userData) {
+                    userName.textContent = userData.username;
+                    userProfile.style.display = 'block';
+                }
+            } else {
+                userProfile.style.display = 'none';
+            }
+
+            function getUserDataFromToken(token) {
+                // Implement your logic to decode token and return user data
+                return { username: 'SmartDammy' };
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="header">
+        <div class="container">
+            <!-- Logo Section -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Echodat Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="logo-text">Echodat</span>
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#" id="uploadLink">Upload</a></li>
+                    <li><a href="#" id="loginLink">Login</a></li>
+                    <li><a href="#" id="signupLink">Signup</a></li>
+                    <li id="userProfile" class="dropdown" style="display: none;">
+                        <img src="img/default-avatar.png" alt="User Avatar" id="userAvatar">
+                        <div class="dropdown-content">
+                            <p>Welcome, <span id="userName"></span>!</p>
+                            <a href="profile.html">Profile</a>
+                            <a href="dashboard.html">Creator Dashboard</a>
+                            <a href="#">Help</a>
+                            <a href="#">Switch Account</a>
+                            <a href="#">Account Settings</a>
+                            <a href="#" id="logoutLink">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="login-container modal-content">
+            <span id="closeLoginModal" class="close">&times;</span>
+            <a href="index.html">
+                <img src="img/logo.png" alt="ECHODAT Logo" class="logo">
+            </a>
+            <h2>LOG IN TO ECHODAT</h2>
+            <form action="#" method="POST">
+                <div class="form-group google-button-container">
+                    <button type="button" class="google-button">
+                        <img src="img/google-icon.png" alt="Google Icon" class="google-icon">
+                        Continue with Google
+                    </button>
+                </div>
+
+                <div class="or-container">
+                    <hr class="or-line" style="width: 50%; margin-bottom: 10px;">
+                    <span class="or-text">or</span>
+                    <hr class="or-line" style="width: 50%; margin-bottom: 10px;">
+                </div>
+                
+                <div class="form-group">
+                    <label for="emailOrUsername">Email or Username</label>
+                    <input type="text" id="emailOrUsername" name="emailOrUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group form-group-checkbox">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <label for="rememberMe">Remember Me</label>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit">Login</button>
+                </div>
+
+                <a href="#" class="forget-password-link">Forget Password</a>
+
+                <div class="sign-up-prompt">
+                    <p>Don't have an account? <a href="#" id="signupLink">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="signup-container modal-content">
+            <span id="closeSignupModal" class="close">&times;</span>
+            <a href="index.html">
+                <img src="img/logo.png" alt="ECHODAT Logo" class="logo">
+            </a>
+            <h2>SIGN UP TO ECHODAT</h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit">Sign Up</button>
+                </div>
+                
+                <div class="sign-up-prompt">
+                    <p>Already have an account? <a href="#" id="loginLink">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
