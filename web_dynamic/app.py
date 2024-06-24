@@ -1,11 +1,12 @@
 """
 This is the module that starts up the application
 """
-from flask import Flask
+from config_file import Config
 from route1 import blueP
+from web_dynamic import app
 
-app = Flask('__name__')
 app.register_blueprint(blueP)
+app.config.from_object(Config)
 
 
 if __name__ == '__main__':

@@ -13,7 +13,7 @@
         <div class="container">
            <!-- Logo Section -->
             <div class="logo">
-                <a href="{{ url_for('homepage') }}">
+                <a href="{{ url_for('unauth.homepage') }}">
                     <img src="{{ url_for('static', filename='.system_files/img/logo.png') }}" alt="Echodat Logo" onerror="this.style.display='none'; 
                     this.nextElementSibling.style.display='block';">
                     <span class="logo-text">Echodat</span>
@@ -46,8 +46,8 @@
             
             <!-- User Actions (Login and Sign Up) -->
             <div class="user-actions">
-                <a href="login.html">Login</a>
-                <a href="#">Sign Up</a>
+                <a href="{{ url_for('unauth.login') }}">Login</a>
+                <a href="{{ url_for('unauth.registration') }}">Sign Up</a>
             </div>
         </div>
     </header>
@@ -69,7 +69,17 @@
         </div>
         
     </section>
-
+    <div class="flash-message-cotainer">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     
 
 
