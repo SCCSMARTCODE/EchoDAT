@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="profile-style-sheet.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <!-- Logo Section -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Echodat Logo">
+                    <span class="logo-text">Echodat</span>
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#">Discover</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Playlist</a></li>
+                    <li><a href="#">Original</a></li>
+                </ul>
+            </nav>
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+
+            <!-- User Actions (Profile, Dashboard, Logout) -->
+            <div class="user-actions">
+                <div id="userProfile">
+                    <img src="img/default-avatar.png" alt="User Avatar" id="userAvatar">
+                    <div>
+                        <p>Welcome, <span id="userName"></span>!</p>
+                        <a href="dashboard.html">Dashboard</a>
+                        <a href="#" id="logoutLink">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <h2>User Profile</h2>
+        <div id="profileInfo">
+            <!-- Profile information will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="profile-script.js"></script>
+</body>
+</html>

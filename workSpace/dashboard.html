@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="dashboard-style-sheet.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <!-- Logo Section -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Echodat Logo">
+                    <span class="logo-text">Echodat</span>
+                </a>
+            </div>
+
+            <!-- User Actions (Profile, Dashboard, Logout) -->
+            <div class="user-actions">
+                <div class="upload-link">
+                    <a href="#" id="uploadLink"><i class="fas fa-upload"></i> Upload</a>
+                </div>
+            
+                <div class="user-actions">
+                    <div id="userProfile" class="dropdown">
+                        <img src="img/default-avatar.png" alt="User Avatar" id="userAvatar">
+                            <div class="dropdown-content">
+                            <p>Welcome, <span id="userName"></span>!</p>
+                            <a href="profile.html">Profile</a>
+                            <a href="dashboard.html">Creator Dashboard</a>
+                            <a href="#">Help</a>
+                            <a href="#">Switch Account</a>
+                            <a href="#">Account Settings</a>
+                            <a href="#" id="logoutLink">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Left scrollable menu bar -->
+    <div class="left-menu-bar">
+        <div class="profile-info">
+            <img src="img/default-avatar.png" alt="User Avatar" class="profile-picture">
+            <div class="profile-details">
+                <p class="user-name">John Doe</p>
+                <p class="user-id">User ID: 123456</p>
+                <a href="edit-profile.html" class="edit-profile">Edit Profile</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Dashboard -->
+        <div class="menu-section">
+            <p class="menu-header">DASHBOARD</p>
+            <ul class="menu-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Geography</a></li>
+                <li><a href="#">Source</a></li>
+                <li><a href="#">Fans</a></li>
+                <li><a href="#">Supporters</a></li>
+                <li><a href="#">Notifications</a></li>
+                <li><a href="#">Playlist</a></li>
+            </ul>
+        </div>
+        <hr>
+
+        <!-- Content -->
+        <div class="menu-section">
+            <p class="menu-header">CONTENT</p>
+            <ul class="menu-list">
+                <li><a href="#">Manage Content</a></li>
+            </ul>
+        </div>
+        <hr>
+
+        <!-- Comments -->
+        <div class="menu-section">
+            <p class="menu-header">COMMENTS</p>
+            <ul class="menu-list">
+                <li><a href="#">Manage</a></li>
+            </ul>
+        </div>
+        <hr>
+
+        <!-- Messages -->
+        <div class="menu-section">
+            <p class="menu-header">MESSAGES</p>
+            <ul class="menu-list">
+                <li><a href="#">Overview</a></li>
+            </ul>
+        </div>
+        <hr>
+
+        <!-- Monetization -->
+        <div class="menu-section">
+            <p class="menu-header">MONETIZATION</p>
+            <ul class="menu-list">
+                <li><a href="#">Apply to AMP</a></li>
+                <li><a href="#">AMP FAQ</a></li>
+            </ul>
+        </div>
+        <hr>
+
+        <!-- Others -->
+        <div class="menu-section">
+            <p class="menu-header">OTHERS</p>
+            <ul class="menu-list">
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Sign Out</a></li>
+            </ul>
+        </div>
+        <hr>
+    </div>
+
+    <!-- Right side profile edit section -->
+    <div class="profile-edit-section">
+        <div class="profile-banner">
+            <!-- Banner or hero section -->
+            <h2>Edit Profile</h2>
+        </div>
+
+        <div class="profile-info">
+            <!-- Circular profile picture with change option -->
+            <div class="profile-picture-container">
+                <img src="img/default-avatar.png" alt="User Avatar" class="profile-picture">
+                <div class="change-picture">
+                    <label for="profile-picture-upload" class="upload-label">
+                        <i class="fas fa-camera"></i> Change Picture
+                    </label>
+                    <input type="file" id="profile-picture-upload" style="display: none;">
+                </div>
+            </div>
+            <h3 class="user-name">John Doe</h3>
+        </div>
+
+        <div class="profile-form">
+            <!-- Form for editing profile information -->
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Basic Information</legend>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" value="John Doe" required>
+                    
+                    <label for="label">Label</label>
+                    <input type="text" id="label" name="label">
+                    
+                    <label for="hometown">Hometown</label>
+                    <input type="text" id="hometown" name="hometown">
+                    
+                    <label for="website-url">Website URL</label>
+                    <input type="url" id="website-url" name="website-url">
+                    
+                    <label for="short-biography">Short Biography</label>
+                    <textarea id="short-biography" name="short-biography" maxlength="800"></textarea>
+                    
+                    <label for="genre">Genre</label>
+                    <select id="genre" name="genre">
+                        <option value="rock">Rock</option>
+                        <option value="pop">Pop</option>
+                        <option value="hip-hop">Hip Hop</option>
+                        <option value="electronic">Electronic</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Change Password</legend>
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" name="current-password" required>
+                    
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" name="new-password" required>
+                    
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Update Email</legend>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Update Artist URL</legend>
+                    <label for="artist-url">Artist URL</label>
+                    <input type="url" id="artist-url" name="artist-url">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Apps</legend>
+                    <!-- Add app-related fields if needed -->
+                </fieldset>
+
+                <fieldset>
+                    <legend>Notifications</legend>
+                    <!-- Add notification preferences if needed -->
+                </fieldset>
+
+                <fieldset>
+                    <legend>Delete Account</legend>
+                    <!-- Add delete account options if needed -->
+                </fieldset>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="dashboard-script.js"></script>
+</body>
+</html>

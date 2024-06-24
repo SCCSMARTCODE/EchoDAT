@@ -35,8 +35,6 @@
                 <ul>
                     <li><a href="#">Discover</a></li>
                     <li><a href="#">Library</a></li>
-                    <li><a href="#">Playlist</a></li>
-                    <li><a href="#">Original</a></li>
                 </ul>
             </nav>
             
@@ -48,21 +46,8 @@
             
             <!-- User Actions (Login and Sign Up) -->
             <div class="user-actions">
-                <a href="login.html" id="loginLink">Login</a>
-                <a href="signup.html" id="signupLink">Sign Up</a>
-                <a href="upload.html" id="uploadLink">Upload</a>
-                <div id="userProfile" class="dropdown">
-                    <img src="img/default-avatar.png" alt="User Avatar" id="userAvatar">
-                        <div class="dropdown-content">
-                        <p>Welcome, <span id="userName"></span>!</p>
-                        <a href="profile.html">Profile</a>
-                        <a href="dashboard.html">Creator Dashboard</a>
-                        <a href="#">Help</a>
-                        <a href="#">Switch Account</a>
-                        <a href="#">Account Settings</a>
-                        <a href="#" id="logoutLink">Logout</a>
-                    </div>
-                </div>
+                <a href="login.html">Login</a>
+                <a href="#">Sign Up</a>
             </div>
         </div>
     </header>
@@ -118,6 +103,12 @@
             <div class="music-box">
                 <!-- Box 1 -->
                 <div class="music-item">
+                    <div class="audio-player">
+                        <audio controls>
+                            <source src="music/moses.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
                         <img src="img/cover1.jpg" alt="Record Label or Cover">
                         <div class="play-button"><i class="fa fa-play"></i></div>
                     <div class="music-info">
@@ -164,58 +155,6 @@
     
 
     <!-- Link to custom JavaScript file -->
-    <!-- Link to custom JavaScript file -->
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginModal = document.getElementById('loginModal');
-            const signupModal = document.getElementById('signupModal');
-            const loginLink = document.getElementById('loginLink');
-            const signupLink = document.getElementById('signupLink');
-            const userProfile = document.getElementById('userProfile');
-            const userName = document.getElementById('userName');
-            const logoutLink = document.getElementById('logoutLink');
-
-            function showModal(modal) {
-                return (event) => {
-                    event.preventDefault();
-                    modal.style.display = 'block';
-                };
-            }
-
-            loginLink.addEventListener('click', showModal(loginModal));
-            signupLink.addEventListener('click', showModal(signupModal));
-
-            window.addEventListener('click', (event) => {
-                if (event.target === loginModal) {
-                    loginModal.style.display = 'none';
-                } else if (event.target === signupModal) {
-                    signupModal.style.display = 'none';
-                }
-            });
-
-            logoutLink.addEventListener('click', () => {
-                localStorage.removeItem('token');
-                userProfile.style.display = 'none';
-                window.location.href = 'index.html';
-            });
-
-            const tokenFromStorage = localStorage.getItem('token');
-            if (tokenFromStorage) {
-                const userData = getUserDataFromToken(tokenFromStorage);
-                if (userData) {
-                    userName.textContent = userData.username;
-                    userProfile.style.display = 'block';
-                }
-            } else {
-                userProfile.style.display = 'none';
-            }
-
-            function getUserDataFromToken(token) {
-                // Implement your logic to decode token and return user data
-                return { username: 'SmartDammy' }; // Example, replace with actual logic
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
