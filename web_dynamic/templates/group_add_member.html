@@ -1,0 +1,34 @@
+{% extends 'group_workspace.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/group_workspace-style-sheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/group_add_member-style-sheet.css') }}">
+{% endblock head %}
+
+{% block info_display %}
+    <div>
+        <form id="search-form">
+            <input type="text" id="username" name="username" required placeholder="Search for Username:">
+            <button type="submit">Search</button>
+        </form>
+
+        <div id="search-results" class="search-results">
+            <!-- Example of a single search result item -->
+
+            {% for result in results %}
+                <div class="search-result-item">
+                    <span class="username"><img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(result._id)) }}">@ {{ result.userName }}</span>
+                    <a class="add-button" data-user-id="2" href="{{ url_for('group.add_member', group_id=group._id, member_id=result._id) }}">Add to Group</a>
+                </div>
+            {% endfor %}
+            {% for result in active_users %}
+                <div class="search-result-item">
+                    <span class="username " ><img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(result._id)) }}">@ {{ result.userName }}</span>
+                    <a class="add-button exist" data-user-id="2" href="{{ url_for('group.remove_member', group_id=group._id, member_id=result._id) }}">Remove from Group</a>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock info_display %}

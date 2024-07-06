@@ -1,0 +1,46 @@
+{% extends "group_workspace_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/group_create_project-style-sheet.css') }}">
+{% endblock head %}
+
+{% block display %}
+<div class="project-content">
+    <div class="project-header">
+        <div class="project-header-info">
+            <a href="{{ url_for('group.group_workspace', group_id=group._id) }}">
+            <div class="project-avatar">{{ group.name[0] }}</div>
+            <div class="project-name">{{ group.name }}</div></a>
+        </div>
+
+        <div class="project-header-actions">
+            <button class="header-link" id="addMember">Add Members</button>
+        </div> 
+    </div>
+        
+
+    <div class="create-project-form">
+        <h2>Create a New Project in {{ group.name }}</h2>
+        
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+
+            {{ form.name.label }}
+            {{ form.name }}
+            {% for error in form.name.errors %}
+                <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+            {% endfor %}
+
+            {{ form.description.label }}
+            {{ form.description }}
+            {% for error in form.description.errors %}
+                <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+            {% endfor %}
+
+            {{ form.create }}
+            
+        </form>
+
+    </div>
+</div>
+{% endblock display %}

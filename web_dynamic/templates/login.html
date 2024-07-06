@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/login-style-sheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/flash-message-style-sheet.css') }}">
 </head>
 <body>
     
@@ -21,7 +22,7 @@
             {% endwith %}
         </div>
         <a href="{{ url_for('unauth.homepage') }}">
-            <img src="{{ url_for('static', filename='.system_files/img/logo.png') }}" alt="ECHODAT Logo" class="logo">
+            <img src="{{ url_for('static', filename='system_files/img/logo1.png') }}" alt="ECHODAT Logo" class="logo">
         </a>
         <h2>LOG IN TO ECHODAT</h2>
         <form action="" method="POST">
@@ -29,7 +30,7 @@
 
             <div class="form-group google-button-container">
                 <button id="google-button" type="button" class="google-button">
-                    <img src="{{ url_for('static', filename='.system_files/img/google-icon.png') }}" alt="Google Icon" class="google-icon">
+                    <img src="{{ url_for('static', filename='system_files/img/google-icon.jpeg') }}" alt="Google Icon" class="google-icon">
                     Continue with Google
                   </button>
             </div>
@@ -68,7 +69,7 @@
                 {{ form.submit(type="submit") }}
             </div>
 
-            <a href="#" class="forget-password-link">Forget Password</a>
+            <a href="{{ url_for('unauth.reset_password_email_verification') }}" class="forget-password-link">Forget Password</a>
 
             <div class="space-between-line-and-link"></div>
 
@@ -85,5 +86,6 @@
     window.location.href = "{{ url_for('unauth.sign_up_with_google') }}";
   });
     </script>
+    <script src="{{ url_for('static', filename='scripts/flash-message.js') }}"></script>
 </body>
 </html>

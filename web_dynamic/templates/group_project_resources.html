@@ -1,0 +1,237 @@
+{% extends "group_workspace_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/group_project_resources-style-sheet.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Ga+Maamli&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+{% endblock head %}
+
+{% block display %}
+    <div class="display">
+        <div class="resource-section project-name-section">
+            <div class="resource-header first-bar">
+                <h2 class="project-name"> {{ project.name }} </h2>
+            </div>
+        </div>
+        <div class="resource-section">
+            <div class="resource-header">
+                <h2>Upload Resources</h2>
+                <div class="buttons">
+                    <button class="toggle-button" onclick="toggleForm('audio-form')">🎵Upload Audio</button>
+                    <button class="toggle-button" onclick="toggleForm('text-form')">📝Upload Lyrics</button>
+                    <button class="toggle-button" onclick="toggleForm('file-form')">📁Upload File</button>
+                </div>
+            </div>
+
+            <div id="audio-form" class="resource-form">
+                <h3>Upload Audio</h3>
+                <form enctype="multipart/form-data" method="post">
+
+                    <div class="form-group">
+                        {{ audio_form.hidden_tag() }}
+
+                        {{ audio_form.title.label }}
+                        {{ audio_form.title }}
+                        {% for error in audio_form.title.errors %}
+                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ audio_form.description.label }}
+                        {{ audio_form.description(class='form-description') }}
+                        {% for error in audio_form.description.errors %}
+                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ audio_form.audio_file.label }}
+                        {{ audio_form.audio_file }}
+                        {% for error in audio_form.audio_file.errors %}
+                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ audio_form.upload }}
+                    </div>
+
+                </form>
+            </div>
+
+            <div id="text-form" class="resource-form">
+                <h3>Upload Lyrics</h3>
+                <form method="post">
+                    {{ lyrics_form.hidden_tag() }}
+
+                    <div class="form-group">
+                        {{ lyrics_form.title.label }}
+                        {{ lyrics_form.title }}
+                        {% for error in lyrics_form.title.errors %}
+                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ lyrics_form.description.label }}
+                        {{ lyrics_form.description(class='form-description') }}
+                        {% for error in lyrics_form.description.errors %}
+                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ lyrics_form.lyrics.label }}
+                        {{ lyrics_form.lyrics }}
+                        {% for error in lyrics_form.lyrics.errors %}
+                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ lyrics_form.upload }}
+                    </div>
+                </form>
+            </div>
+
+            <div id="file-form" class="resource-form">
+                <h3>Upload File</h3>
+                <form enctype="multipart/form-data" method="post">
+                    {{ file_form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ file_form.title.label }}
+                        {{ file_form.title }}
+                        {% for error in file_form.title.errors %}
+                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ file_form.description.label }}
+                        {{ file_form.description(class='form-description') }}
+                        {% for error in file_form.description.errors %}
+                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ file_form.random_file.label }}
+                        {{ file_form.random_file }}
+                        {% for error in file_form.random_file.errors %}
+                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ file_form.upload }}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="resource-section  available-resources">
+            <div class="resource-header">
+                <h2 class="available-resources-head">Available Resources</h2>
+            </div>
+
+            <div class="resources">
+                <div class="resource-category">
+                    <button class="category-button" onclick="toggleSection('audio-section')">🎵 Audio</button>
+                    <div id="audio-section" class="resource-items">
+                        {% for file_pack in get_group_project_resources_name(group_id=group._id, project_id=project._id, resources_type='Audio') %}
+                            <div class="resource-item">
+                                <button class="item-button" onclick="toggleContent('audio{{ loop.index }}-content')">{{ file_pack[1].title }}</button>
+                                <div id="audio{{ loop.index }}-content" class="resource-content">
+                                    <div class="audio-container">
+
+                                        <div class="audio-content">
+                                            <audio controls>
+                                                <source src="{{ url_for('static', filename='group_project_data/') ~ group._id ~ '/' ~ project._id ~ '/Audio/' ~ file_pack[0] }}" type="audio/mpeg">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                            <p class="audio-description">{{ file_pack[1].caption }}</p>
+                                        </div>
+
+                                        {% if current_user._id == group.creatorId %}
+                                            <button id="deleteResources " onclick="deleteResource('{{ file_pack[0]}}', '{{ file_pack[1].resourcesType }}', '{{ file_pack[1]._id }}')" class="delete-button"> Delete {{ file_pack[1].title }} </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="resource-category">
+                    <button class="category-button" onclick="toggleSection('text-section')">📝 Lyrics</button>
+                    <div id="text-section" class="resource-items">
+                        {% for file_pack in get_group_project_resources_name(group._id, project._id, 'Lyrics') %}
+                            <div class="resource-item">
+                                <button class="item-button" onclick="toggleContent('text{{ loop.index }}-content')">{{ file_pack[1].title }}</button>
+                                <div id="text{{ loop.index }}-content" class="resource-content">
+
+                                    <div class="lyrics-container">
+                                        <h1 class="song-title">{{ file_pack[1].title }}</h1>
+                                        <div class="lyrics-content">
+                                            <p class="lyrics">{{ get_group_lyrics_resources(group._id, project._id, file_pack[0]) | safe}}</p>
+                                                <a href="{{ url_for('static', filename='group_project_data/') ~ group._id ~ '/' ~ project._id ~ '/Lyrics/' ~ file_pack[0] }}" download class="styled-link">Download Lyrics</a>
+                                            <p class="lyrics-description">
+                                                {{ file_pack[1].caption }}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {% if current_user._id == group.creatorId %}
+                                        <button id="deleteResources" onclick="deleteResource('{{ file_pack[0]}}', '{{ file_pack[1].resourcesType }}', '{{ file_pack[1]._id }}')" class="delete-button">Delete {{ file_pack[1].title }}</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="resource-category">
+                    <button class="category-button" onclick="toggleSection('file-section')">📁 File</button>
+                    <div id="file-section" class="resource-items">
+                        {% for file_pack in get_group_project_resources_name(group._id, project._id, 'File') %}
+                            <div class="resource-item">
+                                <button class="item-button" onclick="toggleContent('file{{ loop.index }}-content')">{{ file_pack[1].title }}</button>
+                                <div id="file{{ loop.index }}-content" class="resource-content">
+
+
+                                    <div class="link-container">
+                                        <a href="{{ url_for('static', filename='group_project_data/') ~ group._id ~ '/' ~ project._id ~ '/File/' ~ file_pack[0] }}" download class="styled-link">Download {{ file_pack[1].title }}</a>
+                                        <p class="link-description">
+                                            {{ file_pack[1].caption }}
+                                        </p>
+                                    </div>
+
+                                    {% if current_user._id == group.creatorId %}
+                                        <button id="deleteResources" onclick="deleteResource('{{ file_pack[0]}}', '{{ file_pack[1].resourcesType }}', '{{ file_pack[1]._id }}')" class="delete-button">Delete {{ file_pack[1].title }}</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/group_project_resources.js') }}"></script>
+    <script>
+        function deleteResource(filename, resourceType, resourceId) {
+            var groupId = "{{ group._id }}";
+            var projectId = "{{ project._id }}";
+            var url = "{{ url_for('group.delete_resources', group_id='GROUP_ID', project_id='PROJECT_ID', resource_id='RESOURCE_ID') }}";
+            url = url.replace('GROUP_ID', groupId)
+                    .replace('PROJECT_ID', projectId)
+                    .replace('RESOURCE_ID', resourceId) 
+                    + "?filename=" + encodeURIComponent(filename) 
+                    + "&resource_type=" + encodeURIComponent(resourceType);
+            window.location.href = url;
+        }
+
+    </script>
+{% endblock display %}

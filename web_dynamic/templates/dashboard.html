@@ -1,0 +1,106 @@
+{% extends "dashboard_layout.html" %}
+
+
+{% block display %}
+
+    <!-- Right side profile edit section -->
+    <div class="profile-edit-section">
+        <div class="profile-banner">
+            <!-- Banner or hero section -->
+            <h2>Edit Profile</h2>
+        </div>
+
+        <div class="profile-info">
+            <!-- Circular profile picture with change option -->
+            <div class="profile-picture-container">
+                <img src="img/default-avatar.png" alt="User Avatar" class="profile-picture">
+                <div class="change-picture">
+                    <label for="profile-picture-upload" class="upload-label">
+                        <i class="fas fa-camera"></i> Change Picture
+                    </label>
+                    <input type="file" id="profile-picture-upload" style="display: none;">
+                </div>
+            </div>
+            <h3 class="user-name">{{ current_user.userName }}</h3>
+        </div>
+
+        <div class="profile-form">
+            <!-- Form for editing profile information -->
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Basic Information</legend>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" value="{{ current_user.userName }}" required>
+                    
+                    <label for="label">Label</label>
+                    <input type="text" id="label" name="label">
+                    
+                    <label for="hometown">Hometown</label>
+                    <input type="text" id="hometown" name="hometown">
+                    
+                    <label for="website-url">Website URL</label>
+                    <input type="url" id="website-url" name="website-url">
+                    
+                    <label for="short-biography">Short Biography</label>
+                    <textarea id="short-biography" name="short-biography" maxlength="800"></textarea>
+                    
+                    <label for="genre">Genre</label>
+                    <select id="genre" name="genre">
+                        <option value="rock">Rock</option>
+                        <option value="pop">Pop</option>
+                        <option value="hip-hop">Hip Hop</option>
+                        <option value="electronic">Electronic</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Change Password</legend>
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" name="current-password" required>
+                    
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" name="new-password" required>
+                    
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Update Email</legend>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Update Artist URL</legend>
+                    <label for="artist-url">Artist URL</label>
+                    <input type="url" id="artist-url" name="artist-url">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Apps</legend>
+                    <!-- Add app-related fields if needed -->
+                </fieldset>
+
+                <fieldset>
+                    <legend>Notifications</legend>
+                    <!-- Add notification preferences if needed -->
+                </fieldset>
+
+                <fieldset>
+                    <legend>Delete Account</legend>
+                    <!-- Add delete account options if needed -->
+                </fieldset>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- <script src="dashboard-script.js"></script> -->
+
+{% endblock display %}

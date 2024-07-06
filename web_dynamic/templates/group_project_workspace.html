@@ -1,0 +1,73 @@
+{% extends "group_workspace_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/group_project_workspace-style-sheet.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Acme&family=Archivo+Black&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+{% endblock head %}
+
+{% block display %}
+<div class="project-content">
+    <div class="project-header">
+        <div class="project-header-info">
+            <a href="{{ url_for('group.group_workspace', group_id=group._id) }}">
+                <div class="project-avatar">E</div>
+                <div class="project-name">{{ group.name }} </div>
+            </a>
+            <strong>~</strong>
+             <small>{{ project.name.lower() }}</small>
+        </div>
+        <div class="project-header-actions">
+            <button class="header-link" id="projectResources">Project Resources</button>
+            <button class="header-link" id="addMember">Add Members</button>
+        </div> 
+    </div>
+
+
+
+    <div class="messages">
+        {% for message in messages %}
+            {% if message.creatorId != current_user._id %}
+                <div class="message received">
+                    {% if is_new_user_message(message) %}
+                        <div class="message-header">
+                            <img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(message.creator._id)) }}" alt="Profile Picture" class="profile-pic">
+                            <div class="sender-info">
+                                <span class="sender-name">~ {{ message.creator.userName }}</span>
+                            </div>
+                        </div>
+                        
+                    {% endif %}
+                    <div class="message-content">{{ message.message | safe}}</div>
+                    <div class="message-time">{{ message.created_at }}</div>
+                </div>
+            {% else %}
+                <div class="message sent">
+                    <div class="message-content">{{ message.message | safe}}</div>
+                    <div class="message-time">{{ message.created_at }}</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+       <div id="last_message"></div>   <!--this is to scroll to the bottom of the page -->
+
+    </div>
+
+        <div class="message-input">
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+
+                {{ form.comment_field(class='comment_field') }}
+                {% for error in form.comment_field.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+                {{ form.submit }}
+            </form>
+        </div>
+</div>
+
+<script>
+    document.getElementById("projectResources").addEventListener("click", function() {
+        window.location.href = "{{ url_for('group.project_resources', group_id=group._id, project_id=project._id)}}";
+    });
+</script>
+{% endblock display %}
