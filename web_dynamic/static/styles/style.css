@@ -196,7 +196,7 @@ body {
     transform: translateX(-50%); /* Center the background horizontally */
     width: 95vw; /* Set the width to 90% of the viewport width, adjust as needed */
     height: 100%; /* Fill the height of the hero section */
-    background-image: url('img/background.png'); /* Add your image path here */
+    background-image: url("{{ url_for('static', filename='.system_files/img/background.png') }}"); /* Add your image path here */
     background-size: cover; /* Cover the background */
     background-position: center;
     border-radius: 20px; /* Add border-radius for slightly curved edges */
@@ -296,4 +296,209 @@ body {
     animation-delay: 2.5s; /* Delay for the third image */
 }
 
+/* Styling for the side menu bar */
+.side-menu {
+    position: fixed; /* Keep the sidebar fixed on the left */
+    top: 60vh;
+    left: 40px;
+    width: 250px; /* Width of the sidebar */
+    height: calc(100vh - 50vh); /* Full height minus hero section */
+    background-color: #fff; /* Background color */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    padding: 20px;
+    z-index: 999; /* Ensure it is above other elements */
+}
 
+/* Remove default list styles and add spacing */
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styling for the menu header */
+.side-menu .menu-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Styling for the menu items */
+.side-menu ul li {
+    margin-bottom: 15px;
+}
+
+/* Styling for the menu links */
+.side-menu ul li a {
+    text-decoration: none;
+    color: #333; /* Text color */
+    font-size: 18px; /* Font size */
+    display: block; /* Ensure the link takes the full width */
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+/* Hover effect for the menu links */
+.side-menu ul li a:hover {
+    background-color: #007BFF; /* Background color on hover */
+    color: #fff; /* Text color on hover */
+}
+
+/* Styling for the main content section */
+.main-content {
+    margin-left: 300px; /* Adjust based on width of side menu bar */
+    padding: 20px;
+}
+
+/* Styling for the trending music section */
+.trending-music {
+    margin-bottom: 20px;
+    margin-left: 20px; /* Add margin to create space */
+    padding-left: 60px; /* Optional: add padding for further spacing */
+   
+}
+
+/* Styling for the title */
+.trending-music h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Styling for the music boxes */
+.music-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Styling for each music item */
+/* Styling for each music item */
+.music-item {
+    width: calc(22% - 20px); /* Adjust width and margin based on spacing requirements */
+    margin-right: 20px;
+    margin-bottom: 40px; /* Increased margin to accommodate new text */
+    padding: 10px;
+    height: 35vh; /* Adjust height as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    background-color: #efffa9;
+}
+
+/* Ensure even spacing between items */
+.music-item:nth-child(4n) {
+    margin-right: 0;
+}
+
+/* Styling for images inside music items */
+.music-item img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover; /* This ensures the image covers the entire area of the box */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 0 1px rgba(161, 159, 159, 0.384);
+}
+
+/* Styling for the play button */
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    padding: 10px;
+    display: none; /* Initially hidden */
+}
+
+.play-button i {
+    color: #fff;
+    font-size: 24px;
+}
+
+/* Show play button on hover */
+.music-item:hover .play-button {
+    display: block;
+}
+
+
+/* Styling for music info (artist name and track title) */
+.music-info {
+    margin-top: 10px;
+    text-align: center;
+    bottom: -90px;
+    left: 50%;
+    /* transform: translateX(-50%); */
+    text-align: center;
+}
+
+.music-info a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 5px;
+    transition: color 0.3s;
+}
+
+.music-info a:hover {
+    color: #007BFF; /* Change color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .music-item {
+        width: 100%; /* Full width on small screens */
+        margin-right: 0;
+    }
+
+    .music-info {
+        position: static; /* Remove absolute positioning */
+        transform: none;
+    }
+}
+
+/* Dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+#userAvatar{
+    max-width: 45px;
+    border-radius: 50%;
+}

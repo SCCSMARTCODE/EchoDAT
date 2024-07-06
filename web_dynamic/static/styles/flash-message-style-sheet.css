@@ -1,0 +1,36 @@
+.flash-message-cotainer {
+    position: absolute;
+    top: 10vh;
+    left: 15%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.flash-message {
+    display: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: cursive;
+    width: 300px;
+    text-align: center;
+}
+
+.flash-message.success {
+    background-color: #4caf50;
+}
+
+.flash-message.danger {
+    background-color: #f32d1f;
+}
+
+.flash-message.warning {
+    background-color: #ff9800;
+}
+
+.flash-message.info {
+    background-color: #03a9f4;
+}
