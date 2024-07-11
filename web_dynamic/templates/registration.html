@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/signup-style-sheet.css') }}">
+</head>
+<body>
+    <div class="flash-message-cotainer">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="signup-container">
+        <a href="{{ url_for('unauth.homepage') }}">
+            <img src="{{ url_for('static', filename='system_files/img/logo1.png') }}" alt="ECHODAT Logo" class="logo">
+        </a>
+        <h2>SIGNUP TO START ENJOYING ECHODAT</h2>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.userName.label }}
+                {{ form.userName() }}
+                {% for error in form.userName.errors %}
+                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.emailAddress.label }}
+                {{ form.emailAddress() }}
+                {% for error in form.emailAddress.errors %}
+                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.passWord.label }}
+                {{ form.passWord() }}
+                {% for error in form.passWord.errors %}
+                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.confirmPassword.label }}
+                {{ form.confirmPassword() }}
+                {% for error in form.confirmPassword.errors %}
+                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.submit(type="submit", class="my-submit-button") }}
+
+                <label for="get-account">Already have an account?</label>
+                <a href="{{ url_for('unauth.login') }}">Login Here</a>
+            </div>
+
+            <div class="or-container">
+                <hr class="or-line" style="width: 50%; margin-bottom: 10px;">
+                <span class="or-text">or</span>
+                <hr class="or-line" style="width: 50%; margin-bottom: 10px;">
+            </div>
+            <div class="form-group google-button-container">
+                <button id="google-button" type="button" class="google-button">
+                    <img src="{{ url_for('static', filename='system_files/img/google-icon.jpeg') }}" alt="Google Icon" class="google-icon">
+                    Signup with Google
+                  </button>
+            </div>
+
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById("google-button").addEventListener("click", function() {
+    window.location.href = "{{ url_for('unauth.sign_up_with_google') }}";
+  });
+    </script>
+</body>
+</html>

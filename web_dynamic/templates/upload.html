@@ -1,0 +1,94 @@
+{% extends "navigation_bar_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/upload-styles.css') }}">
+{% endblock head %}
+
+{% block body %}
+<div id="form-body">
+    <form action="" method="POST" class="upload-form" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <a href="{{ url_for('unauth.homepage') }}">
+            <img src="{{ url_for('static', filename='system_files/img/logo2.png') }}" alt="ECHODAT Logo" class="form-logo">
+        </a>
+
+        <div class="form-group">
+            {{ form.file.label(class="form-label") }}
+            {{ form.file(class="form-control") }}
+            {% for error in form.file.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.artist.label(class="form-label") }}
+            {{ form.artist(class="form-control") }}
+            {% for error in form.artist.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control") }}
+            {% for error in form.title.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.featuring.label(class="form-label") }}
+            {{ form.featuring(class="form-control") }}
+            {% for error in form.featuring.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.producers.label(class="form-label") }}
+            {{ form.producers(class="form-control") }}
+            {% for error in form.producers.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.genre.label(class="form-label") }}
+            {{ form.genre(class="form-control") }}
+            {% for error in form.genre.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.mood.label(class="form-label") }}
+            {{ form.mood(class="form-control") }}
+            {% for error in form.mood.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.caption.label(class="form-label") }}
+            {{ form.caption(class="form-control") }}
+            {% for error in form.caption.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.release.label(class="form-label") }}
+            {{ form.release(class="form-control") }}
+            {% for error in form.release.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.upload(class="form-button") }}
+        </div>
+
+        
+    </form>
+</div>
+{% endblock body %}

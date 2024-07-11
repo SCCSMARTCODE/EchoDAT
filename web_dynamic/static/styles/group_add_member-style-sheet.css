@@ -1,0 +1,79 @@
+form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+
+}
+
+form label {
+    font-size: 16px;
+    color: #333;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 900;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 50%;
+}
+
+form button {
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #00bfa5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #009f8a;
+}
+
+.search-results {
+    margin-top: 20px;
+}
+
+.search-results .username{
+    color: #333;
+    font-weight: 700;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.search-results div {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-results div a {
+    padding: 10px;
+    background-color: #00bfa5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.search-results div a:hover {
+    background-color: #009f8a;
+}
+
+.add-button.exist{
+    background-color: rgba(231, 27, 27, 0.726);
+}
+
+.add-button.exist:hover{
+    background-color: rgba(165, 36, 36, 0.788);
+}

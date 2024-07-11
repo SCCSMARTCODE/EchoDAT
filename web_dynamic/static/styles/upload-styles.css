@@ -1,0 +1,80 @@
+/* Styling the body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Form container */
+#form-body {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 15vh;
+}
+
+/* Logo styling */
+.form-logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 150px;
+}
+
+/* Form elements */
+.upload-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-control {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Error messages */
+.form-error {
+    margin-top: 5px;
+    color: #d9534f;
+    font-size: 14px;
+    background-color: #f2dede;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Submit button */
+.form-button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}

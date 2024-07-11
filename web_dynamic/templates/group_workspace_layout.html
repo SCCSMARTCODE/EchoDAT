@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    {% block head %}
+    {% endblock head %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Archivo+Black&family=Assistant:wght@200..800&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/group_workspace_layout-style-sheet.css') }}">
+</head>
+<body>
+    <div class="group-container">
+        <div class="sidebar">
+            <div class="page-actions">
+                <button class="page-actions-btn" id="backToGroupLink">Go Back To Groups</button></a>
+                <button class="page-actions-btn" id="createProjectLink">Create Project</button>
+            </div>
+            
+            <div class="hr_rule">
+                <hr>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search or start a new chat">
+            </div>
+            
+            <div class="hr_rule">
+                <hr>
+            </div>
+            
+            <div class="project-list">
+                {% for project in projects %}
+                    <div class="project-item">
+                        <a href="{{ url_for('group.project_page', project_id=project._id) }}#last_message">
+                            <div class="project-avatar">{{ project.name[0] }}</div>
+                            <div class="project-info">
+                                <div class="project-name">{{ project.name }}</div>
+                                {% set last_message = get_project_last_message(project._id)%}
+                                {% if last_message %}
+                                    <div class="project-last-message"> <p>~{{ last_message.creator.userName }}: {{ get_project_last_message(project._id).message[:15] }}</p></div>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>            
+        </div>
+        
+
+    {% block display %}
+    {% endblock display %}
+    <script>
+        document.getElementById("backToGroupLink").addEventListener("click", function() {
+        window.location.href = "{{ url_for('group.user_group_management') }}";
+    });
+
+        document.getElementById("createProjectLink").addEventListener("click", function() {
+        window.location.href = "{{ url_for('group.create_project', group_id=group._id) }}";
+    });
+
+        document.getElementById("addMember").addEventListener("click", function() {
+        window.location.href = "{{ url_for('group.search_member', group_id=group._id)}}";
+    });
+    
+    </script>
+</body>
+</html>

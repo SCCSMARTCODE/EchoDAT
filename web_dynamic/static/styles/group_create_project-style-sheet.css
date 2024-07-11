@@ -1,0 +1,65 @@
+.project-content{
+    background-color: #86858588;
+}
+
+.create-project-form {
+    width: 95%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+.create-project-form h2 {
+    margin: 0;
+    color: #ffffff;
+    border-bottom: 3px solid #222222;
+    padding: 40px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #4b4b4bcc;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.create-project-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-project-form label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.create-project-form input[type="text"],
+.create-project-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.create-project-form textarea {
+    resize: vertical;
+    height: 200px;
+}
+
+.create-project-form input[type="submit"] {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #00bfa5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-project-form input[type="submit"]:hover {
+    background-color: #009f8a;
+}

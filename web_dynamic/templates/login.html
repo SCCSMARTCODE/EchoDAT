@@ -4,20 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="login-style-sheet.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login-style-sheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/flash-message-style-sheet.css') }}">
 </head>
 <body>
+    
     <div class="login-container">
-        <a href="index.html">
-            <img src="img/logo.png" alt="ECHODAT Logo" class="logo">
+        <div class="flash-message-cotainer">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <a href="{{ url_for('unauth.homepage') }}">
+            <img src="{{ url_for('static', filename='system_files/img/logo1.png') }}" alt="ECHODAT Logo" class="logo">
         </a>
         <h2>LOG IN TO ECHODAT</h2>
-        <form action="#" method="POST">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+
             <div class="form-group google-button-container">
-                <button type="button" class="google-button">
-                    <img src="img/google-icon.png" alt="Google Icon" class="google-icon">
+                <button id="google-button" type="button" class="google-button">
+                    <img src="{{ url_for('static', filename='system_files/img/google-icon.jpeg') }}" alt="Google Icon" class="google-icon">
                     Continue with Google
-                </button>
+                  </button>
             </div>
 
             <div class="or-container">
@@ -27,32 +42,50 @@
             </div>
             
             <div class="form-group">
-                <label for="emailOrUsername">Email or Username</label>
-                <input type="text" id="emailOrUsername" name="emailOrUsername" required>
+                {{ form.emailAddress.label }}
+                {{ form.emailAddress }}
+                {% for error in form.emailAddress.errors %}
+                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                {% endfor %}
             </div>
+
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                {{ form.passWord.label }}
+                {{ form.passWord }}
+                {% for error in form.passWord.errors %}
+                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                {% endfor %}
             </div>
+
             <div class="form-group form-group-checkbox">
-                <input type="checkbox" id="rememberMe" name="rememberMe">
-                <label for="rememberMe">Remember Me</label>
+                    {{ form.rememberMe.label }}
+                    {{ form.rememberMe }}
+                    {% for error in form.rememberMe.errors %}
+                        <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                    {% endfor %}
             </div>
             
             <div class="form-group">
-                <button type="submit">Login</button>
+                {{ form.submit(type="submit") }}
             </div>
 
-            <a href="#" class="forget-password-link">Forget Password</a>
+            <a href="{{ url_for('unauth.reset_password_email_verification') }}" class="forget-password-link">Forget Password</a>
 
             <div class="space-between-line-and-link"></div>
 
             <hr class="horizontal-line">
 
             <p class="dont-have-account-yet">
-                Don't have an account yet? <a href="signup.html" class="signup-link">Sign up today!</a>
+                Don't have an account yet? <a href="{{ url_for('unauth.registration') }}" class="signup-link">Sign up today!</a>
             </p>
         </form>
     </div>
+
+    <script>
+        document.getElementById("google-button").addEventListener("click", function() {
+    window.location.href = "{{ url_for('unauth.sign_up_with_google') }}";
+  });
+    </script>
+    <script src="{{ url_for('static', filename='scripts/flash-message.js') }}"></script>
 </body>
 </html>

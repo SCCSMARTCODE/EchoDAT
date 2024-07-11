@@ -7,7 +7,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: fit-content;
+    padding: 5vh;
 }
 
 .signup-container {
@@ -20,6 +21,7 @@ body {
 }
 
 .signup-container .logo {
+    margin-top: 0;
     max-width: 150px;
     margin-bottom: 20px;
 }
@@ -119,7 +121,7 @@ input[type="confirmPassword"] {
     box-sizing: border-box;
 }
 
-button[type="submit"] {
+input[type="submit"] {
     background-color: #007bff;
     color: #fff;
     padding: 12px 0;
@@ -131,7 +133,7 @@ button[type="submit"] {
     margin-top: 30px;
 }
 
-button[type="submit"]:hover {
+input[type="submit"]:hover {
     background-color: #0056b3;
 }
 

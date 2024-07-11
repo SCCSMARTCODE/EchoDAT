@@ -1,0 +1,36 @@
+{% extends "group_workspace_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/group_workspace-style-sheet.css') }}">
+{% endblock head %}
+
+{% block display %}
+<div class="project-content">
+    <div class="project-header">
+        <div class="project-header-info">
+            <a href="{{ url_for('group.group_workspace', group_id=group._id) }}">
+            <div class="project-avatar">E</div>
+            <div class="project-name">{{ group.name }}</div></a>
+        </div>
+        <div class="project-header-actions">
+            <button class="header-link" id="addMember">Add Members</button>
+        </div>
+    </div>
+    <div class="project-body">
+        {% block info_display %}
+            <h3>Welcome to {{ group.name }}</h3>
+            <h4>Created by {{ group.owner.userName }} on {{ group.created_at }}</h4>
+            <p>{{ group.description }}</p>
+            <div class="info">
+                <div class="info-item">Total Members: {{ group.amountOfMembers }}</div>
+                <div class="info-item">Total Created Projects: {{ group.totalProjectCount }}</div>
+                <div class="info-item">Total Released Songs: {{ group.publishedSongsCount }}</div>
+            </div>
+        {% endblock info_display %}
+    </div>
+</div>
+{% block script_space%}{% endblock script_space%}
+{% endblock display %}
+
+
+

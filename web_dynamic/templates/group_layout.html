@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <link rel="stylesheet" href="samplestyle.css">
+</head>
+<body>
+    <div class="group-container">
+        <div class="sidebar">
+            <div class="page-actions">
+                <button class="page-actions-btn">Go Back To Groups</button>
+                <button class="page-actions-btn">Create Project</button>
+                <hr>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search or start a new chat">
+            </div>
+            <div class="project-list">
+                <div class="project-item">
+                    <div class="project-avatar">E</div>
+                    <div class="project-info">
+                        <div class="project-name">First Project</div>
+                        <div class="project-last-message">~Deami: Good morning</div>
+                    </div>
+                </div>
+                <!-- Add more chat items here -->
+            </div>
+        </div>
+        <div class="project-content">
+            <div class="project-header">
+                <div class="project-header-info">
+                    <div class="project-avatar">E</div>
+                    <div class="project-name">EchoDAT ~ <small>First Project</small></div>
+                </div>
+                <div class="project-header-actions">
+                    <button class="header-link">Project Resources</button>
+                    <button class="header-link">Add Members</button>
+                </div>
+
+            </div>
+            <div class="messages">
+                <div class="message received">
+                    <div class="message-header">
+                        <img src="path_to_image" alt="Profile Picture" class="profile-pic">
+                        <div class="sender-info">
+                            <span class="sender-name">~ Deami</span>
+                        </div>
+                    </div>
+                    <div class="message-content">Thank you brada. How is it on your side?</div>
+                    <div class="message-time">9:12 AM</div>
+                </div>
+
+                <div class="message sent">
+                    <div class="message-content">Please I want you to please help me remove @Smart from the group because the account is not longer in use Thank you</div>
+                    <div class="message-time">9:12 AM</div>
+                </div>
+
+                <!-- Add more messages here -->
+            </div>
+
+            <div class="message-input">
+                <input type="text" placeholder="Type a message">
+                <input type="submit" value="submit">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

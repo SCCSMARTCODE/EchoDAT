@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Activation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/email_confirmation.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://i.ibb.co/mzpLDq0/logo1.png" alt="EchoDAT Logo">
+        </div>
+        <div class="content">
+            <h1>Your account is almost ready!</h1>
+            <p>An email to <strong>{{ email }}</strong> has been sent with instructions to activate your account.</p>
+            <p>The activation link is only valid for 48 hours. If you don't receive the instructions, try checking your junk or spam filters.</p>
+
+            <p class="redirect_notification">You will be redirected to the homepage in 5 seconds.</p>
+        </div>
+    </div>
+</body>
+
+<script>
+    // Redirect to homepage after 3 seconds
+    setTimeout(function() {
+        window.location.href = '/';
+    }, 5000);
+</script>
+
+</html>

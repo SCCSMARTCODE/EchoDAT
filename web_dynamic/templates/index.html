@@ -1,57 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Echodat</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <!-- Header Section -->
-    <header id="header">
-        <div class="container">
-           <!-- Logo Section -->
-            <div class="logo">
-                <a href="{{ url_for('homepage') }}">
-                    <img src="{{ url_for('static', filename='.system_files/img/logo.png') }}" alt="Echodat Logo" onerror="this.style.display='none'; 
-                    this.nextElementSibling.style.display='block';">
-                    <span class="logo-text">Echodat</span>
-                </a>
-            </div>
+{% extends "navigation_bar_layout.html" %}
 
-            <!-- Search Icon for Mobile -->
-            <div class="mobile-search-icon">
-                <i class="fas fa-search"></i>
-            </div>
-
-            <!-- Toggle Menu Icon for Mobile -->
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            
-            <!-- Navigation Links -->
-            <nav class="nav-links">
-                <ul>
-                    <li><a href="#">Discover</a></li>
-                    <li><a href="#">Library</a></li>
-                </ul>
-            </nav>
-            
-            <!-- Search Bar -->
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search...">
-            </div>
-            
-            <!-- User Actions (Login and Sign Up) -->
-            <div class="user-actions">
-                <a href="login.html">Login</a>
-                <a href="#">Sign Up</a>
-            </div>
-        </div>
-    </header>
-
+{% block body%}
 
     <!-- Hero Section: Displays introductory content about Echodat Music App with a background image -->
     <section class="hero">
@@ -61,21 +10,61 @@
             <a href="#" class="cta-button">Get Started</a>
         </div>
         
-        <div class="background">
-            <img src="{{ url_for('static', filename='.system_files/img/pic1.png') }}" alt="Decorative Image" class="decorative-image">
-            <img src="{{ url_for('static', filename='.system_files/img/pic3.png') }}" alt="Decorative Image" class="third-image">
-            <img src="{{ url_for('static', filename='.system_files/img/pic2.png') }}" alt="Decorative Image" class="second-image">
+        <div class="background" style="background-image: url('{{ url_for("static", filename="system_files/img/background.png") }}');">
+            <img src="{{ url_for('static', filename='system_files/img/pic1.png') }}" alt="Decorative Image" class="decorative-image">
+            <img src="{{ url_for('static', filename='system_files/img/pic3.png') }}" alt="Decorative Image" class="third-image">
+            <img src="{{ url_for('static', filename='system_files/img/pic2.png') }}" alt="Decorative Image" class="second-image">
             
         </div>
         
     </section>
 
     
-
+    <!-- {{ url_for('static', filename='system_files/img/') }} -->
 
     <!-- End of Header Section -->
 
+
+      <!-- Side Menu Bar -->
+    <aside class="side-menu">
+        <ul>
+            <li class="menu-header">Browse</li>
+            <li><a href="{{ url_for('unauth.homepage') }}">Home</a></li>
+            <li><a href="{{ url_for('unauth.homepage', filter='trending_songs') }}">Trending Songs</a></li>
+            <li><a href="{{ url_for('unauth.homepage', filter='recently_added') }}">Recently Added</a></li>
+            <li><a href="#">Accounts for You</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Section -->
+    {% for audio_key in audios.keys() %}
+
+        <section class="main-content">
+            <div class="trending-music">
+                <h2>{{ audios.get(audio_key)[0] }}</h2>
+                <div class="music-box">
+                    {% for audio in audios.get(audio_key)[-1] %}
+                        <div class="music-item">
+                            <a href="{{ url_for('unauth.view_public_audio', id=audio._id) }}">
+                                <img src="{{ url_for('static', filename='system_files/img/default_audio_avatar.jpeg') }}" alt="Record Label or Cover">
+                                <div class="play-button"><i class="fa fa-play"></i></div>
+                            </a>
+                            <div class="music-info">
+                                <a href="{{ url_for('unauth.view_public_audio', id=audio._id) }}" class="artist-name">{{ audio.artist }}</a>
+                                <a href="{{ url_for('unauth.view_public_audio', id=audio._id) }}" class="track-title">{{ audio.title }}</a>
+                            </div>
+                        
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+    
+
     <!-- Link to custom JavaScript file -->
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- Link to custom JavaScript file -->
+
+    <script src="{{ url_for('static', filename='scripts/flash-message.js') }}"></script>
+
+    {% endblock body%}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echodat - {{ title }}</title>
+    {% block head%} {% endblock head%}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/flash-message-style-sheet.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+    <div class="flash-message-cotainer">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <!-- Header Section -->
+    <header id="header">
+        <div class="container">
+           <!-- Logo Section -->
+            <div class="logo">
+                <a href="{{ url_for('unauth.homepage') }}">
+                    <img src="{{ url_for('static', filename='system_files/img/logo.png') }}" alt="Echodat Logo" onerror="this.style.display='none'; 
+                    this.nextElementSibling.style.display='block';">
+                    <span class="logo-text">Echodat</span>
+                </a>
+            </div>
+
+            <!-- Search Icon for Mobile -->
+            <div class="mobile-search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <!-- Toggle Menu Icon for Mobile -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#">Discover</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Playlist</a></li>
+                    <li><a href="#">Original</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+            
+            <!-- User Actions (Login and Sign Up) -->
+            <div class="user-actions">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.user_upload') }}" id="uploadLink">Upload</a>
+                    <div id="userProfile" class="dropdown">
+                        <img src="{{ url_for('static', filename='users_profile_avatar/' + avatar_name) }}" alt="User Avatar" id="userAvatar">
+
+                            <div class="dropdown-content">
+                                <p>Welcome, <span id="userName"></span>{{ current_user.userName }}</p>
+                                <a href="{{ url_for('auth.user_profile') }}">Profile</a>
+                                <a href="{{ url_for('auth.user_dashboard') }}">Creator Dashboard</a>
+                                <a href="#">Help</a>
+                                <a href="#">Switch Account</a>
+                                <a href="#">Account Settings</a>
+                                <a href="{{ url_for('auth.logout') }}" id="logoutLink">Logout</a>
+                            </div>
+                    </div>
+                {% else %}
+                    <a href="{{ url_for('unauth.login') }}" id="loginLink">Login</a>
+                    <a href="{{ url_for('unauth.registration') }}" id="signupLink">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    {% block body%} {% endblock body%}
+</body>
+</html>
