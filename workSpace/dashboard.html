@@ -147,11 +147,11 @@
                     <div class="profile-links">
                         <a href="#" id="basic-info-link" class="profile-link">Basic Information</a>
                         <a href="#" id="change-password-link" class="profile-link">Change Password</a>
-                        <a href="#" class="profile-link">Update Email</a>
-                        <a href="#" class="profile-link">Update Artist URL</a>
-                        <a href="#" class="profile-link">Apps</a>
-                        <a href="#" class="profile-link">Notifications</a>
-                        <a href="#" class="profile-link">Delete Account</a>
+                        <a href="#" id="update-email-link" class="profile-link">Update Email</a>
+                        <a href="#" id="update-artist-url-link" class="profile-link">Update Artist URL</a>
+                        <a href="#" id="apps-link" class="profile-link">Apps</a>
+                        <a href="#" id="notifications-link" class="profile-link">Notifications</a>
+                        <a href="#" id="delete-account-link" class="profile-link">Delete Account</a>
                     </div>
 
                 <!----------------------basic info--------------------------------------->
@@ -214,14 +214,65 @@
                         </form>
                     </div>
 
+                    <!---------------------------update artist URL------------------------------------->
+                    <div class="profile-form-container" id="update-artist-url-form" style="display: none;">
+                        <p>Note: When you change your Artist URL, references to your music under the old URL automatically change to the new URL. This means any links shared with the old URL will no longer work.</p>
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="artist-url">EchoDAT</label>
+                                <input type="url" id="artist-url" name="artist-url" required>
+                            </div>
+                            <button type="submit" class="btn">Save</button>
+                        </form>
+                    </div>
+
+                    <!---------------------------apps------------------------------------->
+                    <div class="profile-form-container" id="apps-message" style="display: none;">
+                        <p>There are no third party apps authorized to use your account.</p>
+                    </div>
+
+                    <!---------------------------notifications------------------------------------->
+                    <div class="profile-form-container" id="notifications-form" style="display: none;">
+                        <p class="email-notifications-title">EMAIL NOTIFICATIONS</p>
+                        <hr>
+                        <div class="form-group">
+                            <label for="weekly-summary">Weekly Summary</label>
+                            <input type="checkbox" id="weekly-summary" name="weekly-summary">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="trending">Trending</label>
+                            <input type="checkbox" id="trending" name="trending">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="play-milestones">Play Milestones</label>
+                            <input type="checkbox" id="play-milestones" name="play-milestones">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="verified-playlist-adds">Verified Playlist Adds</label>
+                            <input type="checkbox" id="verified-playlist-adds" name="verified-playlist-adds">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="new-music">New Music</label>
+                            <input type="checkbox" id="new-music" name="new-music">
+                        </div>
+                    </div>
+
+                    <!---------------------------delete account------------------------------------->
+                    <div class="profile-form-container" id="delete-account-form" style="display: none;">
+                        <p>Are you sure you want to delete your account?</p>
+                        <button id="delete-account-yes" class="btn">Yes</button>
+                        <button id="delete-account-no" class="btn">No</button>
+                    </div>
+
 
                 </div>
             </div>
         </div>
     </div>
-
-
-    
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="dashboard-script.js"></script>
