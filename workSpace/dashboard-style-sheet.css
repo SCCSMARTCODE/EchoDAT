@@ -299,44 +299,12 @@ header {
     padding: 20px;
 }
 
-.profile-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+
+/* Add this CSS to adjust the height of the profile banner */
+.extended-banner {
+    padding: 40px 20px; /* Increase the padding to extend the height */
 }
 
-.profile-picture {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.profile-details {
-    flex: 1;
-}
-
-.user-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.user-id {
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-.edit-profile {
-    font-size: 14px;
-    text-decoration: none;
-    color: #007BFF;
-    display: block;
-}
-
-.edit-profile:hover {
-    text-decoration: underline;
-}
 
 .menu-section {
     margin-top: 20px;
@@ -372,15 +340,67 @@ header {
 
 .profile-edit-section {
     margin-left: 250px; /* Adjust according to left menu bar width */
-    padding: 20px;
+    padding: 10px;
 }
+
+.edit-profile {
+    font-size: 14px;
+    text-decoration: none;
+    color: #007BFF;
+    display: block;
+}
+
+.edit-profile:hover {
+    text-decoration: underline;
+}
+
 
 .profile-banner {
     background-color: #007BFF; /* Example banner color */
     color: #fff;
-    padding: 20px;
+    padding: 150px;
     text-align: center;
     margin-bottom: 20px;
+}
+
+
+/* Hide the input file */
+.upload-label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Right Profile info*/
+
+/* New container for profile picture and name */
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items to the start of the container */
+    background-color: #f0f0f0; /* Light gray background color */
+    padding: 20px; /* Add padding around the container */
+    margin: 20px; /* Add margin to ensure it doesn't touch the sides */
+    margin-left: 80px;
+    margin-right: 60px;
+    width: calc(100% - 40px); /* Adjust width to account for padding and margin */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin-top: -70px;
+    z-index: 1;
+    position: relative;
+    justify-content: space-between; /* Distribute space between items */
+    padding-bottom: 120px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.profile-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-info {
@@ -389,99 +409,158 @@ header {
     margin-bottom: 20px;
 }
 
+
+/* Update the profile picture container to be circular, 800x800 in size, and have a gray background color */
 .profile-picture-container {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    margin-right: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0; /* Light gray background color */
+    margin-left: 10px; /* Add margin to move it away from the left side menu bar */
+    margin-top: -80px;
+    margin-bottom: 60;
+    z-index: 2;
 }
 
 .profile-picture {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
 }
 
+.profile-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: nowrap;
+    gap: 20px; 
+  }
+  
+  .profile-link {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+  }
+  
+  .profile-link:hover {
+    color: #0056b3;
+  }
+
+/* Style for the change picture icon and text */
 .change-picture {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    padding: 5px 0;
-    display: none;
-}
-
-.upload-label {
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
-    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
 }
 
-.profile-picture-container:hover .change-picture {
+.change-picture i {
+    font-size: 24px;
+}
+
+.change-picture .upload-text {
     display: block;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: -80px;
+    margin-left: 170px;
 }
 
 .user-name {
-    font-size: 24px;
-    margin: 0;
-}
-
-.profile-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.profile-form fieldset {
-    margin-bottom: 20px;
-}
-
-.profile-form legend {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px;
+    font-weight: bold;
 }
 
-.profile-form label {
+.user-id {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* New follow button styling */
+.follow-button {
+    background-color: #007BFF; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.follow-button-container {
+    margin-right: 80px; /* Adjust margin as needed */
+}
+
+.follow-button:hover {
+    background-color: #0056b3; /* Button background color on hover */
+}
+
+
+
+/* profile form-container for basic information, change password, and update email */
+
+.profile-form-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
     display: block;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
-.profile-form input[type="text"],
-.profile-form input[type="email"],
-.profile-form input[type="url"],
-.profile-form input[type="password"],
-.profile-form textarea,
-.profile-form select {
+.form-group input,
+.form-group textarea {
     width: 100%;
-    padding: 8px;
-    font-size: 16px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
-.profile-form textarea {
-    height: 100px;
-}
-
-.profile-form button {
+.btn {
     background-color: #007BFF;
     color: #fff;
-    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.profile-form button:hover {
+.btn:hover {
     background-color: #0056b3;
 }

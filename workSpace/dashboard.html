@@ -45,11 +45,11 @@
     <div class="left-menu-bar">
         <div class="profile-info">
             <img src="img/default-avatar.png" alt="User Avatar" class="profile-picture">
-            <div class="profile-details">
-                <p class="user-name">John Doe</p>
-                <p class="user-id">User ID: 123456</p>
-                <a href="edit-profile.html" class="edit-profile">Edit Profile</a>
-            </div>
+        </div>
+        <div class="profile-details">
+            <p class="user-name">John Doe</p>
+            <p class="user-id">User ID: 123456</p>
+            <a href="edit-profile.html" class="edit-profile">Edit Profile</a>
         </div>
 
         <hr>
@@ -119,98 +119,107 @@
 
     <!-- Right side profile edit section -->
     <div class="profile-edit-section">
-        <div class="profile-banner">
+        <div class="profile-banner extended-banner">
             <!-- Banner or hero section -->
             <h2>Edit Profile</h2>
         </div>
 
         <div class="profile-info">
-            <!-- Circular profile picture with change option -->
-            <div class="profile-picture-container">
-                <img src="img/default-avatar.png" alt="User Avatar" class="profile-picture">
-                <div class="change-picture">
-                    <label for="profile-picture-upload" class="upload-label">
-                        <i class="fas fa-camera"></i> Change Picture
-                    </label>
-                    <input type="file" id="profile-picture-upload" style="display: none;">
+            <!-- New container for the profile picture and name -->
+            <div class="profile-container">
+                <div class="profile-picture-container">
+                    <img src="img/default-avatar.png" alt="User Avatar" class="profile-picture">
+                    <div class="change-picture">
+                        <label for="profile-picture-upload" class="upload-label">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" id="profile-picture-upload" style="display: none;">
+                        <span class="upload-text">recommended 800x800 jpg or png</span>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <div class="user-info">
+                        <h3 class="user-name">John Doe</h3>
+                        <div class="follow-button-container">
+                            <button class="follow-button">Follow</button>
+                        </div>
+                    </div>
+                    <div class="profile-links">
+                        <a href="#" id="basic-info-link" class="profile-link">Basic Information</a>
+                        <a href="#" id="change-password-link" class="profile-link">Change Password</a>
+                        <a href="#" class="profile-link">Update Email</a>
+                        <a href="#" class="profile-link">Update Artist URL</a>
+                        <a href="#" class="profile-link">Apps</a>
+                        <a href="#" class="profile-link">Notifications</a>
+                        <a href="#" class="profile-link">Delete Account</a>
+                    </div>
+
+                <!----------------------basic info--------------------------------------->
+
+                    <div class="profile-form-container" id="basic-info-form" style="display: none;">
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hometown">Hometown</label>
+                                <input type="text" id="hometown" name="hometown" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="location" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="website">Website URL</label>
+                                <input type="url" id="website" name="website" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="biography">Short Biography</label>
+                                <textarea id="biography" name="biography" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Save</button>
+                        </form>
+                    </div>
+
+                    <!---------------------------new password-------------------------------------> 
+                
+                    <div class="profile-form-container" id="change-password-form" style="display: none;">
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" name="current-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" name="new-password" required>
+                                <small>Passwords must be at least 8 characters in length, at least one uppercase character, at least one lowercase character, and must contain at least one digit character OR a symbol.</small>
+                            </div>
+                            <button type="submit" class="btn">Change Password</button>
+                        </form>
+                    </div>
+
+                    <!---------------------------update email------------------------------------->
+                    <div class="profile-form-container" id="update-email-form" style="display: none;">
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="current-email">Current Email</label>
+                                <input type="email" id="current-email" name="current-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-email">New Email</label>
+                                <input type="email" id="new-email" name="new-email" required>
+                            </div>
+                            <button type="submit" class="btn">Update Email</button>
+                        </form>
+                    </div>
+
+
                 </div>
             </div>
-            <h3 class="user-name">John Doe</h3>
-        </div>
-
-        <div class="profile-form">
-            <!-- Form for editing profile information -->
-            <form action="#" method="POST">
-                <fieldset>
-                    <legend>Basic Information</legend>
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" value="John Doe" required>
-                    
-                    <label for="label">Label</label>
-                    <input type="text" id="label" name="label">
-                    
-                    <label for="hometown">Hometown</label>
-                    <input type="text" id="hometown" name="hometown">
-                    
-                    <label for="website-url">Website URL</label>
-                    <input type="url" id="website-url" name="website-url">
-                    
-                    <label for="short-biography">Short Biography</label>
-                    <textarea id="short-biography" name="short-biography" maxlength="800"></textarea>
-                    
-                    <label for="genre">Genre</label>
-                    <select id="genre" name="genre">
-                        <option value="rock">Rock</option>
-                        <option value="pop">Pop</option>
-                        <option value="hip-hop">Hip Hop</option>
-                        <option value="electronic">Electronic</option>
-                        <!-- Add more options as needed -->
-                    </select>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Change Password</legend>
-                    <label for="current-password">Current Password</label>
-                    <input type="password" id="current-password" name="current-password" required>
-                    
-                    <label for="new-password">New Password</label>
-                    <input type="password" id="new-password" name="new-password" required>
-                    
-                    <label for="confirm-password">Confirm New Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Update Email</legend>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Update Artist URL</legend>
-                    <label for="artist-url">Artist URL</label>
-                    <input type="url" id="artist-url" name="artist-url">
-                </fieldset>
-
-                <fieldset>
-                    <legend>Apps</legend>
-                    <!-- Add app-related fields if needed -->
-                </fieldset>
-
-                <fieldset>
-                    <legend>Notifications</legend>
-                    <!-- Add notification preferences if needed -->
-                </fieldset>
-
-                <fieldset>
-                    <legend>Delete Account</legend>
-                    <!-- Add delete account options if needed -->
-                </fieldset>
-
-                <button type="submit">Save Changes</button>
-            </form>
         </div>
     </div>
+
 
     
 
