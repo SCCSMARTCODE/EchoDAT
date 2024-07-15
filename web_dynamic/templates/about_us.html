@@ -1,0 +1,85 @@
+{% extends "navigation_bar_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/about-us-style-sheet.css') }}">
+{% endblock head %}
+
+{% block body %}
+    <main class="main-content">
+        <section class="about-hero">
+            <h1>About EchoDAT</h1>
+            <p>Enhancing Collaboration In the Musical Communities</p>
+        </section>
+
+        <section class="about-description">
+            <h2>Our Mission</h2>
+            <p>EchoDAT is a dynamic web stack portfolio project at ALX created by the talented <a href="#Team">Team</a>. Our platform empowers musicians, musical communities, and groups by providing them with a collaborative space to maximize their creative potential and share their artistry with the world. Through simplified project management, enhanced communication tools, and streamlined resource sharing, we aim to revolutionize the music industry and foster a vibrant community of artists. Join us on this journey as we redefine how music is created, experienced, and shared.</p>
+        </section>
+
+        <section class="about-features">
+            <h2>What We Offer</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Collaboration</h3>
+                    <p>Create and manage groups, start new projects, and work together seamlessly.</p>
+                </div>
+                <div class="feature">
+                    <h3>Resource Management</h3>
+                    <p>Each project comes with its own resource section to keep everything organized and easily accessible.</p>
+                </div>
+                <div class="feature">
+                    <h3>Communication</h3>
+                    <p>Built-in chat applications for each project to keep group members connected and engaged.</p>
+                </div>
+                <div class="feature">
+                    <h3>Content Sharing</h3>
+                    <p>Upload, share, and download songs, tracks, and albums. Make your music available to the world.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-future">
+            <h2>Our Vision</h2>
+            <p>We envision EchoDAT as a comprehensive platform that integrates advanced AI capabilities, including audio-to-lyrics conversion, lyrics-to-audio generation, and more. Our MVP focuses on user registration, group and project creation, and resource management, with plans to expand functionalities over time.</p>
+        </section>
+
+        <section class="about-team" id="Team">
+            <h2>Meet the Team</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="images/team-member1.jpg" alt="Team Member 1">
+                    <h3>Your Name</h3>
+                    <p>UI/UX Designer, Frontend Developer, and Graphic Designer</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:yourname@gmail.com"><i class="far fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="{{ url_for('static', filename='system_files/img/sccsmartcode.jpg') }}" alt="Team Member 2">
+                    <h3>EMMANUEL AYOBAMI <br><small>aka</small> SCCSMARTCODE </h3>
+                    <p>Technical Lead and Backend Developer with expertise in Database Management</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/emmanuelayobami/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/SCCSMARTCODE/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/SCCSMARTCODE" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:sccsmart247@gmail.com"><i class="far fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/team-member3.jpg" alt="Team Member 3">
+                    <h3>Team Member 3</h3>
+                    <p>UI/UX Designer and Frontend Developer</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:teammember3@gmail.com"><i class="far fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock body %}

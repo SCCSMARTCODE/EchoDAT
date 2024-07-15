@@ -1,0 +1,135 @@
+.main-content {
+    max-width: 70vw;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .help-hero {
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .help-hero h1 {
+    font-size: 36px;
+  }
+  
+  .help-hero p {
+    font-size: 18px;
+    margin: 10px 0 30px;
+  }
+  
+  .main-content .search-bar {
+    width: 65%;
+    margin: auto;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .help-categories {
+    margin: 70px 0;
+  }
+  
+  .help-categories h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .category {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  
+  .category h3 {
+    font-size: 22px;
+    margin-top: 0;
+  }
+  
+  .category p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .category a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .category a:hover {
+    text-decoration: underline;
+  }
+  
+  .faq {
+    margin: 50px 0;
+  }
+  
+  .faq h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .faq-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .faq-question {
+    background: none;
+    border: none;
+    font-size: 20px;
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .faq-answer {
+    display: none;
+    padding: 0 20px 20px 20px;
+  }
+  
+  .faq-question.active {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .footer {
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .footer-nav {
+    margin-top: 10px;
+  }
+  
+  .footer-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+  }
+  
+  .footer-nav a:hover {
+    text-decoration: underline;
+  }  
+

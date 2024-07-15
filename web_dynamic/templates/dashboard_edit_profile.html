@@ -1,0 +1,160 @@
+{% extends "dashboard_layout.html" %}
+
+
+{% block display %}
+
+    <!-- Right side profile edit section -->
+    <!-- Right side profile edit section -->
+    <div class="profile-edit-section">
+        <div class="profile-banner extended-banner">
+            <!-- Banner or hero section -->
+            <h2>Edit Profile</h2>
+        </div>
+
+        <div class="profile-info">
+            <!-- New container for the profile picture and name -->
+            <div class="profile-container">
+                <div class="profile-picture-container">
+                    <img src="{{ url_for('static', filename='users_profile_avatar/' + avatar_name) }}" alt="User Avatar" class="profile-picture">
+                    <div class="change-picture">
+                        <label for="profile-picture-upload" class="upload-label">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" id="profile-picture-upload" style="display: none;">
+                        <span class="upload-text">recommended 800x800 jpg or png</span>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <div class="user-info">
+                        <h3 class="user-name">{{ current_user.userName }}</h3>
+                        <div class="follow-button-container">
+                        </div>
+                    </div>
+                    <div class="profile-links">
+                        <a href="#" id="basic-info-link" class="profile-link">Basic Information</a>
+                        <a href="#" id="change-password-link" class="profile-link">Change Password</a>
+                        <a href="#" id="update-email-link" class="profile-link">Update Email</a>
+                        <a href="#" class="profile-link">Update Artist URL</a>
+                        <a href="{{ url_for('auth.delete_user_account') }}" class="profile-link">Delete Account</a>
+                    </div>
+
+                <!----------------------basic info--------------------------------------->
+
+                    <div class="profile-form-container" id="basic-info-form" style="display: none;">
+                        <form class="profile-form" method="post">
+                            {{ infoForm.hidden_tag() }}
+
+                            <div class="form-group">
+                                {{ infoForm.userName.label }}
+                                {{ infoForm.userName }}
+                                {% for error in infoForm.userName.errors %}
+                                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ infoForm.homeTown.label }}
+                                {{ infoForm.homeTown }}
+                                {% for error in infoForm.homeTown.errors %}
+                                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ infoForm.location.label }}
+                                {{ infoForm.location }}
+                                {% for error in infoForm.location.errors %}
+                                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ infoForm.websiteUrl.label }}
+                                {{ infoForm.websiteUrl }}
+                                {% for error in infoForm.websiteUrl.errors %}
+                                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ infoForm.shortBiography.label }}
+                                {{ infoForm.shortBiography }}
+                                {% for error in infoForm.shortBiography.errors %}
+                                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            {{ infoForm.submit(class='btn') }}
+
+                        </form>
+                    </div>
+
+                    <!---------------------------new password-------------------------------------> 
+                
+                    <div class="profile-form-container" id="change-password-form" style="display: none;">
+                        <form class="profile-form" method="post">
+
+
+                            {{ pwResetForm.hidden_tag() }}
+
+                            <div class="form-group">
+                                {{ pwResetForm.currentPassword.label }}
+                                {{ pwResetForm.currentPassword }}
+                                {% for error in pwResetForm.currentPassword.errors %}
+                                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ pwResetForm.newPassword.label }}
+                                {{ pwResetForm.newPassword }}
+                                {% for error in pwResetForm.newPassword.errors %}
+                                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            {{ pwResetForm.submit(class='btn') }}
+
+                        </form>
+                    </div>
+
+                    <!---------------------------update email------------------------------------->
+                    <div class="profile-form-container" id="update-email-form" style="display: none;">
+                        <form class="profile-form"  method="post">
+
+
+                            {{ emailUpdateForm.hidden_tag() }}
+
+                            <div class="form-group">
+                                {{ emailUpdateForm.currentEmail.label }}
+                                {{ emailUpdateForm.currentEmail }}
+                                {% for error in emailUpdateForm.currentEmail.errors %}
+                                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ emailUpdateForm.newEmail.label }}
+                                {{ emailUpdateForm.newEmail }}
+                                {% for error in emailUpdateForm.newEmail.errors %}
+                                    <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            {{ emailUpdateForm.submit(class='btn') }}
+
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="{{ url_for('static', filename='scripts/dashboard-script.js') }}"></script>
+
+{% endblock display %}

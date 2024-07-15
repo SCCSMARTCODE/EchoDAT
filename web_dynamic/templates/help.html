@@ -1,0 +1,99 @@
+{% extends "navigation_bar_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/help-style-sheet.css') }}">
+{% endblock head %}
+
+{% block body %}
+<main class="main-content">
+    <section class="help-hero">
+        <h1>Welcome to EchoDAT Help Center</h1>
+        <p>Find answers to your questions and get support for EchoDAT</p>
+        <input type="text" placeholder="Search for help..." class="search-bar">
+    </section>
+
+    <section class="help-categories">
+        <h2>Help Topics</h2>
+        <div class="categories">
+            <div class="category">
+                <h3>Account & Settings</h3>
+                <p>Learn how to manage your account and settings.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="category">
+                <h3>Using EchoDAT</h3>
+                <p>Discover how to make the most of EchoDAT features.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="category">
+                <h3>Troubleshooting</h3>
+                <p>Find solutions to common issues and problems.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="category">
+                <h3>Privacy & Security</h3>
+                <p>Get information on privacy and security measures.</p>
+                <a href="#">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <button class="faq-question">How do I reset my password?</button>
+            <div class="faq-answer">
+                <ol>
+                    <li>Hover on your profile avatar: Move your cursor over your profile avatar located in the navigation bar or any relevant area where the avatar is displayed. This action will trigger a dropdown menu.</li>
+                    <li>Click on the profile avatar: Click on the profile avatar in the dropdown menu to navigate to your dashboard. This will redirect you to your user dashboard page.</li>
+                    <li>Locate the "Edit Profile" section: On your dashboard page, look for a widget or section that contains links or options related to editing your profile. Typically, this section is located on the left side of the dashboard.</li>
+                    <li>Click on the "Change Password" link: Within the "Edit Profile" section, find the navigation link that specifically mentions changing your password. Click on this link to proceed.</li>
+                    <li>Enter your current and new password: On the password change page, you will see input fields for your current password and the new password. Enter your current password in the designated field and choose a new password for your account.</li>
+                    <li>Submit the password change request: After entering your current and new password, click on the "Change Password" or similar button to submit the password change request.</li>
+                </ol>
+                <h3>If you have forgotten your password:</h3>
+                <ol>
+                    <li>Locate the "Forgot Password" link: On the login page or any relevant authentication page, look for a link or option that says "Forgot Password." This link is usually placed near the login form.</li>
+                    <li>Click on the "Forgot Password" link: Click on the "Forgot Password" link to initiate the password reset process.</li>
+                    <li>Provide your email or username: On the password reset page, you will be prompted to provide either your registered email address or username associated with your account.</li>
+                    <li>Follow the instructions received: After providing your email or username, check your email inbox for further instructions. You should receive an email containing a password reset link or instructions on how to proceed.</li>
+                    <li>Reset your password: Follow the instructions provided in the email to reset your password. Typically, you will be directed to a webpage where you can enter a new password for your account.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">How can I contact support?</button>
+            <div class="faq-answer">
+                <p>If you require assistance or have any inquiries, our support team is readily available to assist you.</p>
+                <p>To get in touch with our support team, simply click on the "Contact" link located in the navigation bar. You will be redirected to our contact page where you can find more information and submit your query.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">How do I delete my account?</button>
+            <div class="faq-answer">
+                <ol>
+                    <li>Hover over your profile avatar: Move your cursor over your profile avatar located in the navigation bar or any relevant area where the avatar is displayed. This action will trigger a dropdown menu.</li>
+                    <li>Click on the profile avatar: Click on the profile avatar in the dropdown menu to navigate to your dashboard. This will redirect you to your user dashboard page.</li>
+                    <li>Locate the "Edit Profile" section: On your dashboard page, look for a widget or section that contains links or options related to editing your profile. Typically, this section is located on the left side of the dashboard.</li>
+                    <li>Click on the "Delete Account" link: Within the "Edit Profile" section, find the navigation link that specifically mentions deleting your account. Click on this link to proceed.</li>
+                </ol>
+                <p>Please note that account deletion is irreversible and will permanently remove all your data associated with the account.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+        button.classList.toggle('active');
+        if (button.classList.contains('active')) {
+            answer.style.display = 'block';
+        } else {
+            answer.style.display = 'none';
+        }
+    });
+});
+</script>
+{% endblock body %}

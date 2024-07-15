@@ -1,0 +1,135 @@
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.about-hero {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.about-hero h1 {
+    font-size: 36px;
+}
+
+.about-hero p {
+    font-size: 18px;
+    margin: 10px 0 30px;
+}
+
+.about-description, .about-features, .about-future, .about-team {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.about-description h2, .about-features h2, .about-future h2, .about-team h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.about-description p, .about-future p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.feature h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 16px;
+    color: #777;
+}
+
+.feature:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-member {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: 20vw;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.team-member img {
+    border-radius: 2%;
+    width: 20vw;
+    height: 20vw;
+    /* height: ; */
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.team-member h3 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+}
+
+.team-member p {
+    font-size: 16px;
+    color: #777;
+}
+
+.team-member i{
+    width: 40px;
+}
+
+.footer {
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-nav {
+    margin-top: 10px;
+}
+
+.footer-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}

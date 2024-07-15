@@ -1,0 +1,80 @@
+main.dashboard {
+    padding: 20px 0;
+    margin: auto;
+    /* display: flex; */
+    margin-left: 300px;
+    width: calc(100% - 300px);
+    /* justify-content: center; */
+    margin-top: 3vh;
+    align-items: center;
+    /* flex-direction: column; */
+    /* background-color: black; */
+}
+
+main.dashboard .container{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.dashboard-header, .songs-released, .groups {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 90%;
+    margin-top: 10%;
+    background-color: rgb(0, 60, 255);
+    padding: 4%;
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.151);
+}
+
+h1{
+    /* position: sticky; */
+    top: 9%;
+}
+
+.dashboard-header h1,
+ .songs-released h2,
+ .groups h2{
+    padding: 2%;
+    margin-bottom: 7%;
+    background-color: rgb(255, 255, 255);
+}
+
+
+.user-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    column-gap: 5vw;
+}
+
+.stat {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 12vw;
+}
+
+table{
+    background-color: white;
+    width: 100%;
+}
+
+.songs-released th, .groups th{
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border-bottom: 1px solid black;
+}
+
+
+tbody .song:hover, tbody .group:hover{
+    background-color: rgb(228, 228, 228);
+    cursor: pointer;
+}
+
+.songs-released td, .groups td{
+    font-weight: 400;
+    padding: 5px;
+}

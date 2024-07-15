@@ -1,0 +1,55 @@
+{% extends "navigation_bar_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/admin-dashboard-style-sheet.css') }}">
+{% endblock head %}
+
+{% block body %}
+    
+    <main class="main-content">
+        <section class="dashboard-overview">
+            <h1>Admin Dashboard</h1>
+            <div class="stats">
+                <div class="stat">
+                    <h2>Total Users</h2>
+                    <p id="total-users">1500</p>
+                </div>
+                <div class="stat">
+                    <h2>Total Groups</h2>
+                    <p id="total-groups">120</p>
+                </div>
+                <div class="stat">
+                    <h2>Total Uploaded Songs</h2>
+                    <p id="total-songs">350</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="notification-form">
+            <h2>Send Notification to All Users</h2>
+            <form id="notification-form">
+                <div class="form-group">
+                    <label for="notification-title">Title</label>
+                    <input type="text" id="notification-title" name="notification-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="notification-message">Message</label>
+                    <textarea id="notification-message" name="notification-message" rows="5" required></textarea>
+                </div>
+                <button type="submit">Send Notification</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="{{ url_for('admin.admin_dashboard') }}">ADMIN_DASHBOARD</a>
+        <br><br>
+        <a href="{{ url_for('admin.admin_notification') }}">ADMIN_NOTIFICATIONS</a>
+        <br><br>
+        <a href="{{ url_for('admin.admin_logout') }}">LOGOUT_ADMIN</a>
+        <p>&copy; 2024 EchoDAT. All rights reserved.</p>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+{% endblock body %}
