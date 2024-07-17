@@ -1,6 +1,7 @@
 """
 This is the file that will contain the authenticated and authentication routes
 """
+import os.path
 
 from flask import Blueprint, redirect, url_for, render_template, flash, request
 from flask_login import login_required, logout_user, current_user
@@ -17,6 +18,9 @@ from forms.audio_upload import UploadMusic
 from werkzeug.utils import secure_filename
 from route1 import bcrypt
 from sqlalchemy.orm import joinedload
+import json
+from PIL import Image
+import os
 
 blueP1 = Blueprint('auth', __name__, url_prefix='/')
 
@@ -84,6 +88,20 @@ def user_dashboard():
                            )
 
 
+@blueP1.route('/notification', methods=['GET'])
+@login_required
+def user_notification():
+    current_user_avatar_name = get_user_avatar_name(current_user._id)
+    data_path = os.path.join(app.root_path, 'static/local_storage/echodat_notification/data.json')
+    with open(data_path, 'r') as f:
+        datas = json.load(f)
+    return render_template("user_notification.html",
+                           avatar_name=current_user_avatar_name,
+                           datas=reversed(datas),
+                           list=list
+                           )
+
+
 @blueP1.route('/dashboard/edit_profile', methods=['POST', 'GET'])
 @login_required
 def edit_profile():
@@ -93,18 +111,36 @@ def edit_profile():
     emailUpdateForm = UpdateEmailForm()
 
     if request.method == 'POST':
-        form = None
         if infoForm.validate_on_submit():
             form = infoForm
-            with session_scoped() as session:
-                user = session.query(UserInfo).filter_by(_id=current_user._id).first()
-                user.userName = form.userName.data
-                user.homeTown = form.homeTown.data
-                user.location = form.location.data
-                user.websiteUrl = form.websiteUrl.data
-                user.shortBiography = form.shortBiography.data
+            try:
+                with session_scoped() as session:
+                    user = session.query(UserInfo).filter_by(_id=current_user._id).first()
+                    user.userName = form.userName.data
+                    user.homeTown = form.homeTown.data
+                    user.location = form.location.data
+                    user.websiteUrl = form.websiteUrl.data
+                    user.shortBiography = form.shortBiography.data
+                    if form.avatar.data:
+                        avatarExt = secure_filename(form.avatar.data.filename).split('.')[-1]
+                        filename = f"{user._id}.{avatarExt}"
+                        user.pictureAvailability = True
+                        saving_path = os.path.join(app.root_path, 'static/users_profile_avatar')
+                        os.makedirs(saving_path, exist_ok=True)
+                        avatar = form.avatar.data
+                        file_path = os.path.join(saving_path, filename)
 
-                flash('Details Updated', 'success')
+                        existing_avatar_name = next(iter([name for name in os.listdir(saving_path) if user._id  in name]))
+                        if existing_avatar_name:
+                            os.remove(os.path.join(saving_path, existing_avatar_name))
+                        avatar.save(file_path)
+                        with Image.open(file_path) as img:
+                            img = img.resize((300, 300))
+                            img.save(file_path)
+            except Exception as e:
+                app.logger.error(f'Error: {e}')
+
+            flash('Details Updated', 'success')
         elif pwResetForm.validate_on_submit():
             form = pwResetForm
             with session_scoped() as session:
@@ -120,8 +156,7 @@ def edit_profile():
                 user.emailAddress = form.newEmail.data.strip().lower()
 
                 flash('Email Updated', 'success')
-
-        return redirect(url_for('auth.user_dashboard'))
+        return redirect(url_for('auth.edit_profile'))
 
     infoForm.userName.data = current_user.userName
     infoForm.homeTown.data = current_user.homeTown
@@ -168,6 +203,7 @@ def user_upload():
     if request.method == 'POST':
         if form.validate_on_submit():
             with session_scoped() as session:
+
                 new_audio = AudioFileInfo(
                     title=form.title.data,
                     artist=form.artist.data,
@@ -180,9 +216,20 @@ def user_upload():
                     creatorId=current_user._id
                 )
                 session.add(new_audio)
+                if form.coverPicture:
+                    coverPictureExt = secure_filename(form.coverPicture.data.filename).split('.')[-1]
+                    filename = f"{new_audio._id}.{coverPictureExt}"
+                    new_audio.framePictureName = filename
+                    saving_path = os.path.join(app.root_path, 'static/users_data/audios/avatar')
+                    os.makedirs(saving_path, exist_ok=True)
+                    avatar = form.coverPicture.data
+                    file_path = os.path.join(saving_path, filename)
+                    avatar.save(file_path)
+                    with Image.open(file_path) as img:
+                        img = img.resize((300, 300))
+                        img.save(file_path)
                 session.commit()
-
-            saving_path = os.path.join(app.root_path, 'static/users_data')
+            saving_path = os.path.join(app.root_path, 'static/users_data/audios')
             os.makedirs(saving_path, exist_ok=True)
 
             file_data = form.file.data
@@ -219,6 +266,7 @@ def delete_user_account():
 def delete_song_by_id():
     song_id = request.args.get('song_id')
     del_object_by_id(object_id=song_id, object_class='AudioFileInfo')
+    flash('Successful Deletion', 'success')
     return redirect(url_for('auth.user_dashboard'))
 
 

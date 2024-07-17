@@ -1,6 +1,7 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, StringField, SubmitField
+from flask_wtf.file import FileAllowed, FileField
 from wtforms.validators import Length, DataRequired, Optional
 from web_dynamic.function_module import session_scoped
 from model.user_info import UserInfo
@@ -13,6 +14,10 @@ class UserBasicInfoForm(FlaskForm):
     location = StringField("Location", validators=[Length(max=500), Optional()])
     websiteUrl = StringField("Website Url", validators=[Length(max=350), Optional()])
     shortBiography = TextAreaField("Short Biography", validators=[Length(max=45000), Optional()])
+    avatar = FileField('Change Picture', validators=[
+        Optional(),
+        FileAllowed(['jpg', 'jpeg', 'png'], "Image Extension not Allowed choose of 'jpeg', 'jpg', 'png'")
+    ])
     submit = SubmitField("Save")
 
     def validate(self, extra_validators=None):

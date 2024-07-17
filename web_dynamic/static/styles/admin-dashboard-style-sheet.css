@@ -1,12 +1,37 @@
 .main-content {
-    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+.left-widget{
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.left-widget a{
+    background-color: #ffffff;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    transition: box-shadow .3s;
+    text-align: center;
+    text-decoration: none;
+    color: rgba(6, 87, 3, 0.952);
+}
+
+.left-widget a:hover{
+    /* background-color: #c4c0c0; */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
 .dashboard-overview {
     text-align: center;
-    padding: 50px 0;
+    padding-bottom: 50px;
 }
 
 .dashboard-overview h1 {
@@ -48,7 +73,7 @@
     border-radius: 5px;
     padding: 20px;
     margin-top: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(6, 87, 3, 0.26);
 }
 
 .notification-form h2 {
@@ -69,11 +94,13 @@
 
 .form-group input,
 .form-group textarea {
-    width: 100%;
+    width: 98%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    resize: vertical;
+    min-height: 20px;
 }
 
 button {
@@ -81,21 +108,14 @@ button {
     width: 100%;
     padding: 10px;
     font-size: 18px;
-    background-color: #121212;
+    background-color: rgba(6, 87, 3, 0.952);
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color ease-in-out .4s;
 }
 
 button:hover {
-    background-color: #333;
-}
-
-.footer {
-    background-color: #121212;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
+    background-color: rgba(3, 53, 1, 0.952);
 }

@@ -1,106 +1,125 @@
 {% extends "dashboard_layout.html" %}
 
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/new-dashboard-style-sheet.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/main-dashboard-style-sheet.css') }}">
+{% endblock head %}
+
+
 {% block display %}
 
-    <!-- Right side profile edit section -->
-    <div class="profile-edit-section">
-        <div class="profile-banner">
-            <!-- Banner or hero section -->
-            <h2>Edit Profile</h2>
-        </div>
-
-        <div class="profile-info">
-            <!-- Circular profile picture with change option -->
-            <div class="profile-picture-container">
-                <img src="img/default-avatar.png" alt="User Avatar" class="profile-picture">
-                <div class="change-picture">
-                    <label for="profile-picture-upload" class="upload-label">
-                        <i class="fas fa-camera"></i> Change Picture
-                    </label>
-                    <input type="file" id="profile-picture-upload" style="display: none;">
-                </div>
-            </div>
-            <h3 class="user-name">{{ current_user.userName }}</h3>
-        </div>
-
-        <div class="profile-form">
-            <!-- Form for editing profile information -->
-            <form action="#" method="POST">
-                <fieldset>
-                    <legend>Basic Information</legend>
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" value="{{ current_user.userName }}" required>
-                    
-                    <label for="label">Label</label>
-                    <input type="text" id="label" name="label">
-                    
-                    <label for="hometown">Hometown</label>
-                    <input type="text" id="hometown" name="hometown">
-                    
-                    <label for="website-url">Website URL</label>
-                    <input type="url" id="website-url" name="website-url">
-                    
-                    <label for="short-biography">Short Biography</label>
-                    <textarea id="short-biography" name="short-biography" maxlength="800"></textarea>
-                    
-                    <label for="genre">Genre</label>
-                    <select id="genre" name="genre">
-                        <option value="rock">Rock</option>
-                        <option value="pop">Pop</option>
-                        <option value="hip-hop">Hip Hop</option>
-                        <option value="electronic">Electronic</option>
-                        <!-- Add more options as needed -->
-                    </select>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Change Password</legend>
-                    <label for="current-password">Current Password</label>
-                    <input type="password" id="current-password" name="current-password" required>
-                    
-                    <label for="new-password">New Password</label>
-                    <input type="password" id="new-password" name="new-password" required>
-                    
-                    <label for="confirm-password">Confirm New Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Update Email</legend>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Update Artist URL</legend>
-                    <label for="artist-url">Artist URL</label>
-                    <input type="url" id="artist-url" name="artist-url">
-                </fieldset>
-
-                <fieldset>
-                    <legend>Apps</legend>
-                    <!-- Add app-related fields if needed -->
-                </fieldset>
-
-                <fieldset>
-                    <legend>Notifications</legend>
-                    <!-- Add notification preferences if needed -->
-                </fieldset>
-
-                <fieldset>
-                    <legend>Delete Account</legend>
-                    <!-- Add delete account options if needed -->
-                </fieldset>
-
-                <button type="submit">Save Changes</button>
-            </form>
-        </div>
+    <div class="user-info">
+      <h2>WELCOME, <small>{{ current_user.userName }}</small></h2>
+      <ul>
+        <li>SOngs Released</li>
+        <div class="value">{{ response1.get('total_songs') }}</div>
+        <li>Followers</li>
+        <div class="value">{{ current_user.followers }}</div>
+        <li>Groups</li>
+        <div class="value">{{ response1.get('total_groups') }}</div>
+      </ul>
     </div>
 
-    
+    <div class="manages-songs-info">
+      <button class="manages-songs" >Managed Songs
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M468-240q-96-5-162-74t-66-166q0-100 70-170t170-70q97 0 166 66t74 162l-84-25q-13-54-56-88.5T480-640q-66 0-113 47t-47 113q0 57 34.5 100t88.5 56l25 84ZM821-60 650-231 600-80 480-480l400 120-151 50 171 171-79 79Z"/></svg>
+      </button>
+      <div class="songs-table">
+        <table>
+          <thead>
+            <tr>
+              <th>TITLE</th>
+              <th>ARTIST</th>
+              <th>LIKES</th>
+              <th>COMMENTS</th>
+              <th>RELEASED</th>
+              <th>UPDATED</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% set songs =  response1.get('user_songs') %}
+            {% for song in songs %}
+              <tr>
+                <td>{{ song.title }}</td>
+                <td>{{ song.artist }}</td>
+                <td>{{ song.likesCount }}</td>
+                <td>{{  response1.get('object_len')(song.comments) }}</td>
+                <td>{{ song.created_at }}</td>
+                <td>{{ song.updated_at }}</td>
+                <td style="background-color: rgb(184, 0, 0);"><a href="{{ url_for('auth.delete_song_by_id', song_id=song._id) }}" style="color: aliceblue; text-decoration: none;">DELETE</a></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+
+
+
+    <div class="manages-groups-info">
+      <button class="manages-groups" >Managed Groups
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M468-240q-96-5-162-74t-66-166q0-100 70-170t170-70q97 0 166 66t74 162l-84-25q-13-54-56-88.5T480-640q-66 0-113 47t-47 113q0 57 34.5 100t88.5 56l25 84ZM821-60 650-231 600-80 480-480l400 120-151 50 171 171-79 79Z"/></svg>
+      </button>
+      <div class="groups-table">
+        <table>
+          <thead>
+            <tr>
+              <th>NAME</th>
+              <th>MEMBERS</th>
+              <th>AUDIOS</th>
+              <th>LYRICS</th>
+              <th>FILES</th>
+              <th>CREATED</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% set groups_id =  response1.get('user_groups_id') %}
+            {% for group_id in groups_id %}
+              <tr>
+                {% set group_info = get_group_info(group_id) %}
+                {% set group = get_object_by_id(group_id, 'GroupInfo') %}
+                <td>{{ group.name }}</td>
+                <td>{{ group_info.get('members') }}</td>
+                <td>{{ group_info.get('audios') }}</td>
+                <td>{{ group_info.get('lyrics') }}</td>
+                <td>{{ group_info.get('files') }}</td>
+                <td>{{ group.created_at }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          </table>
+      </div>
+    </div>
+
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <!-- <script src="dashboard-script.js"></script> -->
+    <script>
+            document.querySelectorAll('.manages-songs').forEach(button => {
+          button.addEventListener('click', () => {
+              const answer = button.nextElementSibling;
+              button.classList.toggle('active');
+              if (button.classList.contains('active')) {
+                  answer.style.display = 'block';
+              } else {
+                  answer.style.display = 'none';
+              }
+          });
+      });
+
+      document.querySelectorAll('.manages-groups').forEach(button => {
+          button.addEventListener('click', () => {
+              const answer = button.nextElementSibling;
+              button.classList.toggle('active');
+              if (button.classList.contains('active')) {
+                  answer.style.display = 'block';
+              } else {
+                  answer.style.display = 'none';
+              }
+          });
+      });
+    </script>
 
 {% endblock display %}

@@ -11,10 +11,10 @@
         <div class="project-header-info">
             <a href="{{ url_for('group.group_workspace', group_id=group._id) }}">
                 <div class="project-avatar">E</div>
-                <div class="project-name">{{ group.name }} </div>
+                <div class="project-name">{{ group.name }}</div>
             </a>
             <strong>~</strong>
-             <small>{{ project.name.lower() }}</small>
+            <small>{{ project.name.lower() }}</small>
         </div>
         <div class="project-header-actions">
             <button class="header-link" id="projectResources">Project Resources</button>
@@ -22,52 +22,101 @@
         </div> 
     </div>
 
-
-
-    <div class="messages">
-        {% for message in messages %}
-            {% if message.creatorId != current_user._id %}
-                <div class="message received">
-                    {% if is_new_user_message(message) %}
-                        <div class="message-header">
-                            <img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(message.creator._id)) }}" alt="Profile Picture" class="profile-pic">
-                            <div class="sender-info">
-                                <span class="sender-name">~ {{ message.creator.userName }}</span>
-                            </div>
-                        </div>
-                        
-                    {% endif %}
-                    <div class="message-content">{{ message.message | safe}}</div>
-                    <div class="message-time">{{ message.created_at }}</div>
-                </div>
-            {% else %}
-                <div class="message sent">
-                    <div class="message-content">{{ message.message | safe}}</div>
-                    <div class="message-time">{{ message.created_at }}</div>
-                </div>
-            {% endif %}
-        {% endfor %}
-
-       <div id="last_message"></div>   <!--this is to scroll to the bottom of the page -->
-
+    <div class="messages" id="messages">
+        <!-- Messages will be dynamically inserted here -->
     </div>
 
-        <div class="message-input">
-            <form action="" method="post">
-                {{ form.hidden_tag() }}
-
-                {{ form.comment_field(class='comment_field') }}
-                {% for error in form.comment_field.errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
-                {{ form.submit }}
-            </form>
-        </div>
+    <div class="message-input">
+        <form id="messageForm">
+            {{ form.hidden_tag() }}
+            {{ form.comment_field(class='comment_field') }}
+            {{ form.submit }}
+        </form>
+    </div>
 </div>
 
 <script>
     document.getElementById("projectResources").addEventListener("click", function() {
-        window.location.href = "{{ url_for('group.project_resources', group_id=group._id, project_id=project._id)}}";
+        window.location.href = "{{ url_for('group.project_resources', group_id=group._id, project_id=project._id) }}";
     });
+
+    // Fetch and display messages
+    function fetchMessages() {
+        const messagesDiv = document.getElementById('messages');
+        const isAtBottom = messagesDiv.scrollHeight - messagesDiv.scrollTop <= messagesDiv.clientHeight + 1;
+        const previousScrollTop = messagesDiv.scrollTop;
+
+        fetch("{{ url_for('group.get_messages', project_id=project._id) }}")
+            .then(response => response.json())
+            .then(data => {
+                messagesDiv.innerHTML = '';
+                let prevCreatorId = null; // Variable to keep track of the previous message's creator ID
+                data.forEach(message => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = message.creatorId === "{{ current_user._id }}" ? 'message sent' : 'message received';
+
+                    if (message.creatorId !== "{{ current_user._id }}") {
+                        if (message.creatorId !== prevCreatorId) {
+                            const profilePicUrl = "{{ url_for('static', filename='users_profile_avatar/') }}" + message.creatorAvatar;
+                            const messageHeader = `
+                                <div class="message-header">
+                                    <img src="${profilePicUrl}" alt="Profile Picture" class="profile-pic">
+                                    <div class="sender-info">
+                                        <span class="sender-name">~ ${message.creatorName}</span>
+                                    </div>
+                                </div>
+                            `;
+                            messageDiv.innerHTML = messageHeader;
+                        } else {
+                            // If the creator ID is the same as the previous one, add a spacer for alignment
+                            const messageHeaderSpacer = `
+                                <div class="message-header-spacer"></div>
+                            `;
+                            messageDiv.innerHTML = messageHeaderSpacer;
+                        }
+                    }
+
+                    const messageContent = `
+                        <div class="message-content">${message.message}</div>
+                        <div class="message-time">${new Date(message.created_at).toLocaleString()}</div>
+                    `;
+                    messageDiv.innerHTML += messageContent;
+                    messagesDiv.appendChild(messageDiv);
+
+                    prevCreatorId = message.creatorId; // Update the previous creator ID
+                });
+
+                if (isAtBottom) {
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                } else {
+                    messagesDiv.scrollTop = previousScrollTop;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Handle form submission
+    document.getElementById('messageForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        fetch("{{ url_for('group.send_message', project_id=project._id) }}", {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                this.reset();
+                fetchMessages();
+            } else {
+                console.error(data.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    // Fetch messages initially and then every 5 seconds
+    fetchMessages();
+    setInterval(fetchMessages, 5000);
 </script>
 {% endblock display %}

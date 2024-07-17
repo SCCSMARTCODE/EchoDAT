@@ -169,29 +169,15 @@
 
 /* Left scrollable menu bar */
 .left-menu-bar {
-    position: fixed;
-    top: 60px; /* Adjust this value according to your header height */
-    left: 0;
-    width: 250px;
-    height: calc(100% - 60px); /* Adjust for the height above the top */
-    background-color: #f0f0f0;
-    overflow-y: auto; /* Enable vertical scrolling */
-    border-right: 1px solid #ccc;
-    padding: 20px;
-}
-
-.profile-info {
     display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+    flex-direction: column;
+    width: 20%;
+    margin-right: 3%;
+    margin-top: 9vh;
+    background-color: #474849;
+    padding: 15px;
 }
 
-.profile-picture {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
 
 .profile-details {
     flex: 1;
@@ -237,6 +223,7 @@
 
 .menu-list li {
     margin-bottom: 10px;
+    list-style-type: none;
 }
 
 .menu-list li a {

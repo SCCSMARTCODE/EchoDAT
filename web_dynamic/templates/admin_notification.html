@@ -7,48 +7,49 @@
 {% block body %}
     
     <main class="main-content">
-        <section class="contact-messages">
-            <h1>Contact Messages</h1>
-            <table class="messages-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Message</th>
-                        <th>Date</th>
-                        <th>Attended To</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>john@example.com</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                        <td>2024-07-15</td>
-                        <td><input type="checkbox" class="attended-checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>jane@example.com</td>
-                        <td>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-                        <td>2024-07-14</td>
-                        <td><input type="checkbox" class="attended-checkbox"></td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                </tbody>
-            </table>
-        </section>
-    </main>
 
-    <footer class="footer">
-        <a href="{{ url_for('admin.admin_dashboard') }}">ADMIN_DASHBOARD</a>
-        <br><br>
-        <a href="{{ url_for('admin.admin_notification') }}">ADMIN_NOTIFICATIONS</a>
-        <br><br>
-        <a href="{{ url_for('admin.admin_logout') }}">LOGOUT_ADMIN</a>
-        <p>&copy; 2024 EchoDAT. All rights reserved.</p>
-    </footer>
+        <div class="left-widget">
+            <a href="{{ url_for('admin.admin_dashboard') }}">ADMIN_DASHBOARD</a>
+            <br><br>
+            <a href="{{ url_for('admin.admin_notification') }}">ADMIN_NOTIFICATIONS</a>
+            <br><br>
+            <a href="{{ url_for('admin.admin_logout') }}">LOGOUT_ADMIN</a>
+        </div>
+
+        <div class="display">
+            <section class="contact-messages">
+                <h1>Contact Messages</h1>
+                <table class="messages-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Message</th>
+                            <th>Time</th>
+                            <th>Attended To</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in datas %}
+                            {% set key = list(data.keys())[0] %}
+                            <tr>
+                                <td>{{ data.get(key).get('sender') }}</td>
+                                <td>{{ data.get(key).get('sender_email') }}</td>
+                                <td class="show_hidden">{{ data.get(key).get('message_subject')[:40] }}...
+                                    <p class="hidden_message" > {{ data.get(key).get('message') }} </p>
+                                </td>
+                                <td>{{ key }}</td>
+                                <td><input type="checkbox" class="attended-checkbox"></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 {% endblock body %}
+
+

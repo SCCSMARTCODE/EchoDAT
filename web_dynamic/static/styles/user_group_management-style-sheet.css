@@ -1,10 +1,6 @@
-body{
-    background-color: #f4f4f4;
-}
 .group-list-diplay{
-
     margin: 10%;
-    margin-left: 27%;
+    /* margin-left: 27%; */
     position: relative;
 }
 
@@ -18,10 +14,9 @@ body{
 
 .group-list h2 {
     margin-top: 0;
-    color: #333;
-    border-bottom: 2px solid #0089bf;
+    color: rgba(3, 53, 1, 0.952);
+    border-bottom: 2px solid rgba(3, 53, 1, 0.952);
     padding-bottom: 20px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .group-list ul {
@@ -36,7 +31,7 @@ body{
 
 .group-list ul li a {
     text-decoration: none;
-    color: #0089bf;
+    color: rgba(3, 53, 1, 0.952);
     font-weight: bold;
     display: block;
     padding: 10px 15px;
@@ -45,7 +40,7 @@ body{
 }
 
 .group-list ul li a:hover {
-    background-color: #08719b;
+    background-color: rgba(3, 53, 1, 0.952);
     color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -60,10 +55,9 @@ body{
 
 .create-group-form h2 {
     margin-top: 0;
-    color: #333;
-    border-bottom: 2px solid #0089bf;
+    color: rgba(3, 53, 1, 0.952);
+    border-bottom: 2px solid rgba(3, 53, 1, 0.952);
     padding-bottom: 10px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .create-group-form form {
@@ -74,7 +68,7 @@ body{
 .create-group-form label {
     margin-top: 10px;
     margin-bottom: 5px;
-    color: #333;
+    color: rgba(3, 53, 1, 0.952);
 }
 
 .create-group-form input[type="text"],
@@ -96,7 +90,7 @@ body{
     padding: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #0089bf;
+    background-color: rgba(14, 121, 10, 0.952);
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -104,5 +98,5 @@ body{
 }
 
 .create-group-form input[type="submit"]:hover {
-    background-color: #0a729b;
+    background-color: rgba(3, 53, 1, 0.952);
 }

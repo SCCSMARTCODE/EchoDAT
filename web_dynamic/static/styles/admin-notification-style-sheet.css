@@ -1,11 +1,32 @@
-.main-content {
-    max-width: 1200px;
+main.main-content {
+    height: 100vh;
     margin: 0 auto;
     padding: 20px;
-    margin-top: 10vh;
-    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     overflow-y: scroll;
     scrollbar-width: none;
+    margin-top: 10vh;
+}
+
+.left-widget{
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-widget a{
+    background-color: #ffffff;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    transition: box-shadow .3s;
+    text-align: center;
+    text-decoration: none;
+}
+
+.left-widget a:hover{
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
 .contact-messages {
@@ -13,7 +34,10 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
+    margin-top: 10vh;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10vh;
+
 }
 
 .contact-messages h1 {
@@ -48,10 +72,21 @@
     cursor: pointer;
 }
 
-.footer {
-    background-color: #121212;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
+.hidden_message{
+    display: none;
+    position: absolute;
+    background-color: rgb(185, 183, 183);
+    color: #2b2929;
+    padding: 10px;
+    font-weight: 400;
+    width: 20vw;
+    max-height: 30vh;
+    transform: translateY(-1vw);
+    border-radius: 5px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.show_hidden:hover .hidden_message{
+    display: block;
 }

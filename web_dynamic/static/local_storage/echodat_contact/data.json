@@ -1,0 +1,38 @@
+[
+    {
+        "2024-07-16 14:05:50.040811": {
+            "receiver": "ADMIN",
+            "sender": "Emmanuel Adewumi",
+            "sender_email": "sccsmart247@gmail.com",
+            "message_subject": "First Message",
+            "message": "Good day @EchoDAT"
+        }
+    },
+    {
+        "2024-07-16 14:06:51.448202": {
+            "receiver": "ADMIN",
+            "sender": "Emmanuel Adewumi",
+            "sender_email": "sccsmart247@gmail.com",
+            "message_subject": "First Message",
+            "message": "Good day @EchoDAT"
+        }
+    },
+    {
+        "2024-07-16 15:03:24.246104": {
+            "receiver": "ADMIN",
+            "sender": "EMMANUEL AYOBAMI",
+            "sender_email": "sccsmart247@gmail.com",
+            "message_subject": "Check the Update",
+            "message": "Fetch Single Team Details API <br>Acceptance Criteria <br> <br>Fetch Team Details [GET] /api/teams/ <br> <br>Fetch Team Details Endpoint <br> <br>Fetch Single Team Details API <br>Acceptance Criteria <br> <br>Fetch Team Details [GET] /api/teams/ <br> <br>Fetch Team Details Endpoint <br> <br>Given: A request with a valid team ID. When: The user fetches team details. Then: The system should return the team details with a 200 OK status code. <br>Team Not Found <br> <br>Given: A request with an invalid team ID. When: The user fetches team details. Then: The system should return a 404 Not Found status with an appropriate error message. <br>Unauthorized Access <br> <br>Given: A request without a valid token. When: The user tries to access the endpoint. Then: The system should return a 401 Unauthorized status. <br> <br>Given: A request with a valid team ID. When: The user fetches team details. Then: The system should return the team details with a 200 OK status code. <br>Team Not Found <br> <br>Given: A request with an invalid team ID. When: The user fetches team details. Then: The system should return a 404 Not Found status with an appropriate error message. <br>Unauthorized Access <br> <br>Given: A request without a valid token. When: The user tries to access the endpoint. Then: The system should return a 401 Unauthorized status."
+        }
+    },
+    {
+        "2024-07-17 17:38:12.853643": {
+            "receiver": "ADMIN",
+            "sender": "Emmanuel Adewumi",
+            "sender_email": "eayobami568@gmail.com",
+            "message_subject": "Second Message",
+            "message": "Thank you"
+        }
+    }
+]

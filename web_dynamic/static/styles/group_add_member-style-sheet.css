@@ -77,3 +77,18 @@ form button:hover {
 .add-button.exist:hover{
     background-color: rgba(165, 36, 36, 0.788);
 }
+
+.search-results img{
+    height: 40px;
+    border-radius: 5px;
+}
+
+span.username a{
+    background: none;
+    color: black;
+}
+
+span.username a:hover{
+    background: none;
+    
+}

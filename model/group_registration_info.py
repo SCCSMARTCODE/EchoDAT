@@ -6,7 +6,7 @@ This module contains the class that captures groups_registration_info table
 """
 
 from model.basemodel import Base, BaseModel
-from sqlalchemy import Column, String, INTEGER, ForeignKey
+from sqlalchemy import Column, String, INTEGER, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 
 
@@ -19,9 +19,14 @@ class GroupRegistrationInfo(BaseModel, Base):
 
     userId = Column(String(50), ForeignKey('user_info._id'), nullable=False)
     groupId = Column(String(50), ForeignKey('group_info._id'), nullable=False)
-    user_info = relationship('UserInfo', backref='groups_info')
-    group_info = relationship('GroupInfo', backref='users_info')
 
+    # Relationships to other tables
+    user_info = relationship('UserInfo', backref='group_registrations')
+    group_info = relationship('GroupInfo', backref='user_registrations')
+
+    __table_args__ = (
+        UniqueConstraint('_id', name='_id'),
+    )
 
 
 

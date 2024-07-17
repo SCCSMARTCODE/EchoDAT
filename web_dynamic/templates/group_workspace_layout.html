@@ -35,13 +35,13 @@
             <div class="project-list">
                 {% for project in projects %}
                     <div class="project-item">
-                        <a href="{{ url_for('group.project_page', project_id=project._id) }}#last_message">
+                        <a href="{{ url_for('group.project_page', project_id=project._id, group_id=group._id) }}#last_message">
                             <div class="project-avatar">{{ project.name[0] }}</div>
                             <div class="project-info">
                                 <div class="project-name">{{ project.name }}</div>
-                                {% set last_message = get_project_last_message(project._id)%}
+                                {% set last_message = get_project_last_message_info(project._id) %}
                                 {% if last_message %}
-                                    <div class="project-last-message"> <p>~{{ last_message.creator.userName }}: {{ get_project_last_message(project._id).message[:15] }}</p></div>
+                                    <div class="project-last-message"> <p>~{{ last_message[1].userName}} : {{ last_message[0].message[:15] }}</p></div>
                                 {% endif %}
                             </div>
                         </a>

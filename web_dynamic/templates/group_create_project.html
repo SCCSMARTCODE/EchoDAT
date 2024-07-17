@@ -37,6 +37,9 @@
                 <p style="color: red; background-color: aliceblue;">{{ error }}</p>
             {% endfor %}
 
+            {{ form.groupId(value=group._id, style="display: none;") }}
+            
+
             {{ form.create }}
             
         </form>

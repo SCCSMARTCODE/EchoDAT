@@ -41,4 +41,8 @@ class UploadMusic(FlaskForm):
     mood = SelectField(u'Mood', choices=sorted(moods), validators=[DataRequired()])
     caption = TextAreaField("Caption", validators=[Optional(), Length(max=900)])
     release = BooleanField("Release to Public", validators=[Optional()])
+    coverPicture = FileField('Cover Picture', validators=[
+        Optional(),
+        FileAllowed(['jpg', 'jpeg', 'png'], "Image Extension not Allowed choose of 'jpeg', 'jpg', 'png'")
+    ])
     upload = SubmitField('Upload')

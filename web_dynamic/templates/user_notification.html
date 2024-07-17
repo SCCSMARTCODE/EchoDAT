@@ -1,0 +1,53 @@
+{% extends "dashboard_layout.html" %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/new-dashboard-style-sheet.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/user-notification-style-sheet.css') }}">
+{% endblock head %}
+
+
+{% block display %}
+
+<div class="notifications-container">
+    <h2>NOTIFICATIONS</h2>
+    <div class="notifications">
+        <!-- Notification Item -->
+        {% for data in datas %}
+            {% set key = list(data.keys())[0] %}
+            <div class="notification-item">
+                <div class="notification-title">
+                    <h3>{{ data.get(key).get('title') }}</h3>
+                    <button type="button"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="rgb(255, 255, 255)"><path d="M468-240q-96-5-162-74t-66-166q0-100 70-170t170-70q97 0 166 66t74 162l-84-25q-13-54-56-88.5T480-640q-66 0-113 47t-47 113q0 57 34.5 100t88.5 56l25 84ZM821-60 650-231 600-80 480-480l400 120-151 50 171 171-79 79Z"/></svg></button>
+                </div>
+                <div class="notification-content">
+                    <p>{{ data.get(key).get('message') }}</p>
+                    <span class="notification-time">{{ key }}o</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+                    document.querySelectorAll('.notification-item').forEach(notification => {
+            const button = notification.querySelector('button');
+            const content = notification.querySelector('.notification-content');
+            let isOpen = false;
+            
+            button.addEventListener('click', () => {
+                if (!isOpen) {
+                    content.style.display = 'block';
+                    isOpen = true;
+                } else {
+                    content.style.display = 'none';
+                    isOpen = false;
+                }
+                button.classList.toggle('active');
+            });
+        });
+</script>
+
+{% endblock display %}

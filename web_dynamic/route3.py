@@ -145,16 +145,21 @@ def project_page(project_id, group_id):
 def get_messages(project_id):
     try:
         with session_scoped() as session:
-
             messages = session.query(MessageInfo).options(joinedload(MessageInfo.creator)).filter_by(projectId=project_id).order_by(MessageInfo.created_at).all()
-            message_list = [{
-                'creatorId': message.creatorId,
-                'creatorName': message.creator.userName,
-                'creatorAvatar': get_user_avatar_name(message.creatorId),
-                'message': message.message,
-                'created_at': message.created_at.isoformat()
-            } for message in messages]
-            return jsonify(message_list)
+            app.logger.debug(f"Fetched messages: {messages}")
+            message_list = []
+            for message in messages:
+                try:
+                    message_list.append({
+                        'creatorId': message.creatorId,
+                        'creatorName': message.creator.userName,
+                        'creatorAvatar': get_user_avatar_name(message.creatorId),
+                        'message': message.message,
+                        'created_at': message.created_at.isoformat()
+                    })
+                except AttributeError as ae:
+                    app.logger.error(f"Attribute error with message object: {message} - {ae}")
+        return jsonify(message_list)
     except Exception as e:
         app.logger.error(f"Error fetching messages for project {project_id}: {e}")
         return jsonify({"error": "An error occurred while fetching messages."}), 500
@@ -215,8 +220,11 @@ def create_project(group_id):
                     )
                     session.add(new_project)
                     group.totalProjectCount += 1
+                    project_id = new_project._id
+                    print(f'\n\n\n{project_id}{group_id}')
                     session.commit()
-                    return redirect(url_for('group.project_page', group_id=group_id, project_id=new_project._id))
+                    print(f'{project_id}{group_id}')
+                    return redirect(url_for('group.project_page', group_id=group_id, project_id=project_id))
 
                 except Exception as e:
                     app.logger.error(f"Error occurred during project creation: {e}")
@@ -362,16 +370,14 @@ def project_resources(group_id):
                     saving_path = os.path.join(app.root_path, f'static/group_project_data/{group_id}/{project_id}/{form_type}')
                     os.makedirs(saving_path, exist_ok=True)
 
-                    if form_type in ['Audio', 'File']:
+                    if form_type in ['AUDIO', 'FILE']:
+                        print("HERE\n\n\n")
                         file_ext = secure_filename(file.filename).split('.')[-1]
                         if file_ext:
                             file.save(os.path.join(saving_path, f'{new_resources._id}.{file_ext}'))
                     else:
                         with open(os.path.join(saving_path, f'{new_resources._id}.txt'), 'w') as f:
                             f.write(format_message(file))
-
-                    print("\n\nHere2\n\n")
-
                     session.add(new_resources)
                     session.commit()
                     return redirect(request.url)

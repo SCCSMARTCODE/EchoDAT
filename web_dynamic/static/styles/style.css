@@ -1,7 +1,10 @@
 /* Reset default browser margin and set a default font family */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: "Kanit", sans-serif;
+    font-style: normal;
 }
 
 /* Flexbox container for header elements, aligning items in a row */
@@ -10,6 +13,14 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+}
+
+.home-view{
+    display: flex;
+    flex-direction: row;
+    /* padding-top: 12vh; */
+    justify-content: space-between;
+    gap: 1vw;
 }
 
 /* Styling for the logo container */
@@ -32,6 +43,7 @@ body {
     font-weight: bold;
 }
 
+
 /* Ensure the text is visible if the image doesn't load */
 .logo a {
     text-decoration: none;
@@ -45,6 +57,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 50px; /* Adjust border-radius to make edges more rounded */
     padding: 8px; /* Adjust padding as needed */
+    /* z-index: 0; */
 }
 
 /* Styling for the search icon inside the search bar */
@@ -61,6 +74,7 @@ body {
     border: none;
     outline: none;
     font-size: 16px;
+    background-color: transparent;
 }
 
 
@@ -107,16 +121,73 @@ body {
     display: none;
 }
 
+
 /* sticky header at the top of the page */
 #header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    transition: background-color 0.3s, color 0.3s;
     z-index: 1000;
 }
+
+.if-auth{
+    display: flex;
+    flex-direction: row;
+}
+div.upload-link-cover{
+    padding: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+a#uploadLink{
+    margin: 0;
+}
+
+/* Styles for the header when scrolled */
+#header.scrolled {
+    background-color: rgb(18, 59, 2);
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+#header.scrolled .search-bar {
+    color: #ffffff;
+}
+  
+  /* Styles for the logo and navigation links */
+  .logo a,
+  .nav-links ul li a {
+    color: inherit;
+  }
+
+  .hover-drop{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #68676769;
+    margin-left: 5vw;
+    padding: 4px;
+    padding-right: 8px;
+    padding-left: 8px;
+    border-radius: 5px;
+  }
+  .hover-drop:hover{
+    background-color: #6867679c;
+  }
+
+  .user-actions a {
+    color: inherit;
+  }
+
+  #userProfile img{
+    height: 40px;
+    border-radius: 10px;
+  }
 
 /* Responsive Design: Adjust styles for screens 768px wide or smaller */
 @media (max-width: 768px) {
@@ -180,35 +251,38 @@ body {
 /* Ensure the hero container has no extra padding or margin on the left */
 .hero {
     position: relative;
-    height: 50vh; /* Set height to half of the viewport height */
+    height: 50vh; 
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align content to the left */
-    padding: 20px 0; /* Adjust padding as needed */
+    justify-content: flex-start;
+    padding: 20px 0;
+}
+
+.dropdown-content a{
+    margin: 0;
 }
 
 
 /* Styling for the background */
 .background {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
-    left: 50%; /* Center the background horizontally */
-    transform: translateX(-50%); /* Center the background horizontally */
-    width: 95vw; /* Set the width to 90% of the viewport width, adjust as needed */
-    height: 100%; /* Fill the height of the hero section */
-    background-image: url("{{ url_for('static', filename='.system_files/img/background.png') }}"); /* Add your image path here */
-    background-size: cover; /* Cover the background */
+    /* left: 47%;  */
+    /* transform: translateX(-10px);  */
+    width: 75vw; 
+    height: 100%; 
+    background-image: url('img/background.png');
+    background-size: cover; 
     background-position: center;
-    border-radius: 20px; /* Add border-radius for slightly curved edges */
-    z-index: -1; /* Place the background behind the content */
+    border-radius: 20px;
+    z-index: -1; 
 }
 
 /* Move the hero content all the way to the left */
 .hero-content {
     max-width: 500px; /* Limit the width of the content */
-    padding: 120px; /* Adjust padding as needed */
-    margin-left: 0; /* Ensure no left margin */
     text-align: left; /* Align text to the left */
+    padding: 3%;
     z-index: 1; /* Ensure content is above the background */
 }
 
@@ -219,15 +293,17 @@ body {
 
 .hero-content p {
     font-size: 18px;
-    margin-bottom: 30px;
+    margin-bottom: 7vh;
+    font-weight: 600;
+    width: 400px;
 }
 
 .cta-button {
-    background-color: #007BFF;
+    background-color: #097231;
     color: white;
-    padding: 10px 20px;
+    padding: 15px 20px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* Add keyframes for growing and fading in */
@@ -244,7 +320,6 @@ body {
 
 /* Apply the animation to the hero content */
 .hero-content {
-    padding-left: 120px; /* Adjust this value to push the content to the right */
     animation: growFadeIn 1s ease-out forwards;
 }
 
@@ -263,7 +338,7 @@ body {
 /* Styling for the decorative image inside the background */
 .decorative-image {
     position: absolute;
-    top: 58px; /* Adjust the positioning to move the image down */
+    top: 130px; /* Adjust the positioning to move the image down */
     right: 0%; /* Adjust the positioning as needed */
     max-width: 16%; /* Adjust the size as needed */
     height: auto;
@@ -275,7 +350,7 @@ body {
 /* Styling for the second decorative image */
 .second-image {
     position: absolute;
-    top: 58px; /* Adjust the positioning to move the image down */
+    top: 130px; /* Adjust the positioning to move the image down */
     right: 3%; /* Adjust the positioning as needed */
     max-width: 35%; /* Adjust the size as needed */
     height: auto;
@@ -287,7 +362,7 @@ body {
 /* Styling for the third decorative image */
 .third-image {
     position: absolute;
-    top: 75px; /* Adjust the positioning to move the image down */
+    top: 145px; /* Adjust the positioning to move the image down */
     right: 18%; /* Adjust the positioning as needed */
     max-width: 33%; /* Adjust the size as needed */
     height: auto;
@@ -298,16 +373,15 @@ body {
 
 /* Styling for the side menu bar */
 .side-menu {
-    position: fixed; /* Keep the sidebar fixed on the left */
-    top: 60vh;
-    left: 40px;
     width: 250px; /* Width of the sidebar */
-    height: calc(100vh - 50vh); /* Full height minus hero section */
-    background-color: #fff; /* Background color */
+    height: calc(100vh - 10vh); /* Full height minus hero section */
     overflow-y: auto; /* Enable vertical scrolling */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    box-shadow: 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    border-top: none;
     padding: 20px;
-    z-index: 999; /* Ensure it is above other elements */
+    z-index: 0; /* Ensure it is above other elements */
+    scrollbar-width: none;
+    margin-top: 8vh;
 }
 
 /* Remove default list styles and add spacing */
@@ -341,23 +415,17 @@ body {
 
 /* Hover effect for the menu links */
 .side-menu ul li a:hover {
-    background-color: #007BFF; /* Background color on hover */
+    background-color: #01441f; /* Background color on hover */
     color: #fff; /* Text color on hover */
 }
 
 /* Styling for the main content section */
 .main-content {
-    margin-left: 300px; /* Adjust based on width of side menu bar */
     padding: 20px;
 }
 
 /* Styling for the trending music section */
-.trending-music {
-    margin-bottom: 20px;
-    margin-left: 20px; /* Add margin to create space */
-    padding-left: 60px; /* Optional: add padding for further spacing */
-   
-}
+
 
 /* Styling for the title */
 .trending-music h2 {
@@ -375,17 +443,16 @@ body {
 /* Styling for each music item */
 /* Styling for each music item */
 .music-item {
-    width: calc(22% - 20px); /* Adjust width and margin based on spacing requirements */
+    width: calc(21% - 40px); /* Adjust width and margin based on spacing requirements */
     margin-right: 20px;
     margin-bottom: 40px; /* Increased margin to accommodate new text */
     padding: 10px;
-    height: 35vh; /* Adjust height as needed */
+    height: 250px; /* Adjust height as needed */
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
     position: relative;
-    overflow: visible;
-    background-color: #efffa9;
+    overflow: hidden;
 }
 
 /* Ensure even spacing between items */
@@ -396,11 +463,10 @@ body {
 /* Styling for images inside music items */
 .music-item img {
     width: 100%;
-    height: 70%;
+    height: 100%;
     object-fit: cover; /* This ensures the image covers the entire area of the box */
     border-radius: 5px;
     margin-bottom: 10px;
-    box-shadow: 0px 0px 0 1px rgba(161, 159, 159, 0.384);
 }
 
 /* Styling for the play button */
@@ -429,10 +495,10 @@ body {
 /* Styling for music info (artist name and track title) */
 .music-info {
     margin-top: 10px;
-    text-align: center;
-    bottom: -90px;
+    position: absolute;
+    bottom: -90px; /* Position it outside the box */
     left: 50%;
-    /* transform: translateX(-50%); */
+    transform: translateX(-50%);
     text-align: center;
 }
 
@@ -497,8 +563,113 @@ body {
     display: block;
 }
 
+/* Styling for the footer */
+#footer {
+    background-color: #012406; /* Dark green background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Center-align text */
+    padding: 40px 20px; /* Padding for top/bottom and left/right */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
 
-#userAvatar{
-    max-width: 45px;
-    border-radius: 50%;
+/* Container for footer content */
+.footer-container {
+    max-width: 1200px; /* Maximum width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Styling for the footer logo */
+.footer-logo img {
+    max-width: 150px; /* Adjust logo size as needed */
+    margin-bottom: 20px;
+}
+
+/* Styling for the social media icons */
+.footer-social-icons {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual social media icons */
+.footer-social-icons a {
+    color: #fff; /* White icon color */
+    margin: 0 10px; /* Spacing between icons */
+    font-size: 24px; /* Icon size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for social media icons */
+.footer-social-icons a:hover {
+    color: #007BFF; /* Change icon color on hover */
+}
+
+/* Styling for footer links */
+.footer-links {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual footer links */
+.footer-links a {
+    color: #fff; /* White link color */
+    margin: 0 10px; /* Spacing between links */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for footer links */
+.footer-links a:hover {
+    color: #007BFF; /* Change link color on hover */
+}
+
+/* Styling for the footer text */
+.footer-text p {
+    max-width: 800px; /* Maximum width of the text */
+    margin: 0 auto 20px; /* Center the text and add bottom margin */
+    line-height: 1.5; /* Line height for readability */
+    font-size: 14px; /* Font size */
+}
+
+/* Styling for privacy and terms links */
+.footer-privacy-terms {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual privacy and terms links */
+.footer-privacy-terms a {
+    color: #fff; /* White link color */
+    margin: 0 10px; /* Spacing between links */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for privacy and terms links */
+.footer-privacy-terms a:hover {
+    color: #007BFF; /* Change link color on hover */
+}
+
+/* Styling for the copyright text */
+.footer-copyright p {
+    font-size: 14px; /* Font size */
+    margin: 0; /* Remove default margin */
+}
+
+.right-view{
+    display: block;
+    max-height: 95vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    overflow-x: hidden;
+    width: 75vw;
+    margin-right: 2vw;
+    z-index: 2;
+    margin-top: 9vh;
+}
+
+.display{
+    display: block;
+    width: 100vw;
 }

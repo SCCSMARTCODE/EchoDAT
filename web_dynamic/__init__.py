@@ -2,7 +2,7 @@ from flask import Flask
 from flask_session import Session
 
 app = Flask('EchoDAT')
-app.config['SECRET_KEY'] = "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"
+# app.config['SECRET_KEY'] = "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"
 
 
 # Session configuration

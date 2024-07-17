@@ -4,7 +4,7 @@ This module contains the class that captures groups_info table
 """
 
 from model.basemodel import Base, BaseModel
-from sqlalchemy import Column, String, INTEGER, ForeignKey
+from sqlalchemy import Column, String, Integer, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 
 
@@ -21,13 +21,20 @@ class AudioFileInfo(BaseModel, Base):
     genre = Column(String(70), nullable=False)
     mood = Column(String(70), nullable=False)
     caption = Column(String(900), nullable=False)
-    creatorId = Column(String(50), ForeignKey('user_info._id'), nullable=False)  # note this
+    creatorId = Column(String(50), ForeignKey('user_info._id'), nullable=False)  # Foreign key to user_info
     groupId = Column(String(50), ForeignKey('group_info._id'), default=None)
     projectId = Column(String(50), ForeignKey('project_info._id'), nullable=True)
     release = Column(String(20), nullable=False, default='PRIVATE')
-    likesCount = Column(INTEGER, nullable=False, default=0)
+    likesCount = Column(Integer, nullable=False, default=0)
+    playsCount = Column(Integer, nullable=False, default=0)
     framePictureName = Column(String(50), nullable=False, default='default.jpg')
-    lyricsIdentityName = Column(String(50))  # plan to store this ia a file in form of a json file one file for a group
+    lyricsIdentityName = Column(String(50), default=None)
+
+    # Relationships to other tables
     creator = relationship('UserInfo', backref='audios')
     group = relationship('GroupInfo', backref='audios')
     project = relationship('ProjectInfo', backref='audios')
+
+    __table_args__ = (
+        UniqueConstraint('_id', name='_id'),
+    )

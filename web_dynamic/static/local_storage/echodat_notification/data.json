@@ -1,0 +1,42 @@
+[
+    {
+        "2024-07-16 13:50:10.051030": {
+            "receiver": "USERS",
+            "sender": "ADMIN",
+            "title": "Latest dev on EchoDAT",
+            "message": "format_message(form.get('notification-message'))"
+        }
+    },
+    {
+        "2024-07-16 13:51:05.410184": {
+            "receiver": "USERS",
+            "sender": "ADMIN",
+            "title": "Latest dev on EchoDAT",
+            "message": "JSONDecodeError <br>json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 3 column 9 (char 16) <br> <br>Traceback (most recent call last) <br>File \"C:\\Users\\USER\\Desktop\\EchoDAT\\web_dynamic\\route4.py\", line 46, in admin_dashboard <br>with open(file_path, 'x') as f: <br>During handling of the above exception, another exception occurred: <br>File \"C:\\Users\\USER\\Desktop\\EchoDAT\\venv\\lib\\site-packages\\flask\\app.py\", line 1498, in __call__ <br>return self.wsgi_app(environ, start_response) <br>File \"C:\\Users\\USER\\Desktop\\EchoDAT\\venv\\lib\\site-packages\\flask\\app.py\", line 1476, in wsgi_app <br>response = self.handle_exception(e) <br>File \"C:\\Users\\USER\\Desktop\\EchoDAT\\venv\\lib\\site-packages\\flask\\app.py\", line 1473, in wsgi_app <br>response = self.full_dispatch_request() <br>File \"C:\\Users\\USER\\Desktop\\EchoDAT\\venv\\lib\\site-packages\\flask\\app.py\", line 882, in full_dispatch_request <br>rv = self.handle_user_exception(e) <br>File \"C:\\Users\\USER\\Desktop\\EchoDAT\\venv\\lib\\site-packages\\flask\\app.py\", line 880, in full_dispatch_request <br>rv = self.dispatch_request() <br>File \"C:\\Users\\USER\\Desktop\\EchoDAT\\venv\\lib\\site-packages\\flask\\app.py\", line 865, in dispatch_request <br>return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args) # type: ignore[no-any-return] <br>File \"C:\\Users\\USER\\Desktop\\EchoDAT\\web_dynamic\\route4.py\", line 50, in admin_dashboard <br>json_data = json.load(f) <br>File \"C:\\Program Files\\Python38\\lib\\json\\__init__.py\", line 293, in load <br>return loads(fp.read(), <br>File \"C:\\Program Files\\Python38\\lib\\json\\__init__.py\", line 357, in loads <br>return _default_decoder.decode(s) <br>File \"C:\\Program Files\\Python38\\lib\\json\\decoder.py\", line 337, in decode <br>obj, end = self.raw_decode(s, idx=_w(s, 0).end()) <br>File \"C:\\Program Files\\Python38\\lib\\json\\decoder.py\", line 353, in raw_decode <br>obj, end = self.scan_once(s, idx) <br>json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 3 column 9 (char 16) <br>The debugger caught an exception in your WSGI application. You can now look at the traceback which led to the error. <br>To switch between the interactive traceback and the plaintext one, you can click on the \"Traceback\" headline. From the text traceback you can also create a paste of it. For code execution mouse-over the frame you want to debug and click on the console icon on the right side. <br> <br>You can execute arbitrary Python code in the stack frames and there are some extra helpers available for introspection: <br> <br>dump() shows all variables in the frame <br>dump(obj) dumps all that's known about the object <br>"
+        }
+    },
+    {
+        "2024-07-17 09:57:21.893889": {
+            "receiver": "USERS",
+            "sender": "ADMIN",
+            "title": "First Direct Message",
+            "message": "This will be the first message to reach the user directly form the server"
+        }
+    },
+    {
+        "2024-07-17 10:01:36.072902": {
+            "receiver": "USERS",
+            "sender": "ADMIN",
+            "title": "Second Direct Message",
+            "message": "This will be the second message to reach the user directly form the server"
+        }
+    },
+    {
+        "2024-07-17 17:37:43.993206": {
+            "receiver": "USERS",
+            "sender": "ADMIN",
+            "title": "Third Direct Message",
+            "message": "This is my third direct message"
+        }
+    }
+]

@@ -1,5 +1,10 @@
 {% extends "dashboard_layout.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/new-dashboard-style-sheet.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard-edit-profile-style-sheet.css') }}">
+{% endblock head %}
+
 
 {% block display %}
 
@@ -7,42 +12,48 @@
     <!-- Right side profile edit section -->
     <div class="profile-edit-section">
         <div class="profile-banner extended-banner">
-            <!-- Banner or hero section -->
-            <h2>Edit Profile</h2>
+            <h2>Edit Profile & Account Settings</h2>
         </div>
 
         <div class="profile-info">
             <!-- New container for the profile picture and name -->
             <div class="profile-container">
-                <div class="profile-picture-container">
-                    <img src="{{ url_for('static', filename='users_profile_avatar/' + avatar_name) }}" alt="User Avatar" class="profile-picture">
-                    <div class="change-picture">
-                        <label for="profile-picture-upload" class="upload-label">
-                            <i class="fas fa-camera"></i>
-                        </label>
-                        <input type="file" id="profile-picture-upload" style="display: none;">
-                        <span class="upload-text">recommended 800x800 jpg or png</span>
-                    </div>
-                </div>
+                
                 <div class="profile-details">
-                    <div class="user-info">
-                        <h3 class="user-name">{{ current_user.userName }}</h3>
-                        <div class="follow-button-container">
-                        </div>
-                    </div>
                     <div class="profile-links">
-                        <a href="#" id="basic-info-link" class="profile-link">Basic Information</a>
+                        <a href="#" id="basic-info-link" class="profile-link">Update Basic Information</a>
                         <a href="#" id="change-password-link" class="profile-link">Change Password</a>
                         <a href="#" id="update-email-link" class="profile-link">Update Email</a>
                         <a href="#" class="profile-link">Update Artist URL</a>
-                        <a href="{{ url_for('auth.delete_user_account') }}" class="profile-link">Delete Account</a>
+                        <a href="{{ url_for('auth.delete_user_account') }}" class="profile-link" style="background-color: red;">Delete Account</a>
                     </div>
 
                 <!----------------------basic info--------------------------------------->
 
                     <div class="profile-form-container" id="basic-info-form" style="display: none;">
-                        <form class="profile-form" method="post">
+                        <form class="profile-form" method="post" enctype="multipart/form-data">
                             {{ infoForm.hidden_tag() }}
+
+
+                            <div class="profile-picture-container save-button">
+                                
+                                <div class="change-picture">
+                                    <div for="profile-picture-upload" >
+                                        {{ infoForm.avatar.label(class="upload-label") }}
+                                        <img src="{{ url_for('static', filename='users_profile_avatar/' + avatar_name) }}" alt="User Avatar" class="profile-picture">
+                                        <span class="upload-text">recommended <br> 800x800 jpg or png</span>
+                                    </div>
+                                    <div class="form-group">
+                                
+                                        {{ infoForm.avatar() }}
+                                        {% for error in infoForm.avatar.errors %}
+                                            <p style="color: red; background-color: aliceblue;">{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {{ infoForm.submit(class='btn') }}
+                            </div>
+                            
 
                             <div class="form-group">
                                 {{ infoForm.userName.label }}
@@ -83,8 +94,6 @@
                                     <p style="color: red; background-color: aliceblue;">{{ error }}</p>
                                 {% endfor %}
                             </div>
-
-                            {{ infoForm.submit(class='btn') }}
 
                         </form>
                     </div>

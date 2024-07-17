@@ -1,0 +1,160 @@
+.profile-picture-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.upload-label {
+    cursor: pointer;
+}
+.upload-text{
+    position: absolute;
+    left: 31%;
+    margin-top: 5%;
+    font-size: smaller;
+    text-align: center;
+    display: none;
+    background-color: #ffffff9c;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+}
+
+.profile-picture-container:hover span{
+    display: inline;
+    
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items to the start of the container */
+    padding: 20px; /* Add padding around the container */
+    margin: 20px; /* Add margin to ensure it doesn't touch the sides */
+    margin-left: 80px;
+    margin-right: 60px;
+    width: calc(100% - 40px); /* Adjust width to account for padding and margin */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    z-index: 1;
+    position: relative;
+    justify-content: space-between; /* Distribute space between items */
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.profile-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture-upload,
+.profile-picture-container  img{
+   width: 160px;
+   border-radius: 50%;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.171);
+}
+
+
+.profile-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: nowrap;
+    gap: 20px; 
+  }
+  
+  .profile-link {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    padding: 10px;
+    border-radius: 5px;
+    border-top: 2px solid white;
+    background-color: rgba(3, 53, 1, 0.952);
+  }
+  
+  .profile-link:hover {
+    color: #bbbbbb;
+  }
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: -80px;
+    margin-left: 170px;
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+    font-weight: bold;
+}
+
+.user-id {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+
+
+
+/* profile form-container for basic information, change password, and update email */
+
+.profile-form-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(3, 53, 1, 0.952);
+    border-radius: 5px;
+    color: #bbbbbb;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    min-height: 20px;
+}
+
+.btn {
+    background-color: #787c80;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #959799;
+}
+
+.profile-picture-upload .upload-label{
+    cursor: pointer;
+}

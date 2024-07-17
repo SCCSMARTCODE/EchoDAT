@@ -1,8 +1,7 @@
 /* Styling the body */
 body {
-    font-family: 'Arial', sans-serif;
     background-color: #f5f5f5;
-    color: #333;
+    color: #000000;
 }
 
 /* Form container */
@@ -10,10 +9,10 @@ body {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 15vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.171);
 }
 
 /* Logo styling */
@@ -37,7 +36,7 @@ body {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #555;
+    color: #000000;
 }
 
 .form-control {
@@ -46,6 +45,12 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+    cursor: pointer;
+}
+
+.caption-textarea{
+    resize: vertical;
+    min-height: 20px;
 }
 
 .form-control:focus {

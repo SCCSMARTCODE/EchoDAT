@@ -1,95 +1,69 @@
 {% extends "navigation_bar_layout.html" %}
 
+
+
 {% block head %}
-
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard-style-sheet.css') }}">
-
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/new-dashboard-style-sheet.css') }}">
 {% endblock head %}
 
 
 {% block body %}
-    <!-- Left scrollable menu bar -->
-    <div class="left-menu-bar">
-        <div class="profile-info">
+    <div class="dashboard">
+        <!-- Left scrollable menu bar -->
+        <div class="left-menu-bar">
+
+            <div class="menu-section">
+                <p class="menu-header">DASHBOARD</p>
+                <ul class="menu-list">
+                    <li><a href="{{ url_for('auth.user_dashboard') }}">Home</a></li>
+                    <li><a href="{{ url_for('auth.user_notification') }}">Notifications</a></li>
+                    <li><a href="{{ url_for('auth.edit_profile') }}">Edit Profile</a></li>
+                    <li><a href="{{ url_for('group.user_group_management') }}">Groups</a></li>
+                </ul>
+            </div>
+
+            <div class="menu-section">
+                <p class="menu-header">COMMENTS</p>
+                <ul class="menu-list">
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div>
+
+            <div class="menu-section">
+                <p class="menu-header">MESSAGES</p>
+                <ul class="menu-list">
+                    <li><a href="#">Overview</a></li>
+                </ul>
+            </div>
+
+            <div class="menu-section">
+                <p class="menu-header">OTHERS</p>
+                <ul class="menu-list">
+                    <li><a href="{{ url_for('auth.get_help') }}">Help</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        
+        <div class="right_display_section">
+            {% block display %}{% endblock display %}
+        </div>
+        
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- <script src="dashboard-script.js"></script> -->
+
+{% endblock body %}
+
+
+
+<!-- <div class="profile-info">
             <img src="{{ url_for('static', filename='users_profile_avatar/' + avatar_name) }}" alt="User Avatar" class="profile-picture">
             <div class="profile-details">
                 <p class="user-name">{{ current_user.userName }}</p>
                 <p class="user-id">User ID: {{ current_user._id }}</p>
                 <a href="edit-profile.html" class="edit-profile">Edit Profile</a>
             </div>
-        </div>
-
-        <hr>
-
-        <!-- Dashboard -->
-        <div class="menu-section">
-            <p class="menu-header">DASHBOARD</p>
-            <ul class="menu-list">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Geography</a></li>
-                <li><a href="#">Source</a></li>
-                <li><a href="#">Fans</a></li>
-                <li><a href="#">Supporters</a></li>
-                <li><a href="#">Notifications</a></li>
-                <li><a href="#">Playlist</a></li>
-                <li><a href="{{ url_for('group.user_group_management') }}">Groups</a></li>
-            </ul>
-        </div>
-        <hr>
-
-        <!-- Content -->
-        <div class="menu-section">
-            <p class="menu-header">CONTENT</p>
-            <ul class="menu-list">
-                <li><a href="#">Manage Content</a></li>
-            </ul>
-        </div>
-        <hr>
-
-        <!-- Comments -->
-        <div class="menu-section">
-            <p class="menu-header">COMMENTS</p>
-            <ul class="menu-list">
-                <li><a href="#">Manage</a></li>
-            </ul>
-        </div>
-        <hr>
-
-        <!-- Messages -->
-        <div class="menu-section">
-            <p class="menu-header">MESSAGES</p>
-            <ul class="menu-list">
-                <li><a href="#">Overview</a></li>
-            </ul>
-        </div>
-        <hr>
-
-        <!-- Monetization -->
-        <div class="menu-section">
-            <p class="menu-header">MONETIZATION</p>
-            <ul class="menu-list">
-                <li><a href="#">Apply to AMP</a></li>
-                <li><a href="#">AMP FAQ</a></li>
-            </ul>
-        </div>
-        <hr>
-
-        <!-- Others -->
-        <div class="menu-section">
-            <p class="menu-header">OTHERS</p>
-            <ul class="menu-list">
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Sign Out</a></li>
-            </ul>
-        </div>
-        <hr>
-    </div>
-
-    {% block display %} {% endblock display %}
-
-    
-
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <!-- <script src="dashboard-script.js"></script> -->
-
-{% endblock body %}
+        </div> -->

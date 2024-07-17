@@ -1,0 +1,73 @@
+.notifications-container{
+    /* background-color: green; */
+    display: flex;
+    justify-content: space-between;
+    height: 80vh;
+    margin-top: 0;
+    gap: 3vw;
+}
+
+.notifications{
+    width: 48vw;
+    margin-right: 1vw;
+    border-top: 10px solid rgba(3, 53, 1, 0.952);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.199);
+    max-height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    border-radius: 10px;
+}
+
+.notifications-container h2{
+    transform: translateY(-3cm);
+    font-style: italic;
+    font-size: 2rem;
+    color: rgba(3, 53, 1, 0.952);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.541), 4px 4px 0px rgba(5, 5, 5, 0.541);
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.199);
+    margin: auto;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+
+.notifications-container .notification-item{
+    margin: 20px;
+}
+
+.notification-item .notification-title{
+    display: flex;
+    max-height: 40px;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.11);
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    z-index: 3;
+}
+
+.notification-title h3{
+    align-self: center;
+    padding-left: 15px;
+    font-size: 15px;    
+}
+
+.notification-title button{
+    border-radius: 5px;
+    background-color: rgba(3, 53, 1, 0.952);
+    cursor: pointer;
+}
+
+.notification-content{
+    padding: 10px;
+    margin-top: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.11);
+    z-index: 0;
+    max-height: 20vh;
+    overflow-y: scroll;
+    background-color: rgba(3, 53, 1, 0.952);
+    color: white;
+    scrollbar-width: none;
+    border-radius: 10px;
+    display: none;
+}

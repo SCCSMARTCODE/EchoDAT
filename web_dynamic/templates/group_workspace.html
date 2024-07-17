@@ -19,7 +19,7 @@
     <div class="project-body">
         {% block info_display %}
             <h3>Welcome to {{ group.name }}</h3>
-            <h4>Created by {{ group.owner.userName }} on {{ group.created_at }}</h4>
+            <h4>Created by {{ get_object_by_id(group.creatorId, 'GroupInfo').userName }} on {{ group.created_at }}</h4>
             <p>{{ group.description }}</p>
             <div class="info">
                 <div class="info-item">Total Members: {{ group.amountOfMembers }}</div>

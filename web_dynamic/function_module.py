@@ -235,10 +235,10 @@ def get_group_info(group_id):
     if group:
         with session_scoped() as session:
             info = {
-                'members': len(session.query(GroupRegistrationInfo).filter_by(userId=current_user._id, groupId=group_id).all()),
-                'audios': len(session.query(ResourcesInfo).filter_by(creatorId=current_user._id, resourcesType='AUDIO').all()),
-                'lyrics': len(session.query(ResourcesInfo).filter_by(creatorId=current_user._id, resourcesType='LYRICS').all()),
-                'files': len(session.query(ResourcesInfo).filter_by(creatorId=current_user._id, resourcesType='FILE').all())
+                'members': session.query(GroupRegistrationInfo).filter_by(userId=current_user._id, groupId=group_id).count(),
+                'audios': session.query(ResourcesInfo).filter_by(creatorId=current_user._id, resourcesType='AUDIO').count(),
+                'lyrics': session.query(ResourcesInfo).filter_by(creatorId=current_user._id, resourcesType='LYRICS').count(),
+                'files': session.query(ResourcesInfo).filter_by(creatorId=current_user._id, resourcesType='FILE').count()
             }
             return info
     return None
@@ -246,7 +246,7 @@ def get_group_info(group_id):
 
 def get_user_groups_id(user_id):
     with session_scoped() as session:
-        user_groups_relationships = session.query(GroupRegistrationInfo).filter_by(userId=current_user._id).order_by(
+        user_groups_relationships = session.query(GroupRegistrationInfo).filter_by(userId=user_id).order_by(
                 GroupRegistrationInfo.created_at).all()
         group_ids = [user_groups_relationship.groupId for user_groups_relationship in user_groups_relationships]
         return group_ids

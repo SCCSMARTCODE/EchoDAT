@@ -6,6 +6,9 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/login-style-sheet.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/flash-message-style-sheet.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     
@@ -22,7 +25,7 @@
             {% endwith %}
         </div>
         <a href="{{ url_for('unauth.homepage') }}">
-            <img src="{{ url_for('static', filename='system_files/img/logo1.png') }}" alt="ECHODAT Logo" class="logo">
+            <img src="{{ url_for('static', filename='system_files/img/logo11.png') }}" alt="ECHODAT Logo" class="logo">
         </a>
         <h2>LOG IN TO ECHODAT</h2>
         <form action="" method="POST">
