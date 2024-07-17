@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echodat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="audio.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="header">
+        <div class="container">
+           <!-- Logo Section -->
+            <div class="logo">
+                <a href="#">
+                    <img src="img/logo12.png" alt="Echodat Logo" onerror="this.style.display='none'; 
+                    this.nextElementSibling.style.display='block';">
+                    <span class="logo-text">Echodat</span>
+                </a>
+            </div>
+
+            <!-- Search Icon for Mobile -->
+            <div class="mobile-search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <!-- Toggle Menu Icon for Mobile -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#">Discover</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Playlist</a></li>
+                    <li><a href="#">Original</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+            
+            <!-- User Actions (Login and Sign Up) -->
+            <div class="user-actions">
+                <a href="login.html" id="loginLink">Login</a>
+                <a href="signup.html" id="signupLink">Sign Up</a>
+                <a href="upload.html" id="uploadLink">Upload</a>
+                <div id="userProfile" class="dropdown">
+                    <img src="img/default-avatar.png" alt="User Avatar" id="userAvatar">
+                        <div class="dropdown-content">
+                        <p>Welcome, <span id="userName"></span>!</p>
+                        <a href="profile.html">Profile</a>
+                        <a href="dashboard.html">Creator Dashboard</a>
+                        <a href="#">Help</a>
+                        <a href="#">Switch Account</a>
+                        <a href="#">Account Settings</a>
+                        <a href="#" id="logoutLink">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="hero">
+        <img src="img/1.png" alt="Hero Image" class="hero-image">
+        <div class="hero-content">
+          <!-- Your hero content here -->
+           <h1>Echodat</h1>
+           <h2>Magic Audio</h2>
+           <p>I am in love with this musical App, can't wait to test it</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-------left column ----------------------------------------->
+        <div class="column left">
+          <div class="artist-info">
+            <div class="artist-image">
+              <img src="img/3.jfif" alt="Artist Image" class="circular-image">
+            </div>
+            <h5 class="artist-name">Artist Name</h5>
+            <h2>Lawrence Oyor</h2>
+            <p class="genre">Genre of Music:</p>
+            <h6>Acapella</h6>
+            <div class="ratings">
+              <i class="fa fa-star yellow"></i>
+              <i class="fa fa-star yellow"></i>
+              <i class="fa fa-star yellow"></i>
+              <i class="fa fa-star yellow"></i>
+              <i class="fa fa-star"></i>
+            </div>
+          </div>
+        </div>
+      
+        <!------------------middle column-------------------------------->
+        <div class="column middle">
+          <div class="audio-player">
+            <audio id="audio" preload="auto">
+              <source src="56f46895-8ee8-4bbb-9aa4-a5fdd2f5ee45_0d894180-2993-45f2-9f85-ba141ef70989.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            <div class="controls">
+              <button id="play-pause" class="play">Play</button>
+              <div class="time">
+                <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+              </div>
+              <input type="range" id="seek-bar" value="0">
+              <div class="volume">
+                <button id="mute">Mute</button>
+                <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+              </div>
+            </div>
+          </div>
+          <div class="song-info">
+            <div class="song-image">
+              <img src="img/1.jpg" alt="Song Image">
+            </div>
+            <h3 class="song-title">Song Title: In Your Presence</h3>
+            <div class="song-actions">
+              <i class="fa fa-thumbs-up"></i> Likes
+              <i class="fa fa-heart"></i> Love
+              <i class="fa fa-share"></i> Share
+            </div>
+            <div class="song-stats">
+                <span>234k Likes</span>
+                <span>216 Followers</span>
+                <span>237 Subscribers</span>
+              </div>
+          </div>
+        </div>
+      
+        <!----------------right column---------------------------------->
+        <div class="column right">
+
+            <div class="artist-info">
+              <h1 class="artist-name">ABOUT</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut risus in augue luctus venenatis.</p>
+            </div>
+          </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- Footer Section -->
+<footer id="footer">
+    <div class="footer-container">
+        <!-- Echodat Logo -->
+        <div class="footer-logo">
+            <img src="img/logo.png" alt="Echodat Logo">
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="footer-social-icons">
+            <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+            <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+            <a href="https://facebook.com"><i class="fab fa-facebook"></i></a>
+            <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="footer-links">
+            <a href="#">ABOUT</a>
+            <a href="#">HELP</a>
+            <a href="#">BUSINESS INQUIRIES</a>
+            <a href="#">GET STARTED</a>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="footer-text">
+            <p>
+                Echodat is an on-demand music streaming and audio discovery platform that allows artists and creators to upload limitless music and podcasts for listeners through its mobile apps and website.
+            </p>
+        </div>
+
+        <!-- Privacy and Terms Links -->
+        <div class="footer-privacy-terms">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Your Privacy Rights</a>
+        </div>
+
+        <!-- Copyright Text -->
+        <div class="footer-copyright">
+            <p>© 2024 Echodat - All Rights Reserved</p>
+        </div>
+    </div>
+</footer>
+
+    
+
+    <!-- Link to custom JavaScript file -->
+    <!-- Link to custom JavaScript file -->
+    
+    <script src="audio-player.js"></script>
+</body>
+</html>
