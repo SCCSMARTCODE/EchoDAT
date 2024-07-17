@@ -127,7 +127,7 @@ body {
     background-color: rgb(18, 59, 2);
     color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+}
 
 #header.scrolled .search-bar {
     color: #ffffff;
@@ -219,7 +219,7 @@ body {
     position: absolute;
     top: 0;
     left: 50%; /* Center the background horizontally */
-    transform: translateX(-35%); /* Center the background horizontally */
+    transform: translateX(-30%); /* Center the background horizontally */
     width: 72vw; /* Set the width to 90% of the viewport width, adjust as needed */
     height: 100%; /* Fill the height of the hero section7*/
     background-image: url('img/background.png'); /* Add your image path here */
@@ -233,7 +233,7 @@ body {
 .hero-content {
     max-width: 500px; /* Limit the width of the content */
     padding: 120px; /* Adjust padding as needed */
-    margin-left: 270px; /* Ensure no left margin */
+    margin-left: 290px; /* Ensure no left margin */
     text-align: left; /* Align text to the left */
     z-index: 1; /* Ensure content is above the background */
 }
@@ -325,15 +325,15 @@ body {
 
 /* Styling for the side menu bar */
 .side-menu {
-    position: absolute; /* Keep the sidebar fixed on the left */
+    position: absolute; 
     top: 60px;
-    left: 0;
+    left: 30px;
     width: 250px; /* Width of the sidebar */
     height: calc(100vh - 10vh); /* Full height minus hero section */
     background-color: #fff; /* Background color */
     overflow-y: auto; /* Enable vertical scrolling */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-    padding: 20px;
+    padding: 30px;
     z-index: 999; /* Ensure it is above other elements */
 }
 
@@ -580,7 +580,7 @@ body {
 
 /* Hover effect for footer links */
 .footer-links a:hover {
-    color: #007BFF; /* Change link color on hover */
+    color: #2dcc0d; /* Change link color on hover */
 }
 
 /* Styling for the footer text */

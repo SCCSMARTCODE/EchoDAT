@@ -1,8 +1,10 @@
-/* General body styling */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    font-family:  'Poppins', Arial, sans-serif;
+    overflow-x: hidden;
 }
+
 
 /* Header styling (if needed) */
 header {
@@ -162,7 +164,7 @@ header {
 
 /* Sidebar styling */
 .sidebar {
-    position: fixed;
+    position: relative; /* Keep the sidebar fixed on the left */
     top: 60px;
     left: 0;
     width: 250px;
@@ -288,14 +290,14 @@ header {
 
 /* Left scrollable menu bar */
 .left-menu-bar {
-    position: fixed;
+    position: absolute;
     top: 60px; /* Adjust this value according to your header height */
     left: 0;
     width: 250px;
-    height: calc(100% - 60px); /* Adjust for the height above the top */
-    background-color: #f0f0f0;
+    height: 100%; /* Adjust for the height above the top */
+    background-color: #ffffff;
     overflow-y: auto; /* Enable vertical scrolling */
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #cccccc;
     padding: 20px;
 }
 
@@ -314,7 +316,7 @@ header {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 5px;
-    color: #007BFF; /* Specific color for main menu headers */
+    color: #01441f; /* Specific color for main menu headers */
 }
 
 .menu-list {
@@ -331,10 +333,14 @@ header {
     color: #333;
     font-size: 14px;
     transition: color 0.3s;
+    box-sizing: border-box; /* Include padding in the element's width and height */
 }
 
 .menu-list li a:hover {
-    color: #007BFF; /* Specific color for submenu links */
+    /* Hover effect for the menu links */
+    background-color: #01441f; /* Background color on hover */
+    color: #fff; /* Text color on hover */
+    padding: 10px 15px; /* Increase padding on hover */
 }
 
 
@@ -346,21 +352,29 @@ header {
 .edit-profile {
     font-size: 14px;
     text-decoration: none;
-    color: #007BFF;
-    display: block;
+    color: #fff; /* White text color */
+    background-color: #01441f; /* Green background color */
+    display: inline; /* Inline block to behave like a button */
+    padding: 10px 10px; /* Padding for button-like appearance */
+    border-radius: 20px; /* Rounded corners for button-like appearance */
+    margin-bottom: 20px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
 .edit-profile:hover {
-    text-decoration: underline;
+    background-color: #03cf47; /* Change background color on hover */
+    color: #fff; /* Ensure text remains white on hover */
 }
 
 
 .profile-banner {
-    background-color: #007BFF; /* Example banner color */
+    background: url('img/pic5.jpeg') no-repeat center center; /* Add your background image */
+    background-size: cover; /* Ensure the image covers the entire banner */
     color: #fff;
-    padding: 150px;
+    padding: 150px; /* Maintain the existing padding */
     text-align: center;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
 
@@ -384,9 +398,9 @@ header {
     background-color: #f0f0f0; /* Light gray background color */
     padding: 20px; /* Add padding around the container */
     margin: 20px; /* Add margin to ensure it doesn't touch the sides */
-    margin-left: 80px;
+    margin-left: 90px;
     margin-right: 60px;
-    width: calc(100% - 40px); /* Adjust width to account for padding and margin */
+    width: calc(100% - 50px); /* Adjust width to account for padding and margin */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
     margin-top: -70px;
     z-index: 1;
@@ -440,13 +454,13 @@ header {
     justify-content: center;
     margin-top: 40px;
     flex-wrap: nowrap;
-    gap: 20px; 
+    gap: 10px; 
   }
   
   .profile-link {
     margin: 0 10px;
     text-decoration: none;
-    color: #007BFF;
+    color: #01441f;
     font-size: 14px;
     white-space: nowrap;
     margin-bottom: 10px;
@@ -506,7 +520,7 @@ header {
 
 /* New follow button styling */
 .follow-button {
-    background-color: #007BFF; /* Button background color */
+    background-color: #01441f; /* Button background color */
     color: #fff; /* Button text color */
     border: none;
     padding: 10px 20px;
@@ -520,7 +534,7 @@ header {
 }
 
 .follow-button:hover {
-    background-color: #0056b3; /* Button background color on hover */
+    background-color: #00b309; /* Button background color on hover */
 }
 
 
@@ -553,7 +567,7 @@ header {
 }
 
 .btn {
-    background-color: #007BFF;
+    background-color: #01441f;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -564,3 +578,99 @@ header {
 .btn:hover {
     background-color: #0056b3;
 }
+
+/* Styling for the footer */
+#footer {
+    background-color: #012406; /* Dark green background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Center-align text */
+    padding: 40px 20px; /* Padding for top/bottom and left/right */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    overflow-x: hidden;
+    margin-top:100px;
+}
+
+/* Container for footer content */
+.footer-container {
+    max-width: 1200px; /* Maximum width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Styling for the footer logo */
+.footer-logo img {
+    max-width: 150px; /* Adjust logo size as needed */
+    margin-bottom: 20px;
+}
+
+/* Styling for the social media icons */
+.footer-social-icons {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual social media icons */
+.footer-social-icons a {
+    color: #fff; /* White icon color */
+    margin: 0 10px; /* Spacing between icons */
+    font-size: 24px; /* Icon size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for social media icons */
+.footer-social-icons a:hover {
+    color: #007BFF; /* Change icon color on hover */
+}
+
+/* Styling for footer links */
+.footer-links {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual footer links */
+.footer-links a {
+    color: #fff; /* White link color */
+    margin: 0 10px; /* Spacing between links */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for footer links */
+.footer-links a:hover {
+    color: #2dcc0d; /* Change link color on hover */
+}
+
+/* Styling for the footer text */
+.footer-text p {
+    max-width: 800px; /* Maximum width of the text */
+    margin: 0 auto 20px; /* Center the text and add bottom margin */
+    line-height: 1.5; /* Line height for readability */
+    font-size: 14px; /* Font size */
+}
+
+/* Styling for privacy and terms links */
+.footer-privacy-terms {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual privacy and terms links */
+.footer-privacy-terms a {
+    color: #fff; /* White link color */
+    margin: 0 10px; /* Spacing between links */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for privacy and terms links */
+.footer-privacy-terms a:hover {
+    color: #007BFF; /* Change link color on hover */
+}
+
+/* Styling for the copyright text */
+.footer-copyright p {
+    font-size: 14px; /* Font size */
+    margin: 0; /* Remove default margin */
+}
+

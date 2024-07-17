@@ -40,33 +40,6 @@ body {
     color: inherit;
 }
 
-/* Styling for the search bar container */
-.search-bar {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 50px; /* Adjust border-radius to make edges more rounded */
-    padding: 8px; /* Adjust padding as needed */
-}
-
-/* Styling for the search icon inside the search bar */
-.search-bar .fa-search {
-    margin-right: 10px; /* Adjust spacing between icon and input field */
-    color: #999;
-}
-
-/* Styling for the search input field */
-.search-bar input {
-    width: 250px; /* Adjust width as needed */
-    height: 10px; /* Adjust height as needed */
-    padding: 8px; /* Adjust padding as needed */
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background-color: transparent;
-}
-
-
 /* Remove default list styles and display navigation links inline */
 .nav-links ul {
     list-style-type: none;
@@ -83,7 +56,7 @@ body {
 /* Remove default blue underline from links and change text color to black */
 .nav-links ul li a {
     text-decoration: none; /* Remove underline */
-    color: #ffffff; /* Set text color to black */
+    color: #000; /* Set text color to black */
 }
 
 /* Hover effect for links */
@@ -201,127 +174,131 @@ body {
     }
 }
 
-/* hero page*/
 
-.hero {
-    background-color: #3e8e41; /* Adjust the color to your liking */
-    background-image: url('img/pic7.png'); /* Replace with your image path */
-    background-size: 180px 120px; /* Adjust the values to your desired size */
-    height: 50vh; /* Make the hero section the height of the viewport */
+/* Dropdown menu */
+.dropdown {
     position: relative;
-    overflow: hidden;
-    background-size: cover; /* Use 'cover' to stretch the image */
-    background-repeat: no-repeat;
-    background-image: linear-gradient(rgba(14, 24, 1, 0.5), rgba(3, 26, 1, 0.966)), url('img/pic5.jpeg');
+    display: inline-block;
 }
 
-.hero-content {
+.dropdown-content {
+    display: none;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff; /* White text color */
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
 }
 
-.hero-content h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-.hero-content p {
-    font-size: 24px;
-}
-/* User Menu Section */
-.user-menu {
-    background-color: #e4f7d7;
-    padding: 40px 0;
-    position: relative;
-    z-index: 2;
-    margin-top: -100px;
-}
-
-.user-menu .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.user-menu .left-column {
-    text-align: center;
-    margin-right: 20px;
-    background-color: #012406; /* Add this line */
-    color: #fff; /* Add this line */
-    padding: 30px; /* Add this line */
-    border-radius: 10px; /* Add this line */
-}
-
-.user-profile img {
-    width: 170px;
-    height: 170px;
-    margin-top: -120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 5px;
-    position: relative;
-    z-index: 3;
-    border: 8px solid #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.user-name {
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: -10px;
-    color: #fff; /* Add this line */
-}
-
-.user-id, .user-email {
-    font-size: 16px;
-    color: #fff; /* Add this line */
-    margin-top: -10px;
-}
-
-/*right column*/
-
-.user-menu .right-column {
-    flex-basis: 75%; /* Adjust the width of the right column */
-    background-color: #012406; /* Add this line */
-    padding: 30px; /* Add this line */
-    border-radius: 10px; /* Add this line */
-    position: relative;
-}
-
-.user-links {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.user-links li {
-    flex-basis: 30%; /* Adjust the width of each link */
-    margin-bottom: 0px;
-}
-
-.user-links li a {
-    display: block;
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
     text-decoration: none;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
-    transition: color 0.3s;
+    display: block;
 }
 
-.user-links li a:hover {
-    color: #007BFF;
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
 }
 
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
+/* music cover styling*/
 
+.music-banner {
+    /* Set the gradient background */
+    background: linear-gradient(to right, #bbfd04, #0bf131);
+    /* Use flexbox for alignment */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Align items to the start (left) */
+    padding-left: 150px; /* Add padding if you want some space from the left edge */
+    align-items: center;
+    height: 100vh; /* Adjust this height as needed */
+    width: 100%;
+}
 
+@keyframes roll {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
+.music-banner img {
+    /* Common styles for all images */
+    height: auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px; /* Optional: adds rounded corners */
+}
 
+.roll-image {
+    /* Styles specific to the rolling image */
+    max-width: 20%; /* Adjust the percentage to your needs */
+    animation: roll 5s linear infinite;
+    margin-right: 1000px;
+}
+
+.static-image {
+    /* Styles specific to the static image */
+    max-width: 50%; /* Adjust the percentage to your needs */
+    margin-left: 650px; /* Adjust the value as needed */
+    margin-top: -600px;
+    margin-bottom: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/*         button    */
+.audio-play{
+
+    margin-right: 1200px;
+    margin-bottom: 100px;
+}
+.controls {
+    display: flex;
+    align-items: center;
+}
+
+.seek-bar-time {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.seek-bar-time #seek-bar {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.seek-bar-time .time {
+    white-space: nowrap;
+}
+
+.play-pause-volume {
+    display: flex;
+    align-items: center;
+}
+
+.play-pause-volume button {
+    margin-right: 5px;
+}
+
+.play-pause-volume .volume {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.play-pause-volume .volume input[type="range"] {
+    width: 100px; /* Adjust the width as needed */
+}
 
 
 
@@ -336,7 +313,6 @@ body {
 
 /* Styling for the footer */
 #footer {
-    margin-top: 100px;
     background-color: #012406; /* Dark green background color */
     color: #fff; /* White text color */
     text-align: center; /* Center-align text */
@@ -374,7 +350,7 @@ body {
 
 /* Hover effect for social media icons */
 .footer-social-icons a:hover {
-    color: #45d30d; /* Change icon color on hover */
+    color: #007BFF; /* Change icon color on hover */
 }
 
 /* Styling for footer links */
@@ -393,7 +369,7 @@ body {
 
 /* Hover effect for footer links */
 .footer-links a:hover {
-    color: #2dcc0d; /* Change link color on hover */
+    color: #007BFF; /* Change link color on hover */
 }
 
 /* Styling for the footer text */
@@ -420,7 +396,7 @@ body {
 
 /* Hover effect for privacy and terms links */
 .footer-privacy-terms a:hover {
-    color: #0fbd26; /* Change link color on hover */
+    color: #007BFF; /* Change link color on hover */
 }
 
 /* Styling for the copyright text */
