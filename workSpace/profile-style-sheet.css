@@ -205,7 +205,7 @@ body {
 
 .hero {
     background-color: #3e8e41; /* Adjust the color to your liking */
-    background-image: url('img/pic7.png'); /* Replace with your image path */
+    background-image: url('img/pic6.png'); /* Replace with your image path */
     background-size: 180px 120px; /* Adjust the values to your desired size */
     height: 50vh; /* Make the hero section the height of the viewport */
     position: relative;
