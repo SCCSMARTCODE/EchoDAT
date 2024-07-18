@@ -1,3 +1,58 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const loginLink = document.getElementById('loginLink');
+    const signupLink = document.getElementById('signupLink');
+    const userProfile = document.getElementById('userProfile');
+    const userName = document.getElementById('userName');
+    const logoutLink = document.getElementById('logoutLink');
+
+    function showModal(modal) {
+        return (event) => {
+            event.preventDefault();
+            modal.style.display = 'block';
+        };
+    }
+
+    loginLink.addEventListener('click', showModal(loginModal));
+    signupLink.addEventListener('click', showModal(signupModal));
+
+    window.addEventListener('click', (event) => {
+        if (event.target === loginModal) {
+            loginModal.style.display = 'none';
+        } else if (event.target === signupModal) {
+            signupModal.style.display = 'none';
+        }
+    });
+
+    logoutLink.addEventListener('click', () => {
+        localStorage.removeItem('token');
+        userProfile.style.display = 'none';
+        window.location.href = 'index.html';
+    });
+
+    const tokenFromStorage = localStorage.getItem('token');
+    if (tokenFromStorage) {
+        const userData = getUserDataFromToken(tokenFromStorage);
+        if (userData) {
+            userName.textContent = userData.username;
+            userProfile.style.display = 'block';
+        }
+    } else {
+        userProfile.style.display = 'none';
+    }
+
+    function getUserDataFromToken(token) {
+        // Implement your logic to decode token and return user data
+        return { username: 'SmartDammy' }; // Example, replace with actual logic
+    }
+});
+
+
+// smart code below
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const audio = document.getElementById('audio');
     const playPauseButton = document.getElementById('play-pause');
