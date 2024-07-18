@@ -57,9 +57,9 @@ body {
 
 /* Styling for the search input field */
 .search-bar input {
-    width: 250px; /* Adjust width as needed */
-    height: 10px; /* Adjust height as needed */
-    padding: 8px; /* Adjust padding as needed */
+    width: 250px; 
+    height: 10px;
+    padding: 8px; 
     border: none;
     outline: none;
     font-size: 16px;
@@ -220,13 +220,28 @@ body {
   
   .hero-image {
     position: absolute;
-    top: 30%;
-    left: 10%;
+    top: 25%;
+    left: 15%;
     transform: translate(-5%, -5%);
-    max-width: 200px; /* Adjust the size as needed */
+    max-width: 150px; /* Adjust the size as needed */
     z-index: 1; /* Place the image behind the content */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+  padding: 5px; /* Add some padding to the square background */
+  box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.8),
+              10px 0 20px -10px rgba(0, 0, 0, 0.8),
+              -10px 0 20px -10px rgba(0, 0, 0, 0.8) inset,
+              10px 0 20px -10px rgba(0, 0, 0, 0.8) inset;
+  animation: rotate 10s linear infinite;
   }
 
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
   .hero-content {
     padding: 20px;
@@ -257,7 +272,7 @@ body {
     content: "...";
     position: absolute;
     right: 0;
-    color: yellow; /* Make the last word 'Playing' yellow */
+    color: yellow; 
   }
   
   .hero-content h2::after {
@@ -280,7 +295,9 @@ body {
   .row {
     display: flex;
     justify-content: center;
-    margin: 0 150px; /* Add left and right margin */
+    margin: 0 150px; 
+    margin-bottom: 20px;
+  
   }
   
   .column {
@@ -291,8 +308,8 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 0 10px;
-    background-color: #008000; /* Green background color */
-    color: #fff; /* White text color */
+    background-color: #008000; 
+    color: #fff; 
   }
 
   .column.left {
@@ -350,13 +367,77 @@ body {
     background-image: linear-gradient(to right, #ffcc00 50%, #ccc 50%);
     background-size: 200% 100%;
     background-position: right bottom;
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
 
 
   /*-------------------------middle----------------------*/
+
+  .column.middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .audio-player {
+    width: 80%;
+    text-align: center;
+    margin-bottom: 40px; /* Add margin below the audio player */
+  }
+  
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .controls .time {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .controls #seek-bar {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .controls .volume {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .controls .volume button {
+    margin-right: 10px;
+  }
+
+  #play-pause.play {
+    background-color: #ffcc00; /* Yellow background color */
+    color: #067932; /* White text color */
+    padding: 10px 20px; /* Add some padding */
+    font-size: 16px; /* Increase the font size */
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: -320px;
+    margin-top: -38px;
+  }
+
+  #mute {
+    background-color: #ffcc00; /* Yellow background color */
+    color: #058d1c; /* White text color */
+    padding: 10px 20px; /* Add some padding */
+    font-size: 16px; /* Increase the font size */
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
   .column.middle .song-image {
     width: 150px; /* Adjust the width as needed */
@@ -426,9 +507,92 @@ body {
   }
 
 
+
+/*------------------------styling for commenting column-------------------------------------*/
+
+  .column.full {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .column.full {
+    width: 80%; 
+    margin: 0 auto; 
+    padding: 20px;
+  }
   
+  .comment-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 100px;
+  }
+  
+  .comment {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0; 
+    border-bottom: 1px solid #ccc; 
+  }
+  
+  .comment-avatar .circular-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .comment-content h4 {
+    margin-bottom: 5px;
+  }
+  
+  .comment-content p {
+    margin: 0;
+  }
 
+  .yellow-text {
+    color: #ffcc00; /* Yellow color for user names */
+  }
+  
+  .circular-image {
+    border-radius: 50%; /* Make the images circular */
+  }
 
+ 
+
+  .comment-box {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #a7f1a769;
+    border-radius: 5px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
+  .comment-box h3 {
+    margin-bottom: 30px;
+  }
+  
+  .comment-box textarea.light-green-bg {
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 10%;
+    padding: 50px;
+    border: none;
+    resize: vertical;
+  }
+  
+  .comment-box .save-button {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    margin-left: 36px;
+    background-color: #008000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
 
 
