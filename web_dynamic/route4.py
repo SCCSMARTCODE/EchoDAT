@@ -1,7 +1,6 @@
 from flask import session as flask_session, flash, redirect, url_for, render_template, request
-from flask_login import current_user
 from flask import Blueprint
-from function_module import get_user_avatar_name, format_message
+from function_module import format_message
 import os
 from model.user_info import UserInfo
 from model.group_info import GroupInfo
@@ -58,7 +57,8 @@ def admin_dashboard():
 
     return render_template('admin_dashboard.html',
                            avatar_name=current_user_avatar_name,
-                           status=status
+                           status=status,
+                           title="Admin Dashboard"
                            )
 
 
@@ -75,7 +75,8 @@ def admin_notification():
     return render_template('admin_notification.html',
                            avatar_name=current_user_avatar_name,
                            datas=datas,
-                           list=list
+                           list=list,
+                           title="Admin Notification"
                            )
 
 

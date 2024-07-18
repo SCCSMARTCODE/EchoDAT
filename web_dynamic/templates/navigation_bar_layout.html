@@ -208,26 +208,6 @@
             }
         });
     </script>
+        {% block script %} {% endblock script %}
 </body>
 </html>
-
-
-<!-- {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('auth.user_upload') }}" id="uploadLink">Upload</a>
-                    <div id="userProfile" class="dropdown">
-                        <img src="{{ url_for('static', filename='users_profile_avatar/' + avatar_name) }}" alt="User Avatar" id="userAvatar">
-
-                            <div class="dropdown-content">
-                                <a href="{{ url_for('auth.user_profile') }}">Profile</a>
-                                <a href="{{ url_for('auth.user_dashboard') }}">Creator Dashboard</a>
-                                <a href="#">Help</a>
-                                <hr>
-                                <a href="#">Switch Account</a>
-                                <a href="#">Account Settings</a>
-                                <a href="{{ url_for('auth.logout') }}" id="logoutLink">Logout</a>
-                            </div>
-                    </div>
-                {% else %}
-                    <a href="{{ url_for('unauth.login') }}" id="loginLink">Login</a>
-                    <a href="{{ url_for('unauth.registration') }}" id="signupLink">Sign Up</a>
-                {% endif %} -->

@@ -8,53 +8,44 @@ from forms.login import LoginForm
 from forms.comment import CommentForm
 from forms.reset_password import PasswordResetForm
 from forms.verify_email import EmailVerificationForm
-# from model.engine import storage
-# from model.user_info import UserInfo
-# from model.audio_file_info import AudioFileInfo
 from flask_bcrypt import Bcrypt
-from web_dynamic import app
-from flask_login import current_user, login_required, login_user, logout_user, LoginManager
+from function_module import *
+from sqlalchemy.orm import joinedload
+from flask_login import login_user, LoginManager, current_user
 from google_auth_oauthlib.flow import Flow
 import google.auth.transport.requests
 from google.oauth2 import id_token
-from function_module import *
+from pip._vendor import cachecontrol
+from web_dynamic import app
 import requests
-import secrets
-import random
-import string
+from PIL import Image
 import logging
 import os
-from pip._vendor import cachecontrol
 import imghdr
-from PIL import Image
-from sqlalchemy.orm import joinedload
 import json
-
-login_manager = LoginManager()
-login_manager.init_app(app)
 
 
 blueP = Blueprint('unauth', __name__, url_prefix='/')
 bcrypt = Bcrypt()
-GOOGLE_CLIENT_ID = '507577884511-7g8q7a94q8ue0n6l5f0t85m33v0r4nrt.apps.googleusercontent.com'
+GOOGLE_CLIENT_ID = app.config['GOOGLE_CLIENT_ID']
 client_secrets_file = os.path.join(os.path.dirname(__file__), 'static/system_files/client_secret.json')
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+logging.basicConfig(level=logging.DEBUG)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file.replace('/', '\\'),
-    scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="http://localhost:5000/callback"
+    scopes=[app.config['FLOW_SCOPE_1'], app.config['FLOW_SCOPE_2'], "openid"],
+    redirect_uri=app.config['REDIRECT_URL']
 )
-
-
-logging.basicConfig(level=logging.DEBUG)
 
 
 @blueP.route('/')
 @blueP.route('/home')
 def homepage():
     if current_user.is_authenticated:
-        current_user_avatar_name = get_user_avatar_name(current_user._id)
+        current_user_avatar_name = get_user_avatar_name(current_user.get_id())
     else:
         current_user_avatar_name = 'default-avatar.jpeg'
 
@@ -69,25 +60,27 @@ def homepage():
 
     return render_template('index.html',
                            avatar_name=current_user_avatar_name,
-                           audios=audios
+                           audios=audios,
+                           title='Homepage'
                            )
 
 
 @blueP.route('/about')
 def about():
     if current_user.is_authenticated:
-        current_user_avatar_name = get_user_avatar_name(current_user._id)
+        current_user_avatar_name = get_user_avatar_name(current_user.get_id())
     else:
         current_user_avatar_name = 'default-avatar.jpeg'
     return render_template('about_us.html',
-                           avatar_name=current_user_avatar_name
+                           avatar_name=current_user_avatar_name,
+                           title="About Us"
                            )
 
 
 @blueP.route('/contact', methods=['GET', 'POST'])
 def contact():
     if current_user.is_authenticated:
-        current_user_avatar_name = get_user_avatar_name(current_user._id)
+        current_user_avatar_name = get_user_avatar_name(current_user.get_id())
     else:
         current_user_avatar_name = 'default-avatar.jpeg'
 
@@ -120,7 +113,8 @@ def contact():
         flash('Message Sent!', 'success')
         return redirect(url_for('unauth.homepage'))
     return render_template('contact.html',
-                           avatar_name=current_user_avatar_name
+                           avatar_name=current_user_avatar_name,
+                           title="Contact"
                            )
 
 
@@ -146,7 +140,7 @@ def registration():
             send_user_account_activation_mail(new_user)
 
             return redirect(url_for('auth.account_verification_notification_page', email=new_user.emailAddress))
-    return render_template('registration.html', form=form)
+    return render_template('registration.html', form=form, title="Registration")
 
 
 @blueP.route('/login/<email>', methods=['POST', 'GET'])
@@ -184,13 +178,13 @@ def login(email=""):
                 return redirect(url_for('unauth.homepage'))
     if email:
         form.emailAddress.data = email
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, title="Login")
 
 
 @blueP.route('/view/audio', methods=['POST', 'GET'])
 def view_public_audio():
     if current_user.is_authenticated:
-        current_user_avatar_name = get_user_avatar_name(current_user._id)
+        current_user_avatar_name = get_user_avatar_name(current_user.get_id())
     else:
         current_user_avatar_name = 'default-avatar.jpeg'
 
@@ -208,7 +202,7 @@ def view_public_audio():
             if form.validate_on_submit():
                 new_comment = MessageInfo(
                     commentToId=audio_id,
-                    creatorId=current_user._id,
+                    creatorId=current_user.get_id(),
                     message=form.comment.data
                 )
                 session.add(new_comment)
@@ -217,7 +211,7 @@ def view_public_audio():
 
         messages = session.query(MessageInfo).filter_by(commentToId=audio_id).order_by(MessageInfo.created_at.desc()).all()
 
-    return render_template('audio_view.html', len=len, form=form, messages=messages, avatar_name=current_user_avatar_name, audio=audio, get_user_avatar_name=get_user_avatar_name, get_audio_filename_by_id=get_audio_filename_by_id)
+    return render_template('audio_view.html', len=len, form=form, messages=messages, avatar_name=current_user_avatar_name, audio=audio, get_user_avatar_name=get_user_avatar_name, get_audio_filename_by_id=get_audio_filename_by_id, title='Display Audio')
 
 
 @blueP.route('/reset_password_check/email_verification', methods=['GET', 'POST'])
@@ -238,7 +232,7 @@ def reset_password_email_verification():
                 send_password_reset_mail(user)
                 flash('A password reset email has been sent to your email address.', 'success')
                 return redirect(url_for('unauth.login'))
-    return render_template('password_reset_email_verification.html', form=form)
+    return render_template('password_reset_email_verification.html', form=form, title="Verify Email")
 
 
 @blueP.route('/reset_password/<token>', methods=['GET', 'POST'])
@@ -318,7 +312,7 @@ def google_callback():
                 picture = requests.get(picture_link, stream=True)
                 print(picture.status_code)
                 if picture.status_code == 200:
-                    filename = f'{user._id}'
+                    filename = f'{user.get_id()}'
                     filepath = os.path.join(app.root_path, f'static/users_profile_avatar/{filename}').replace('\\', '/')
                     with open(filepath, 'wb') as f:
                         for chunk in picture.iter_content(1024):
@@ -352,7 +346,6 @@ def google_callback():
 def load_user(user_id):
     with session_scoped() as session:
         return session.query(UserInfo).filter_by(_id=user_id).first()
-
 
 
 @blueP.route('/verify_state/<path:authorization_url>')

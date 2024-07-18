@@ -23,7 +23,7 @@
     </div>
 
     <div class="music-info">
-        <img src="{{ url_for('static', filename='system_files/img/default_audio_avatar.jpeg') }}" alt="Album Cover">
+        <img src="{{ url_for('static', filename='users_data/audios/avatar/' + get_audio_filename_by_id(audio._id, is_avatar=True)) }}" alt="Album Cover">
         <div class="music-details">
             <h2>{{ audio.artist }}</h2>
             <p>{{ audio.title }}</p>
@@ -37,7 +37,7 @@
 
     <div class="audio-player">
         <audio id="audio" preload="auto">
-            <source src="{{ url_for('static', filename='users_data/' + get_audio_filename_by_id(audio._id)) }}" type="audio/mpeg">
+            <source src="{{ url_for('static', filename='users_data/audios/' + get_audio_filename_by_id(audio._id)) }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <div class="controls">
@@ -123,7 +123,9 @@
             <p>No comments yet. Be the first to comment!</p>
         {% endif %}
     </div>
-
-
-    <script src="{{ url_for('static', filename='scripts/audio-player.js') }}"></script>
+    
 {% endblock body %}
+
+{% block script %} 
+<script src="{{ url_for('static', filename='scripts/audio-player.js') }}"></script>
+{% endblock script %}

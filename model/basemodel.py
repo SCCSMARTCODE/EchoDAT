@@ -32,6 +32,9 @@ class BaseModel:
         if kwargs:
             self.__dict__.update(kwargs)
 
+    def get_id(self):
+        return str(self._id)
+
 
 """
 Defining the Model the makes our model declarative

@@ -1,5 +1,4 @@
 # EchoDAT
-
 ![EchoDAT Overview](https://i.ibb.co/17bB9J5/background1.jpg)
 
 ## Overview
@@ -69,7 +68,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the repository (if applicable) or set up a new directory for your project
    ```bash
-   git clone https://github.com/your-username/echo-dat.git
+   git clone https://github.com/SCCSMARTCODE/EchoDAT.git
    cd echo-dat 
    ```
 

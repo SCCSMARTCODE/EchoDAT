@@ -31,6 +31,3 @@ class UserInfo(BaseModel, Base, UserMixin):
         UniqueConstraint('_id', name='_id'),
         UniqueConstraint('passWord', name='passWord')
     )
-
-    def get_id(self):
-        return str(self._id)

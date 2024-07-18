@@ -4,18 +4,13 @@ This is the file that will contain the group routes
 
 from flask import Blueprint, redirect, url_for, render_template, flash, request, abort, jsonify
 from flask_login import login_required, current_user
-from model.group_registration_info import GroupRegistrationInfo
-from model.group_info import GroupInfo
 from model.project_info import ProjectInfo
-from model.message_info import MessageInfo
-from model.resources_info import ResourcesInfo
 from forms.create_project import CreateProjectForm
 from forms.project_chat import ProjectChatForm
 from forms.group_resources_upload import LyricsResourcesUpload, AudioResourcesUpload, FilesResourcesUpload
 from function_module import *
 from web_dynamic import app
 from forms.create_group import CreateGroupForm
-from sqlalchemy import desc
 from werkzeug.utils import secure_filename
 import os
 from sqlalchemy import func
@@ -29,12 +24,12 @@ blueP2 = Blueprint('group', __name__, url_prefix='/')
 def user_group_management():
     try:
         with session_scoped() as session:
-            current_user_avatar_name = get_user_avatar_name(current_user._id)
-            groups = session.query(GroupRegistrationInfo).filter_by(userId=current_user._id).all()
+            current_user_avatar_name = get_user_avatar_name(current_user.get_id())
+            groups = session.query(GroupRegistrationInfo).filter_by(userId=current_user.get_id()).all()
             return render_template('user_group_management.html', avatar_name=current_user_avatar_name, groups=groups)
     except Exception as e:
         app.logger.error(f"error reaching {user_group_management.__name__} with error message: {e}")
-        return render_template('error_page.html', message='An error occurred. Please try again later.')
+        return render_template('error_page.html', message='An error occurred. Please try again later.', title="Manage Group")
 
 
 @blueP2.route('/create_group', methods=['GET', 'POST'])
@@ -43,7 +38,7 @@ def create_group():
     try:
         with session_scoped() as session:
             form = CreateGroupForm()
-            current_user_avatar_name = get_user_avatar_name(current_user._id)
+            current_user_avatar_name = get_user_avatar_name(current_user.get_id())
 
             if request.method == 'POST':
                 try:
@@ -51,14 +46,14 @@ def create_group():
                         new_group = GroupInfo(
                             name=form.name.data,
                             description=form.description.data,
-                            creatorId=current_user._id
+                            creatorId=current_user.get_id()
                         )
                         session.add(new_group)
                         session.commit()
 
                         new_group_registration = GroupRegistrationInfo(
-                            userId=current_user._id,
-                            groupId=new_group._id
+                            userId=current_user.get_id(),
+                            groupId=new_group.get_id()
                         )
                         session.add(new_group_registration)
                         session.commit()
@@ -71,12 +66,12 @@ def create_group():
                     flash('An error occurred while processing your request. Please try again later.', 'danger')
                     return redirect(url_for('group.user_group_management'))
 
-            return render_template('create_group.html', avatar_name=current_user_avatar_name, form=form)
+            return render_template('create_group.html', avatar_name=current_user_avatar_name, form=form, title="Create Group")
 
     except Exception as e:
         app.logger.error(f"Error occurred in create_group route: {e}")
         flash('An error occurred. Please try again later.', 'danger')
-        return render_template('error_page.html', message='An error occurred. Please try again later.')
+        return render_template('error_page.html', message='An error occurred. Please try again later.', title="error")
 
 
 @blueP2.route('/group_workspace/<group_id>', methods=['GET'])
@@ -84,13 +79,13 @@ def create_group():
 def group_workspace(group_id):
     try:
         with session_scoped() as session:
-            current_user_avatar_name = get_user_avatar_name(current_user._id)
+            current_user_avatar_name = get_user_avatar_name(current_user.get_id())
             group = session.query(GroupInfo).filter_by(_id=group_id).first()
 
             if not group:
                 abort(404)
 
-            if not session.query(GroupRegistrationInfo).filter_by(userId=current_user._id, groupId=group_id).first():
+            if not session.query(GroupRegistrationInfo).filter_by(userId=current_user.get_id(), groupId=group_id).first():
                 flash('Sorry, you are not an authorized member of this group', 'danger')
                 return redirect(url_for('group.user_group_management'))
 
@@ -101,13 +96,14 @@ def group_workspace(group_id):
                                    group=group,
                                    projects=projects,
                                    get_object_by_id=get_object_by_id,
-                                   get_project_last_message_info=get_project_last_message_info
+                                   get_project_last_message_info=get_project_last_message_info,
+                                   title="Group Workspace"
                                    )
 
     except Exception as e:
         app.logger.error(f"Error occurred in group_workspace route: {e}")
         flash('An error occurred. Please try again later.', 'danger')
-        return render_template('error_page.html', message='An error occurred. Please try again later.')
+        return render_template('error_page.html', message='An error occurred. Please try again later.', title="error")
 
 
 @blueP2.route('/group_workspace/<group_id>/project/<project_id>', methods=['GET'])
@@ -115,7 +111,7 @@ def group_workspace(group_id):
 def project_page(project_id, group_id):
     try:
         with session_scoped() as session:
-            current_user_avatar_name = get_user_avatar_name(current_user._id)
+            current_user_avatar_name = get_user_avatar_name(current_user.get_id())
             projects = session.query(ProjectInfo).filter_by(groupId=group_id).all()
             project = session.query(ProjectInfo).filter_by(_id=project_id).first()
 
@@ -134,7 +130,8 @@ def project_page(project_id, group_id):
                                    project=project,
                                    projects=projects,
                                    form=form,
-                                   get_project_last_message_info=get_project_last_message_info)
+                                   get_project_last_message_info=get_project_last_message_info,
+                                   title="Project Page")
     except Exception as e:
         app.logger.error(f"Error occurred in project_page route: {e}")
         return render_template('error_page.html', message='An error occurred. Please try again later.')
@@ -176,14 +173,14 @@ def send_message(project_id):
                 if not project:
                     return jsonify({'success': False, 'error': 'Project not found'}), 404
 
-                group = session.query(GroupInfo).filter_by(_id=project.group._id).first()
+                group = session.query(GroupInfo).filter_by(_id=project.group.get_id()).first()
                 if not group:
                     return jsonify({'success': False, 'error': 'Group not found'}), 404
 
                 new_message = MessageInfo(
-                    creatorId=current_user._id,
-                    groupId=group._id,
-                    projectId=project._id,
+                    creatorId=current_user.get_id(),
+                    groupId=group.get_id(),
+                    projectId=project.get_id(),
                     message=format_message(form.comment_field.data)
                 )
                 session.add(new_message)
@@ -201,7 +198,7 @@ def send_message(project_id):
 def create_project(group_id):
     try:
         with session_scoped() as session:
-            current_user_avatar_name = get_user_avatar_name(current_user._id)
+            current_user_avatar_name = get_user_avatar_name(current_user.get_id())
             group = session.query(GroupInfo).filter_by(_id=group_id).first()
 
             if not group:
@@ -215,15 +212,13 @@ def create_project(group_id):
                     new_project = ProjectInfo(
                         name=form.name.data.strip(),
                         description=form.description.data.strip(),
-                        creatorId=current_user._id,
+                        creatorId=current_user.get_id(),
                         groupId=group_id
                     )
                     session.add(new_project)
                     group.totalProjectCount += 1
-                    project_id = new_project._id
-                    print(f'\n\n\n{project_id}{group_id}')
+                    project_id = new_project.get_id()
                     session.commit()
-                    print(f'{project_id}{group_id}')
                     return redirect(url_for('group.project_page', group_id=group_id, project_id=project_id))
 
                 except Exception as e:
@@ -236,7 +231,9 @@ def create_project(group_id):
                                    form=form,
                                    projects=projects,
                                    get_user_avatar_name=get_user_avatar_name,
-                                   get_project_last_message_info=get_project_last_message_info)
+                                   get_project_last_message_info=get_project_last_message_info,
+                                   title="Create Project"
+                                   )
 
     except Exception as e:
         app.logger.error(f"Error occurred in create_project route: {e}")
@@ -246,6 +243,7 @@ def create_project(group_id):
 
 
 @blueP2.route('/search_member/<group_id>', methods=['GET', 'POST'])
+@login_required
 def search_member(group_id):
     try:
         with session_scoped() as session:
@@ -256,8 +254,8 @@ def search_member(group_id):
             if search_term:
                 pattern = f"%{search_term}%"
                 users = session.query(UserInfo).filter(func.lower(UserInfo.userName).ilike(pattern.lower())).all()
-                inactive_users = [user for user in users if not session.query(GroupRegistrationInfo).filter_by(userId=user._id, groupId=group_id).first()]
-                active_users = [user for user in users if session.query(GroupRegistrationInfo).filter_by(userId=user._id, groupId=group_id).first()]
+                inactive_users = [user for user in users if not session.query(GroupRegistrationInfo).filter_by(userId=user.get_id(), groupId=group_id).first()]
+                active_users = [user for user in users if session.query(GroupRegistrationInfo).filter_by(userId=user.get_id(), groupId=group_id).first()]
             else:
                 active_users = inactive_users = []
 
@@ -267,7 +265,8 @@ def search_member(group_id):
                                    results=inactive_users,
                                    active_users=active_users,
                                    get_user_avatar_name=get_user_avatar_name,
-                                   get_project_last_message_info=get_project_last_message_info)
+                                   get_project_last_message_info=get_project_last_message_info,
+                                   title="Search Members")
 
     except Exception as e:
         app.logger.error(f"Error occurred in search_member route: {e}")
@@ -277,6 +276,7 @@ def search_member(group_id):
 
 
 @blueP2.route('/add_member/<group_id>', methods=['GET'])
+@login_required
 def add_member(group_id):
     try:
         with session_scoped() as session:
@@ -301,10 +301,11 @@ def add_member(group_id):
         app.logger.error(f"Error occurred in add_member route: {e}")
         flash('An error occurred. Please try again later.', 'danger')
 
-    return render_template('error_page.html', message='An error occurred. Please try again later.')
+    return render_template('error_page.html', message='An error occurred. Please try again later.', title="Add Member")
 
 
 @blueP2.route('/remove_member/<group_id>', methods=['GET'])
+@login_required
 def remove_member(group_id):
     try:
         with session_scoped() as session:
@@ -333,6 +334,7 @@ def remove_member(group_id):
 
 
 @blueP2.route('/project_resources/<group_id>', methods=['GET', 'POST'])
+@login_required
 def project_resources(group_id):
     try:
         with session_scoped() as session:
@@ -355,7 +357,7 @@ def project_resources(group_id):
                         title=form.title.data,
                         caption=form.description.data,
                         resourcesType=form_type,
-                        creatorId=current_user._id,
+                        creatorId=current_user.get_id(),
                         groupId=group_id,
                         projectId=project_id
                     )
@@ -371,12 +373,11 @@ def project_resources(group_id):
                     os.makedirs(saving_path, exist_ok=True)
 
                     if form_type in ['AUDIO', 'FILE']:
-                        print("HERE\n\n\n")
                         file_ext = secure_filename(file.filename).split('.')[-1]
                         if file_ext:
-                            file.save(os.path.join(saving_path, f'{new_resources._id}.{file_ext}'))
+                            file.save(os.path.join(saving_path, f'{new_resources.get_id()}.{file_ext}'))
                     else:
-                        with open(os.path.join(saving_path, f'{new_resources._id}.txt'), 'w') as f:
+                        with open(os.path.join(saving_path, f'{new_resources.get_id()}.txt'), 'w') as f:
                             f.write(format_message(file))
                     session.add(new_resources)
                     session.commit()
@@ -386,7 +387,7 @@ def project_resources(group_id):
 
             group = session.query(GroupInfo).filter_by(_id=group_id).first()
             projects = session.query(ProjectInfo).filter_by(groupId=group_id).all()
-            project = [proj for proj in projects if proj._id == project_id]
+            project = [proj for proj in projects if proj.get_id() == project_id]
 
             return render_template('group_project_resources.html',
                                    project=project[0],
@@ -398,7 +399,9 @@ def project_resources(group_id):
                                    get_user_avatar_name=get_user_avatar_name,
                                    get_project_last_message_info=get_project_last_message_info,
                                    get_group_project_resources_name=get_group_project_resources_name,
-                                   get_group_lyrics_resources=get_group_lyrics_resources)
+                                   get_group_lyrics_resources=get_group_lyrics_resources,
+                                   title="Project Resources"
+                                   )
 
     except Exception as e:
         app.logger.error(f"Error occurred in project_resources route: {e}")
@@ -408,6 +411,7 @@ def project_resources(group_id):
 
 
 @blueP2.route('/delete_resources/<group_id>/<project_id>/<resource_id>')
+@login_required
 def delete_resources(group_id, project_id, resource_id):
     try:
         with session_scoped() as session:

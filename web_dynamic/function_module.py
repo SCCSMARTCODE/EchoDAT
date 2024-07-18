@@ -21,7 +21,6 @@ import random
 from sqlalchemy import desc
 import re
 from contextlib import contextmanager
-from flask_login import current_user
 
 Session = storage.session()
 
@@ -42,7 +41,7 @@ def send_user_account_activation_mail(user):
     """
     email_receiver = user.emailAddress
     email_subject = "Activate Your EchoDAT Account Now"
-    email_body = account_activation.generate_email(user.userName, get_user_email_activation_link(user._id))
+    email_body = account_activation.generate_email(user.userName, get_user_email_activation_link(user.get_id()))
     send_email(email_receiver, email_subject, email_body)
 
 
@@ -54,7 +53,7 @@ def send_password_reset_mail(user):
     """
     email_receiver = user.emailAddress
     email_subject = "Reset you Password with EchoDAT"
-    email_body = reset_password.generate_email(user.userName, get_user_password_reset_link(user._id))
+    email_body = reset_password.generate_email(user.userName, get_user_password_reset_link(user.get_id()))
     send_email(email_receiver, email_subject, email_body)
 
 
@@ -130,13 +129,16 @@ def get_user_avatar_name(user_id):
 
 
 @app.template_filter('get_audio_filename_by_id')
-def get_audio_filename_by_id(audio_id):
+def get_audio_filename_by_id(audio_id, is_avatar=False):
     """
     This function returns the audio file name using audio id
+    :param is_avatar:
     :param audio_id
     :return: current_user_avatar_name
     """
-    users_audio_folder_path = os.path.join(app.root_path, 'static', 'users_data')
+    users_audio_folder_path = os.path.join(app.root_path, 'static', 'users_data/audios')
+    if is_avatar:
+        users_audio_folder_path = os.path.join(users_audio_folder_path, 'avatar')
     files = os.listdir(users_audio_folder_path)
     audio_file_name = [name for name in files if audio_id in name]
     if audio_file_name:
@@ -199,7 +201,7 @@ def get_group_project_resources_name(group_id, project_id, resources_type):
 
     output = []
     for file_object in file_objects:
-        filename = [filename for filename in file_names if file_object._id in filename][0]
+        filename = [filename for filename in file_names if file_object.get_id() in filename][0]
         output.append([filename, file_object])
         file_names.remove(filename)
 
@@ -235,10 +237,10 @@ def get_group_info(group_id):
     if group:
         with session_scoped() as session:
             info = {
-                'members': session.query(GroupRegistrationInfo).filter_by(userId=current_user._id, groupId=group_id).count(),
-                'audios': session.query(ResourcesInfo).filter_by(creatorId=current_user._id, resourcesType='AUDIO').count(),
-                'lyrics': session.query(ResourcesInfo).filter_by(creatorId=current_user._id, resourcesType='LYRICS').count(),
-                'files': session.query(ResourcesInfo).filter_by(creatorId=current_user._id, resourcesType='FILE').count()
+                'members': session.query(GroupRegistrationInfo).filter_by(groupId=group_id).count(),
+                'audios': session.query(ResourcesInfo).filter_by(groupId=group_id, resourcesType='AUDIO').count(),
+                'lyrics': session.query(ResourcesInfo).filter_by(groupId=group_id, resourcesType='LYRICS').count(),
+                'files': session.query(ResourcesInfo).filter_by(groupId=group_id, resourcesType='FILE').count()
             }
             return info
     return None
@@ -250,7 +252,6 @@ def get_user_groups_id(user_id):
                 GroupRegistrationInfo.created_at).all()
         group_ids = [user_groups_relationship.groupId for user_groups_relationship in user_groups_relationships]
         return group_ids
-
 
 
 @contextmanager
