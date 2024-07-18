@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -262,3 +263,351 @@
     <script src="dashboard-script.js"></script>
 </body>
 </html>
+=======
+<!DOCTYPE 
+html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="dashboard-style-sheet.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <!-- Logo Section -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Echodat Logo">
+                    <span class="logo-text">Echodat</span>
+                </a>
+            </div>
+
+
+            <!-- User Actions (Profile, Dashboard, Logout) -->
+            <div class="user-actions">
+                <div class="upload-link">
+                    <a href="#" id="uploadLink"><i class="fas fa-upload"></i> Upload</a>
+                </div>
+           
+                <div class="user-actions">
+                    <div id="userProfile" class="dropdown">
+                        <img src="img/default-avatar.png" alt="User Avatar" id="userAvatar">
+                            <div class="dropdown-content">
+                            <p>Welcome, <span id="userName"></span>!</p>
+                            <a href="profile.html">Profile</a>
+                            <a href="dashboard.html">Creator Dashboard</a>
+                            <a href="#">Help</a>
+                            <a href="#">Switch Account</a>
+                            <a href="#">Account Settings</a>
+                            <a href="#" id="logoutLink">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Left scrollable menu bar -->
+    <div class="left-menu-bar">
+        <div class="profile-info">
+            <img src="img/default-avatar.png" alt="User Avatar" class="profile-picture">
+        </div>
+        <div class="profile-details">
+            <p class="user-name">John Doe</p>
+            <p class="user-id">User ID: 123456</p>
+            <a href="edit-profile.html" class="edit-profile">Edit Profile</a>
+        </div>
+
+
+        <hr>
+
+
+        <!-- Dashboard -->
+        <div class="menu-section">
+            <p class="menu-header">DASHBOARD</p>
+            <ul class="menu-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Notifications</a></li>
+                <li><a href="#">Playlist</a></li>
+            </ul>
+        </div>
+        <hr>
+
+
+        <!-- Content -->
+
+
+        <!-- Comments -->
+        <div class="menu-section">
+            <p class="menu-header">COMMENTS</p>
+            <ul class="menu-list">
+                <li><a href="#">Manage</a></li>
+            </ul>
+        </div>
+        <hr>
+
+
+        <!-- Messages -->
+        <div class="menu-section">
+            <p class="menu-header">MESSAGES</p>
+            <ul class="menu-list">
+                <li><a href="#">Overview</a></li>
+            </ul>
+        </div>
+        <hr>
+
+
+        <!-- Group-->
+         
+       
+        <div class="menu-section">
+            <p class="menu-header"></p>
+            <ul class="menu-list">
+                <li><a href="#">Group</a></li>
+            </ul>
+        </div>
+        <hr>
+
+
+        <!-- Others -->
+        <div class="menu-section">
+            <p class="menu-header">OTHERS</p>
+            <ul class="menu-list">
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Sign Out</a></li>
+            </ul>
+        </div>
+        <hr>
+    </div>
+
+
+    <!-- Right side profile edit section -->
+    <div class="profile-edit-section">
+        <div class="profile-banner extended-banner">
+            <!-- Banner or hero section -->
+            <h2>profile banner</h2>
+        </div>
+
+
+        <div class="profile-info">
+            <!-- New container for the profile picture and name -->
+            <div class="profile-container">
+                <div class="profile-picture-container">
+                    <img src="img/default-avatar.png" alt="User Avatar" class="profile-picture">
+                    <div class="change-picture">
+                        <label for="profile-picture-upload" class="upload-label">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" id="profile-picture-upload" style="display: none;">
+                        <span class="upload-text">recommended 800x800 jpg or png</span>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <div class="user-info">
+                        <h3 class="user-name">John Doe</h3>
+                        <div class="follow-button-container">
+                            <button class="follow-button">Follow</button>
+                        </div>
+                    </div>
+                    <div class="profile-links">
+                        <a href="#" id="basic-info-link" class="profile-link">Basic Information</a>
+                        <a href="#" id="change-password-link" class="profile-link">Change Password</a>
+                        <a href="#" id="update-email-link" class="profile-link">Update Email</a>
+                        <a href="#" id="update-artist-url-link" class="profile-link">Update Artist URL</a>
+                        <a href="#" id="apps-link" class="profile-link">Apps</a>
+                        <a href="#" id="notifications-link" class="profile-link">Notifications</a>
+                        <a href="#" id="delete-account-link" class="profile-link">Delete Account</a>
+                    </div>
+
+
+                <!----------------------basic info--------------------------------------->
+
+
+                    <div class="profile-form-container" id="basic-info-form" style="display: none;">
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hometown">Hometown</label>
+                                <input type="text" id="hometown" name="hometown" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="location" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="website">Website URL</label>
+                                <input type="url" id="website" name="website" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="biography">Short Biography</label>
+                                <textarea id="biography" name="biography" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Save</button>
+                        </form>
+                    </div>
+
+
+                    <!---------------------------new password------------------------------------->
+               
+                    <div class="profile-form-container" id="change-password-form" style="display: none;">
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" name="current-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" name="new-password" required>
+                                <small>Passwords must be at least 8 characters in length, at least one uppercase character, at least one lowercase character, and must contain at least one digit character OR a symbol.</small>
+                            </div>
+                            <button type="submit" class="btn">Change Password</button>
+                        </form>
+                    </div>
+
+
+                    <!---------------------------update email------------------------------------->
+                    <div class="profile-form-container" id="update-email-form" style="display: none;">
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="current-email">Current Email</label>
+                                <input type="email" id="current-email" name="current-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-email">New Email</label>
+                                <input type="email" id="new-email" name="new-email" required>
+                            </div>
+                            <button type="submit" class="btn">Update Email</button>
+                        </form>
+                    </div>
+
+
+                    <!---------------------------update artist URL------------------------------------->
+                    <div class="profile-form-container" id="update-artist-url-form" style="display: none;">
+                        <p>Note: When you change your Artist URL, references to your music under the old URL automatically change to the new URL. This means any links shared with the old URL will no longer work.</p>
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="artist-url">EchoDAT</label>
+                                <input type="url" id="artist-url" name="artist-url" required>
+                            </div>
+                            <button type="submit" class="btn">Save</button>
+                        </form>
+                    </div>
+
+
+                    <!---------------------------apps------------------------------------->
+                    <div class="profile-form-container" id="apps-message" style="display: none;">
+                        <p>There are no third party apps authorized to use your account.</p>
+                    </div>
+
+
+                    <!---------------------------notifications------------------------------------->
+                    <div class="profile-form-container" id="notifications-form" style="display: none;">
+                        <p class="email-notifications-title">EMAIL NOTIFICATIONS</p>
+                        <hr>
+                        <div class="form-group">
+                            <label for="weekly-summary">Weekly Summary</label>
+                            <input type="checkbox" id="weekly-summary" name="weekly-summary">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="trending">Trending</label>
+                            <input type="checkbox" id="trending" name="trending">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="play-milestones">Play Milestones</label>
+                            <input type="checkbox" id="play-milestones" name="play-milestones">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="verified-playlist-adds">Verified Playlist Adds</label>
+                            <input type="checkbox" id="verified-playlist-adds" name="verified-playlist-adds">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="new-music">New Music</label>
+                            <input type="checkbox" id="new-music" name="new-music">
+                        </div>
+                    </div>
+
+
+                    <!---------------------------delete account------------------------------------->
+                    <div class="profile-form-container" id="delete-account-form" style="display: none;">
+                        <p>Are you sure you want to delete your account?</p>
+                        <button id="delete-account-yes" class="btn">Yes</button>
+                        <button id="delete-account-no" class="btn">No</button>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Section -->
+    <footer id="footer">
+        <div class="footer-container">
+            <!-- Echodat Logo -->
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="Echodat Logo">
+            </div>
+
+
+            <!-- Social Media Icons -->
+            <div class="footer-social-icons">
+                <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+                <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+                <a href="https://facebook.com"><i class="fab fa-facebook"></i></a>
+                <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+
+            <!-- Footer Links -->
+            <div class="footer-links">
+                <a href="#">ABOUT</a>
+                <a href="#">HELP</a>
+                <a href="#">BUSINESS INQUIRIES</a>
+                <a href="#">GET STARTED</a>
+            </div>
+
+
+            <!-- Footer Text -->
+            <div class="footer-text">
+                <p>
+                    Echodat is an on-demand music streaming and audio discovery platform that allows artists and creators to upload limitless music and podcasts for listeners through its mobile apps and website.
+                </p>
+            </div>
+
+
+            <!-- Privacy and Terms Links -->
+            <div class="footer-privacy-terms">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Your Privacy Rights</a>
+            </div>
+
+
+            <!-- Copyright Text Text -->
+            <div class="footer-copyright">
+                <p>© 2024 Echodat - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="dashboard-script.js"></script>
+</body>
+</html>
+>>>>>>> d9c1accd6f2f253d755334bafaf02a8eb8820c44

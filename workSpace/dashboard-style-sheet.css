@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* General body styling */
 body {
     margin: 0;
@@ -564,3 +565,795 @@ header {
 .btn:hover {
     background-color: #0056b3;
 }
+=======
+body {
+    margin: 0;
+    padding: 0;
+    font-family:  'Poppins', Arial, sans-serif;
+    overflow-x: hidden;
+    padding: 0;
+    font-family:  'Poppins', Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* Header styling (if needed) */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+
+/* Styling for the logo container */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+
+.logo img {
+    max-width: 100px;
+    max-height: 40px;
+    height: auto;
+}
+
+
+.logo .logo-text {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* User actions */
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+
+.user-actions #userProfile {
+    display: flex;
+    align-items: center;
+}
+
+
+.user-actions img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+.user-actions p {
+    margin: 0;
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+
+/* Upload link styling */
+.upload-link a {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+
+.upload-link a i {
+    margin-right: 8px;
+}
+
+
+.upload-link a:hover {
+    color: #007BFF;
+}
+
+
+/* Dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Hero Banner Section */
+.hero-banner {
+    position: relative;
+    top: 60px;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+}
+
+
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+.banner-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.banner-upload {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.banner-upload label {
+    cursor: pointer;
+}
+
+
+/* Main dashboard container */
+.dashboard-container {
+    margin-top: 380px; /* Adjusted to account for the hero banner height */
+    padding: 20px;
+}
+
+
+/* Sidebar styling */
+.sidebar {
+    position: relative; /* Keep the sidebar fixed on the left */
+    position: relative; /* Keep the sidebar fixed on the left */
+    top: 60px;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+.sidebar nav ul li {
+    margin-bottom: 20px;
+}
+
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+.sidebar nav ul li a:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+
+/* Main content styling */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+
+.dashboard-container h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+/* Cards for displaying dashboard widgets */
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+.card {
+    flex: 1;
+    min-width: 300px;
+}
+
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+
+    .search-bar {
+        display: none;
+    }
+
+
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+
+    .nav-links ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+
+    .user-actions {
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .user-actions a {
+        margin: 5px 0;
+    }
+
+
+    .main-content {
+        margin-left: 0;
+    }
+
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+
+    .content {
+        margin-left: 0;
+    }
+
+
+    .card {
+        min-width: 100%;
+    }
+}
+
+
+/* Left scrollable menu bar */
+.left-menu-bar {
+    position: absolute;
+    position: absolute;
+    top: 60px; /* Adjust this value according to your header height */
+    left: 0;
+    width: 250px;
+    height: 100%; /* Adjust for the height above the top */
+    background-color: #ffffff;
+    height: 100%; /* Adjust for the height above the top */
+    background-color: #ffffff;
+    overflow-y: auto; /* Enable vertical scrolling */
+    border-right: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    padding: 20px;
+}
+
+
+
+
+/* Add this CSS to adjust the height of the profile banner */
+.extended-banner {
+    padding: 40px 20px; /* Increase the padding to extend the height */
+}
+
+
+
+
+.menu-section {
+    margin-top: 20px;
+}
+
+
+.menu-header {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #01441f; /* Specific color for main menu headers */
+    color: #01441f; /* Specific color for main menu headers */
+}
+
+
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+.menu-list li {
+    margin-bottom: 10px;
+}
+
+
+.menu-list li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: color 0.3s;
+    box-sizing: border-box; /* Include padding in the element's width and height */
+    box-sizing: border-box; /* Include padding in the element's width and height */
+}
+
+
+.menu-list li a:hover {
+    /* Hover effect for the menu links */
+    background-color: #01441f; /* Background color on hover */
+    color: #fff; /* Text color on hover */
+    padding: 10px 15px; /* Increase padding on hover */
+    /* Hover effect for the menu links */
+    background-color: #01441f; /* Background color on hover */
+    color: #fff; /* Text color on hover */
+    padding: 10px 15px; /* Increase padding on hover */
+}
+
+
+
+
+.profile-edit-section {
+    margin-left: 250px; /* Adjust according to left menu bar width */
+    padding: 10px;
+}
+
+
+.edit-profile {
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff; /* White text color */
+    background-color: #01441f; /* Green background color */
+    display: inline; /* Inline block to behave like a button */
+    padding: 10px 10px; /* Padding for button-like appearance */
+    border-radius: 20px; /* Rounded corners for button-like appearance */
+    margin-bottom: 20px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.edit-profile:hover {
+    background-color: #03cf47; /* Change background color on hover */
+    color: #fff; /* Ensure text remains white on hover */
+    background-color: #03cf47; /* Change background color on hover */
+    color: #fff; /* Ensure text remains white on hover */
+}
+
+
+
+
+.profile-banner {
+    background: url('img/pic5.jpeg') no-repeat center center; /* Add your background image */
+    background-size: cover; /* Ensure the image covers the entire banner */
+    background: url('img/pic5.jpeg') no-repeat center center; /* Add your background image */
+    background-size: cover; /* Ensure the image covers the entire banner */
+    color: #fff;
+    padding: 150px; /* Maintain the existing padding */
+    padding: 150px; /* Maintain the existing padding */
+    text-align: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    overflow: hidden;
+}
+
+
+
+
+/* Hide the input file */
+.upload-label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+/* Right Profile info*/
+
+
+/* New container for profile picture and name */
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items to the start of the container */
+    background-color: #f0f0f0; /* Light gray background color */
+    padding: 20px; /* Add padding around the container */
+    margin: 20px; /* Add margin to ensure it doesn't touch the sides */
+    margin-left: 90px;
+    margin-left: 90px;
+    margin-right: 60px;
+    width: calc(100% - 50px); /* Adjust width to account for padding and margin */
+    width: calc(100% - 50px); /* Adjust width to account for padding and margin */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin-top: -70px;
+    z-index: 1;
+    position: relative;
+    justify-content: space-between; /* Distribute space between items */
+    padding-bottom: 120px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+
+.profile-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* Update the profile picture container to be circular, 800x800 in size, and have a gray background color */
+.profile-picture-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0; /* Light gray background color */
+    margin-left: 10px; /* Add margin to move it away from the left side menu bar */
+    margin-top: -80px;
+    margin-bottom: 60;
+    z-index: 2;
+}
+
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.profile-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: nowrap;
+    gap: 10px; 
+  }
+ 
+  .profile-link {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #01441f;
+    color: #01441f;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+  }
+ 
+  .profile-link:hover {
+    color: #0056b3;
+  }
+
+
+/* Style for the change picture icon and text */
+.change-picture {
+    position: absolute;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+.change-picture i {
+    font-size: 24px;
+}
+
+
+.change-picture .upload-text {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+.profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: -80px;
+    margin-left: 170px;
+}
+
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+    font-weight: bold;
+}
+
+
+.user-id {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+
+/* New follow button styling */
+.follow-button {
+    background-color: #01441f; /* Button background color */
+    background-color: #01441f; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.follow-button-container {
+    margin-right: 80px; /* Adjust margin as needed */
+}
+
+
+.follow-button:hover {
+    background-color: #00b309; /* Button background color on hover */
+    background-color: #00b309; /* Button background color on hover */
+}
+
+
+
+
+
+
+/* profile form-container for basic information, change password, and update email */
+
+
+.profile-form-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.btn {
+    background-color: #01441f;
+    background-color: #01441f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for the footer */
+#footer {
+    background-color: #012406; /* Dark green background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Center-align text */
+    padding: 40px 20px; /* Padding for top/bottom and left/right */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    overflow-x: hidden;
+    margin-top:100px;
+}
+
+/* Container for footer content */
+.footer-container {
+    max-width: 1200px; /* Maximum width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Styling for the footer logo */
+.footer-logo img {
+    max-width: 150px; /* Adjust logo size as needed */
+    margin-bottom: 20px;
+}
+
+/* Styling for the social media icons */
+.footer-social-icons {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual social media icons */
+.footer-social-icons a {
+    color: #fff; /* White icon color */
+    margin: 0 10px; /* Spacing between icons */
+    font-size: 24px; /* Icon size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for social media icons */
+.footer-social-icons a:hover {
+    color: #007BFF; /* Change icon color on hover */
+}
+
+/* Styling for footer links */
+.footer-links {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual footer links */
+.footer-links a {
+    color: #fff; /* White link color */
+    margin: 0 10px; /* Spacing between links */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for footer links */
+.footer-links a:hover {
+    color: #2dcc0d; /* Change link color on hover */
+}
+
+/* Styling for the footer text */
+.footer-text p {
+    max-width: 800px; /* Maximum width of the text */
+    margin: 0 auto 20px; /* Center the text and add bottom margin */
+    line-height: 1.5; /* Line height for readability */
+    font-size: 14px; /* Font size */
+}
+
+/* Styling for privacy and terms links */
+.footer-privacy-terms {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual privacy and terms links */
+.footer-privacy-terms a {
+    color: #fff; /* White link color */
+    margin: 0 10px; /* Spacing between links */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for privacy and terms links */
+.footer-privacy-terms a:hover {
+    color: #007BFF; /* Change link color on hover */
+}
+
+/* Styling for the copyright text */
+.footer-copyright p {
+    font-size: 14px; /* Font size */
+    margin: 0; /* Remove default margin */
+}
+
+>>>>>>> d9c1accd6f2f253d755334bafaf02a8eb8820c44

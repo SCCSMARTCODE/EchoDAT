@@ -1,8 +1,12 @@
 # EchoDAT
 
+![EchoDAT Overview](https://i.ibb.co/17bB9J5/background1.jpg)
+
 ## Overview
 
 **EchoDAT** is a web application designed to bring together music groups, choirs, and individual musicians. It serves as a collaborative platform where users can create and manage projects, upload and share audio files, communicate in real-time, and publish their work for broader audiences. The platform aims to streamline the creative process and enhance collaboration within musical communities.
+
+![EchoDAT Overview](https://i.ibb.co/sWbmM9t/Screenshot-2024-07-17-234719.png)
 
 ## Table of Contents
 
@@ -39,6 +43,16 @@
   - Publish songs for public viewing
   - Receive feedback and comments
   - Like and share published songs
+
+![EchoDAT Overview](https://i.ibb.co/0CBjZ6J/Screenshot-2024-07-17-235421.png)
+
+![Image](https://i.ibb.co/G9x86ZF/Screenshot-2024-07-17-235457.png)
+
+![EchoDAT Overview](https://i.ibb.co/DL0Q1RS/Screenshot-2024-07-17-234821.png)
+
+![EchoDAT Overview](https://i.ibb.co/7NJg2VC/Screenshot-2024-07-17-234947.png)
+
+![EchoDAT Overview](https://i.ibb.co/55051WL/Screenshot-2024-07-17-235207.png)
 
 ## Getting Started
 
@@ -95,10 +109,35 @@ Contributions are welcome! Please read CONTRIBUTING.md for details on how to con
 This project is licensed under the MIT License.
 
 ## Contact
-For any questions or suggestions, please feel free to reach out to us at [email protected].
+For any questions or suggestions, please feel free to reach out to us at [EchoDAT](mailto:sccsmart247@example.com).
 
-## Acknowledgements
-We would like to express our gratitude to the following individuals and projects for their contributions and inspiration:
+## Acknowledgement
+We would also like to extend a special thanks to ALX for providing us with the incredible opportunity to learn and grow. Their support and resources have been invaluable in our journey.
 
-- Name of person/project 1
-- Name of person/project 2
+
+# Developers
+## Meet the developers behind EchoDAT:
+
+## Emmanuel Ayobami
+#### SCCSMARTCODE
+
+- **Role**: Technical Lead and Backend Developer with expertise in Database Management
+- **Email**: [EMAIL](mailto:sccsmart247@example.com)
+- **GitHub**: [GITHUB](https://github.com/SCCSMARTCODE/)
+
+## Ayodele Ayomidotun
+#### RAWTECH
+
+- **Role**: UI/UX Designer, Frontend Developer, and Graphic Designer
+- **Email**: [EMAIL](mailto:ayodeleayomidotun@gmail.com)
+- **GitHub**: [GITHUB](https://github.com/melchizedek2991/)
+
+## Olawumi Damilola
+#### DEAMITECH
+
+- **Role**: UI/UX Designer, Frontend Developer, and Graphic Designer
+- **Email**: [EMAIL](mailto:glam4damsel@gmail.com)
+- **GitHub**: [GITHUB](https://github.com/Mzdeami)
+
+![EchoDAT Overview](https://i.ibb.co/q5vZytj/Screenshot-2024-07-17-235336.png)
+![EchoDAT Overview](https://i.ibb.co/sjPpc28/background.jpg/)

@@ -189,7 +189,10 @@ def login(email=""):
 
 @blueP.route('/view/audio', methods=['POST', 'GET'])
 def view_public_audio():
-    current_user_avatar_name = get_user_avatar_name(current_user._id)
+    if current_user.is_authenticated:
+        current_user_avatar_name = get_user_avatar_name(current_user._id)
+    else:
+        current_user_avatar_name = 'default-avatar.jpeg'
 
     audio_id = request.args.get('id')
     if not audio_id:

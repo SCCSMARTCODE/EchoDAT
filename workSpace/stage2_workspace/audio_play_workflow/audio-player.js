@@ -82,3 +82,23 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
 });
+
+    window.addEventListener('scroll', function() {
+        var header = document.getElementById('header');
+        if (window.pageYOffset > 0) {
+            header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+    window.addEventListener('scroll', function() {
+        var logo = document.querySelector('.logo img');
+        if (window.pageYOffset > 0) {
+            logo.src = 'img/logo11.png'; // Change to the white logo
+    } else {
+        logo.src = 'img/logo12.png'; // Change back to the green logo
+    }
+});
+
+

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Reset default browser margin and set a default font family */
 body {
     margin: 0;
@@ -615,3 +616,622 @@ body {
     font-size: 14px; /* Font size */
     margin: 0; /* Remove default margin */
 }
+=======
+/* Reset default browser margin and set a default font family */
+body {
+    margin: 0;
+    padding: 0;
+    font-family:  'Poppins', Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Flexbox container for header elements, aligning items in a row */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Styling for the logo container */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for the logo image */
+.logo img {
+    max-width: 100px; /* Adjust size as needed */
+    max-height: 40px;
+    height: auto;
+}
+
+/* Hide the fallback text by default */
+.logo .logo-text {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Ensure the text is visible if the image doesn't load */
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Styling for the search bar container */
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 50px; /* Adjust border-radius to make edges more rounded */
+    padding: 8px; /* Adjust padding as needed */
+}
+
+/* Styling for the search icon inside the search bar */
+.search-bar .fa-search {
+    margin-right: 10px; /* Adjust spacing between icon and input field */
+    color: #999;
+}
+
+/* Styling for the search input field */
+.search-bar input {
+    width: 250px; /* Adjust width as needed */
+    height: 10px; /* Adjust height as needed */
+    padding: 8px; /* Adjust padding as needed */
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+
+/* Remove default list styles and display navigation links inline */
+.nav-links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Spacing between navigation links */
+.nav-links ul li {
+    margin-right: 20px;
+}
+
+/* Remove default blue underline from links and change text color to black */
+.nav-links ul li a {
+    text-decoration: none; /* Remove underline */
+    color: #000; /* Set text color to black */
+}
+
+/* Hover effect for links */
+.nav-links ul li a:hover {
+    color: #007BFF; /* Change text color on hover if desired */
+}
+
+
+/* Spacing between user action links (Login and Sign Up) */
+.user-actions a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s;
+}
+
+/* Hover effect for user actions */
+.user-actions a:hover {
+    color: #007BFF;
+}
+
+/* Hide menu toggle and mobile search icon by default */
+.menu-toggle, .mobile-search-icon {
+    display: none;
+}
+
+/* sticky header at the top of the page */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 1000;
+}
+
+/* Styles for the header when scrolled */
+#header.scrolled {
+    background-color: rgb(18, 59, 2);
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#header.scrolled .search-bar {
+    color: #ffffff;
+}
+  
+  /* Styles for the logo and navigation links */
+  .logo a,
+  .nav-links ul li a {
+    color: inherit;
+  }
+
+  .user-actions a {
+    color: inherit;
+  }
+
+/* Responsive Design: Adjust styles for screens 768px wide or smaller */
+@media (max-width: 768px) {
+    /* Stack header elements vertically */
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    /* Hide the search bar on small screens */
+    .search-bar {
+        display: none;
+    }
+
+    /* Show menu toggle and mobile search icon on small screens */
+    .menu-toggle, .mobile-search-icon {
+        display: block;
+        cursor: pointer;
+    }
+
+    /* Hide navigation links by default on small screens */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Stack navigation links vertically on small screens */
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Center navigation links and add vertical margin */
+    .nav-links ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    /* Stack user action links vertically and center align them */
+    .user-actions {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Add vertical margin between user action links */
+    .user-actions a {
+        margin: 5px 0;
+    }
+
+    /* Display navigation links and search bar when toggled */
+    .nav-links.active, .search-bar.active {
+        display: flex;
+    }
+}
+
+/* Styling for the hero section */
+/* Ensure the hero container has no extra padding or margin on the left */
+.hero {
+    position: relative;
+    height: 50vh; /* Set height to half of the viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the left */
+    padding: 20px 0; /* Adjust padding as needed */
+    margin-top: 65px; /* Add a margin to shift the hero section down */
+}
+
+
+/* Styling for the background */
+.background {
+    position: absolute;
+    top: 0;
+    left: 50%; /* Center the background horizontally */
+    transform: translateX(-30%); /* Center the background horizontally */
+    width: 72vw; /* Set the width to 90% of the viewport width, adjust as needed */
+    height: 100%; /* Fill the height of the hero section7*/
+    background-image: url('img/background.png'); /* Add your image path here */
+    background-size: cover; /* Cover the background */
+    background-position: center;
+    border-radius: 20px; /* Add border-radius for slightly curved edges */
+    z-index: -1; /* Place the background behind the content */
+}
+
+/* Move the hero content all the way to the left */
+.hero-content {
+    max-width: 500px; /* Limit the width of the content */
+    padding: 120px; /* Adjust padding as needed */
+    margin-left: 290px; /* Ensure no left margin */
+    text-align: left; /* Align text to the left */
+    z-index: 1; /* Ensure content is above the background */
+}
+
+.hero-content h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.cta-button {
+    background-color: #097231;
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+/* Add keyframes for growing and fading in */
+@keyframes growFadeIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Apply the animation to the hero content */
+.hero-content {
+    padding-left: 120px; /* Adjust this value to push the content to the right */
+    animation: growFadeIn 1s ease-out forwards;
+}
+
+/* Keyframe animation for growing and fading effect */
+@keyframes growIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Styling for the decorative image inside the background */
+.decorative-image {
+    position: absolute;
+    top: 130px; /* Adjust the positioning to move the image down */
+    right: 0%; /* Adjust the positioning as needed */
+    max-width: 16%; /* Adjust the size as needed */
+    height: auto;
+    border-radius: 10px; /* Add border-radius if needed */
+    animation: growIn 1s ease-out forwards; /* Apply animation */
+    animation-delay: 0.5s; /* Delay for the first image */
+}
+
+/* Styling for the second decorative image */
+.second-image {
+    position: absolute;
+    top: 130px; /* Adjust the positioning to move the image down */
+    right: 3%; /* Adjust the positioning as needed */
+    max-width: 35%; /* Adjust the size as needed */
+    height: auto;
+    /* Add any additional styling as needed */
+    animation: growIn 1s ease-out forwards; /* Apply animation */
+    animation-delay: 1.5s; /* Delay for the second image */
+}
+
+/* Styling for the third decorative image */
+.third-image {
+    position: absolute;
+    top: 145px; /* Adjust the positioning to move the image down */
+    right: 18%; /* Adjust the positioning as needed */
+    max-width: 33%; /* Adjust the size as needed */
+    height: auto;
+    /* Add any additional styling as needed */
+    animation: growIn 1s ease-out forwards; /* Apply animation */
+    animation-delay: 2.5s; /* Delay for the third image */
+}
+
+/* Styling for the side menu bar */
+.side-menu {
+    position: absolute; 
+    top: 60px;
+    left: 30px;
+    width: 250px; /* Width of the sidebar */
+    height: calc(100vh - 10vh); /* Full height minus hero section */
+    background-color: #fff; /* Background color */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    padding: 30px;
+    z-index: 999; /* Ensure it is above other elements */
+}
+
+/* Remove default list styles and add spacing */
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styling for the menu header */
+.side-menu .menu-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Styling for the menu items */
+.side-menu ul li {
+    margin-bottom: 15px;
+}
+
+/* Styling for the menu links */
+.side-menu ul li a {
+    text-decoration: none;
+    color: #333; /* Text color */
+    font-size: 18px; /* Font size */
+    display: block; /* Ensure the link takes the full width */
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+/* Hover effect for the menu links */
+.side-menu ul li a:hover {
+    background-color: #01441f; /* Background color on hover */
+    color: #fff; /* Text color on hover */
+}
+
+/* Styling for the main content section */
+.main-content {
+    margin-left: 300px; /* Adjust based on width of side menu bar */
+    padding: 20px;
+}
+
+/* Styling for the trending music section */
+.trending-music {
+    margin-bottom: 20px;
+    margin-left: 20px; /* Add margin to create space */
+    padding-left: 60px; /* Optional: add padding for further spacing */
+   
+}
+
+/* Styling for the title */
+.trending-music h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Styling for the music boxes */
+.music-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Styling for each music item */
+/* Styling for each music item */
+.music-item {
+    width: calc(22% - 20px); /* Adjust width and margin based on spacing requirements */
+    margin-right: 20px;
+    margin-bottom: 40px; /* Increased margin to accommodate new text */
+    padding: 10px;
+    height: 200px; /* Adjust height as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ensure even spacing between items */
+.music-item:nth-child(4n) {
+    margin-right: 0;
+}
+
+/* Styling for images inside music items */
+.music-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image covers the entire area of the box */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Styling for the play button */
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    padding: 10px;
+    display: none; /* Initially hidden */
+}
+
+.play-button i {
+    color: #fff;
+    font-size: 24px;
+}
+
+/* Show play button on hover */
+.music-item:hover .play-button {
+    display: block;
+}
+
+
+/* Styling for music info (artist name and track title) */
+.music-info {
+    margin-top: 10px;
+    position: absolute;
+    bottom: -90px; /* Position it outside the box */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.music-info a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 5px;
+    transition: color 0.3s;
+}
+
+.music-info a:hover {
+    color: #007BFF; /* Change color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .music-item {
+        width: 100%; /* Full width on small screens */
+        margin-right: 0;
+    }
+
+    .music-info {
+        position: static; /* Remove absolute positioning */
+        transform: none;
+    }
+}
+
+/* Dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Styling for the footer */
+#footer {
+    background-color: #012406; /* Dark green background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Center-align text */
+    padding: 40px 20px; /* Padding for top/bottom and left/right */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Container for footer content */
+.footer-container {
+    max-width: 1200px; /* Maximum width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Styling for the footer logo */
+.footer-logo img {
+    max-width: 150px; /* Adjust logo size as needed */
+    margin-bottom: 20px;
+}
+
+/* Styling for the social media icons */
+.footer-social-icons {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual social media icons */
+.footer-social-icons a {
+    color: #fff; /* White icon color */
+    margin: 0 10px; /* Spacing between icons */
+    font-size: 24px; /* Icon size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for social media icons */
+.footer-social-icons a:hover {
+    color: #007BFF; /* Change icon color on hover */
+}
+
+/* Styling for footer links */
+.footer-links {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual footer links */
+.footer-links a {
+    color: #fff; /* White link color */
+    margin: 0 10px; /* Spacing between links */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for footer links */
+.footer-links a:hover {
+    color: #2dcc0d; /* Change link color on hover */
+}
+
+/* Styling for the footer text */
+.footer-text p {
+    max-width: 800px; /* Maximum width of the text */
+    margin: 0 auto 20px; /* Center the text and add bottom margin */
+    line-height: 1.5; /* Line height for readability */
+    font-size: 14px; /* Font size */
+}
+
+/* Styling for privacy and terms links */
+.footer-privacy-terms {
+    margin-bottom: 20px;
+}
+
+/* Styling for individual privacy and terms links */
+.footer-privacy-terms a {
+    color: #fff; /* White link color */
+    margin: 0 10px; /* Spacing between links */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for privacy and terms links */
+.footer-privacy-terms a:hover {
+    color: #007BFF; /* Change link color on hover */
+}
+
+/* Styling for the copyright text */
+.footer-copyright p {
+    font-size: 14px; /* Font size */
+    margin: 0; /* Remove default margin */
+}
+>>>>>>> d9c1accd6f2f253d755334bafaf02a8eb8820c44
