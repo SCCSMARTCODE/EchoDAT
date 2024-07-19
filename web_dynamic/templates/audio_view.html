@@ -8,121 +8,128 @@
 
 
 {% block body %}
-    <div class="profile-header">
-        <div class="profile-pic">
-            <img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(audio.creator._id)) }}" alt="Profile Picture">
-        </div>
-        <div class="profile-info">
-            <h1>{{ audio.creator.userName }}</h1>
-            <p>@{{ audio.creator.userName.lower() }}</p>
+<div class="hero" style="background-image: url('{{ url_for('static', filename='system_files/img/audio-play-background.png') }}');">
+        <img src="{{ url_for('static', filename='system_files/img/audio-play-image.png') }}" alt="Hero Image" class="hero-image">
+        <div class="hero-content">
+        <!-- Your hero content here -->
+        <h1>Echodat</h1>
+        <h2>Magic Audio</h2>
+        <p>I am in love with this musical App, can't wait to test it</p>
         </div>
     </div>
 
-    <div class="music-header">
-        <img src="{{ url_for('static', filename='system_files/img/default_user_cover_avatar.jpg') }}" alt="Waveform">
-    </div>
 
-    <div class="music-info">
-        <img src="{{ url_for('static', filename='users_data/audios/avatar/' + get_audio_filename_by_id(audio._id, is_avatar=True)) }}" alt="Album Cover">
-        <div class="music-details">
-            <h2>{{ audio.artist }}</h2>
-            <p>{{ audio.title }}</p>
-            <p>Released Date: {{ audio.created_at }} by {{ audio.creator.userName }}</p>
-            <div class="tags">
-                <span>#{{ audio.genre }}</span>
-                <span>#{{ audio.mood }}</span>
+    <div class="row">
+        <!-------left column ----------------------------------------->
+        <div class="column left">
+          <div class="artist-info">
+            <div class="artist-image">
+              <img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(audio.creatorId)) }}" alt="Artist Image" class="circular-image">
             </div>
-        </div>
-    </div>
-
-    <div class="audio-player">
-        <audio id="audio" preload="auto">
-            <source src="{{ url_for('static', filename='users_data/audios/' + get_audio_filename_by_id(audio._id)) }}" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <div class="controls">
-            <button id="play-pause" class="play">Play</button>
-            <div class="time">
-                <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+            <h5 class="artist-name">{{ audio.artist }}</h5>
+            <h2>@{{ audio.creator.userName.lower() }}</h2>
+            <p class="genre">Genre of Music:</p>
+            <h6>#{{ audio.genre }}</h6>
+            <div class="ratings">
+              <i class="fa fa-star yellow"></i>
+              <i class="fa fa-star yellow"></i>
+              <i class="fa fa-star yellow"></i>
+              <i class="fa fa-star yellow"></i>
+              <i class="fa fa-star"></i>
             </div>
-            <input type="range" id="seek-bar" value="0">
-            <div class="volume">
+          </div>
+        </div>
+      
+        <!------------------middle column-------------------------------->
+        <div class="column middle">
+          <div class="audio-player">
+            <audio id="audio" preload="auto">
+              <source src="{{ url_for('static', filename='users_data/audios/' + get_audio_filename_by_id(audio._id)) }}" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            <div class="controls">
+              <input type="range" id="seek-bar" value="0">
+              <div class="volume">
                 <button id="mute">Mute</button>
                 <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+              </div>
+              <button id="play-pause" class="play">Play</button>
+              <div class="time">
+                <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+              </div>
+            </div>
+          </div>
+          <div class="song-info">
+            <div class="song-image">
+              <img src="{{ url_for('static', filename='users_data/audios/avatar/' + get_audio_filename_by_id(audio._id, is_avatar=True)) }}" alt="Song Image">
+            </div>
+            <h3 class="song-title">Song Title: {{ audio.title }}</h3>
+            <div class="song-actions">
+              <i class="fa fa-thumbs-up"></i> Likes
+              <i class="fa fa-heart"></i> Love
+              <i class="fa fa-share"></i> Share
+            </div>
+            <div class="song-stats">
+                <span>{{ audio.likesCount }} Likes |</span>
+                <span>{{ audio.creator.followers }} Followers</span>
+              </div>
+          </div>
+        </div>
+      
+        <!----------------right column---------------------------------->
+        <div class="column right">
+
+            <div class="artist-info">
+              <h1 class="artist-name">ABOUT</h1>
+              <p>{{ audio.caption }}</p>
+              <p>Created At: {{ audio.created_at }}</p>
             </div>
         </div>
     </div>
 
 
-    <div class="music-stats">
-        <div class="stat">
-            <p>533</p>
-            <p>Followers</p>
-        </div>
-        <div class="stat">
-            <p>178K</p>
-            <p>Total Plays</p>
-        </div>
-        <div class="stat">
-            <p>{{ audio.likesCount }}</p>
-            <p>Likes</p>
-        </div>
-    </div>
+    <div class="row">
+        <div class="column full">
+          <h2>{{ len(messages) }} COMMENTS</h2>
 
-    
-
-    <div class="comments">
-        <h3>{{ len(messages) }} COMMENTS</h3>
-        <div class="comment-box">
-            <img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(current_user._id)) }}" alt="User Picture">
+          <div class="comment-box">
+            <h3>Add Comment</h3>
             <form action="" method="post">
                 {{ form.hidden_tag() }}
-
-                <div class="form-group">
-                    {{ form.comment(class='commenting-textarea') }}
-                    {% for error in form.comment.errors %}
-                        <p style="color: red; background-color: aliceblue;">{{ error }}</p>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    {{ form.submit(class='commenting-button') }}
-                </div>
+                {{ form.comment(class='light-green-bg') }}
+                {{ form.submit(class='save-button') }}
             </form>
-            
+          </div>
+
+         
+          <div class="comment-container">
+            {% for message in messages %}
+                <div class="comment">
+                    <div class="comment-avatar">
+                        <img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(message.creatorId)) }}" alt="User Avatar" class="circular-image">
+                    </div>
+                    <div class="comment-content">
+                        <div class="comment-header">
+                            <span class="comment-username yellow-text">{{ message.creator.userName }}</span>
+                            <span class="comment-time">{{ message.created_at }}</span>
+                        </div>
+                        <div class="comment-body">
+                            <p>{{ message.message }}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+    
+            {% if len(messages) == 0 %}
+                <p>No comments yet. Be the first to comment!</p>
+            {% endif %}
         </div>
-       
-    </div>
 
-
-
-    <div class="comments-section">
-        {% for message in messages %}
-            <div class="comment">
-                <div class="comment-avatar">
-                    <img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(message.creator._id)) }}" alt="User Avatar">
-                </div>
-                <div class="comment-content">
-                    <div class="comment-header">
-                        <span class="comment-username">{{ message.creator.userName }}</span>
-                        <span class="comment-time">{{ message.created_at }}</span>
-                    </div>
-                    <div class="comment-body">
-                        <p>{{ message.message }}</p>
-                    </div>
-                    <!-- <div class="comment-footer">
-                        <span class="comment-likes">4 <i class="fa fa-thumbs-up"></i></span>
-                        <span class="comment-dislikes">0 <i class="fa fa-thumbs-down"></i></span>
-                        <span class="comment-reply">REPLY</span>
-                    </div> -->
-                </div>
-            </div>
-        {% endfor %}
-
-        {% if len(messages) == 0 %}
-            <p>No comments yet. Be the first to comment!</p>
-        {% endif %}
-    </div>
+          
+        </div>
+      </div>
+    
     
 {% endblock body %}
 

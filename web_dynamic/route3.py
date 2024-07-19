@@ -216,7 +216,7 @@ def create_project(group_id):
                         groupId=group_id
                     )
                     session.add(new_project)
-                    group.totalProjectCount += 1
+                    group.totalProjectCount = group.totalProjectCount + 1
                     project_id = new_project.get_id()
                     session.commit()
                     return redirect(url_for('group.project_page', group_id=group_id, project_id=project_id))

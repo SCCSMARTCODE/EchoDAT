@@ -1,6 +1,7 @@
 /* Global styles */
 body {
-    background-color: rgb(0, 0, 0);
+    /* background-color: rgb(0, 0, 0); */
+    background-color: rgb(2, 70, 2);
     margin: 0;
     padding: 0;
     display: flex;
@@ -30,6 +31,7 @@ body {
 
 h2 {
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .form-group {
@@ -98,6 +100,7 @@ label {
     display: block;
     margin-bottom: 5px;
     text-align: left;
+    color: #fff;
 }
 
 input[type="text"],
@@ -137,4 +140,8 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+form a{
+    color: #fff;
 }

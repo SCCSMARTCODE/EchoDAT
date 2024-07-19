@@ -183,6 +183,7 @@ def login(email=""):
 
 @blueP.route('/view/audio', methods=['POST', 'GET'])
 def view_public_audio():
+
     if current_user.is_authenticated:
         current_user_avatar_name = get_user_avatar_name(current_user.get_id())
     else:
@@ -199,6 +200,8 @@ def view_public_audio():
 
         form = CommentForm()
         if request.method == 'POST':
+            if not current_user.is_authenticated:
+                return redirect(url_for('unauth.login'))
             if form.validate_on_submit():
                 new_comment = MessageInfo(
                     commentToId=audio_id,
@@ -211,7 +214,7 @@ def view_public_audio():
 
         messages = session.query(MessageInfo).filter_by(commentToId=audio_id).order_by(MessageInfo.created_at.desc()).all()
 
-    return render_template('audio_view.html', len=len, form=form, messages=messages, avatar_name=current_user_avatar_name, audio=audio, get_user_avatar_name=get_user_avatar_name, get_audio_filename_by_id=get_audio_filename_by_id, title='Display Audio')
+        return render_template('audio_view.html', len=len, form=form, messages=messages, avatar_name=current_user_avatar_name, audio=audio, get_user_avatar_name=get_user_avatar_name, get_audio_filename_by_id=get_audio_filename_by_id, title='Display Audio')
 
 
 @blueP.route('/reset_password_check/email_verification', methods=['GET', 'POST'])

@@ -17,10 +17,6 @@
 
             {% for result in results %}
                 <div class="search-result-item">
-                    <span class="username"><img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(result._id)) }}">@ {{ result.userName }}</span>
-                    <a class="add-button" data-user-id="2" href="{{ url_for('group.add_member', group_id=group._id, member_id=result._id) }}">Add to Group</a>
-                </div>
-                <div class="search-result-item">
                     <div class="details">
                         <img src="{{ url_for('static', filename='users_profile_avatar/' + get_user_avatar_name(result._id)) }}"></span>
                         <span class="username" > <a href="{{ url_for('auth.user_profile', user_id=result._id) }}">@{{ result.userName }}</a></span>
